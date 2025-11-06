@@ -46,6 +46,7 @@ const { header } = useAppConfig()
     </template>
 
     <template #right>
+      <ThemePicker />
       <UContentSearchButton
         v-if="header?.search"
         class="lg:hidden"
