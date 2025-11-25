@@ -1,16 +1,20 @@
+<!--
+ * @Author: zengzhe
+ * @Date: 2025-11-06 15:20:51
+ * @LastEditors: zengzhe
+ * @LastEditTime: 2025-11-25 09:35:57
+ * @Description:
+-->
 <script setup lang="ts">
-import type { ContentNavigationItem } from '@nuxt/content'
+import type { ContentNavigationItem } from "@nuxt/content";
 
-const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
+const navigation = inject<Ref<ContentNavigationItem[]>>("navigation");
 
-const { header } = useAppConfig()
+const { header } = useAppConfig();
 </script>
 
 <template>
-  <UHeader
-    :ui="{ center: 'flex-1' }"
-    :to="header?.to || '/'"
-  >
+  <UHeader :ui="{ center: 'flex-1' }" :to="header?.to || '/'">
     <UContentSearchButton
       v-if="header?.search"
       :collapsed="false"
@@ -34,23 +38,15 @@ const { header } = useAppConfig()
       </span>
     </template>
 
-    <template
-      v-else
-      #left
-    >
+    <template v-else #left>
       <NuxtLink :to="header?.to || '/'">
         <AppLogo class="w-auto h-6 shrink-0" />
       </NuxtLink>
-
-      <TemplateMenu />
     </template>
 
     <template #right>
       <ThemePicker />
-      <UContentSearchButton
-        v-if="header?.search"
-        class="lg:hidden"
-      />
+      <UContentSearchButton v-if="header?.search" class="lg:hidden" />
 
       <UColorModeButton v-if="header?.colorMode" />
 
@@ -64,10 +60,7 @@ const { header } = useAppConfig()
     </template>
 
     <template #body>
-      <UContentNavigation
-        highlight
-        :navigation="navigation"
-      />
+      <UContentNavigation highlight :navigation="navigation" />
     </template>
   </UHeader>
 </template>

@@ -1,4 +1,6 @@
 <template>
+  <!-- 暂时注释掉 Logo SVG，改用文本显示 -->
+  <!--
   <svg
     width="1020"
     height="200"
@@ -37,4 +39,9 @@
       fill="var(--ui-primary)"
     />
   </svg>
+  -->
+
+  <span class="text-xl font-bold text-primary-600 dark:text-primary-400">
+    Gorvey的前端技术笔记
+  </span>
 </template>
