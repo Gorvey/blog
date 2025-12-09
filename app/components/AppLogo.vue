@@ -42,6 +42,6 @@
   -->
 
   <span class="text-xl font-bold text-primary-600 dark:text-primary-400">
-    Gorvey的前端技术笔记
+    Gorvey的技术笔记
   </span>
 </template>
