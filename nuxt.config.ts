@@ -1,84 +1,84 @@
+/*
+ * @Author: zengzhe
+ * @Date: 2026-01-01 00:45:43
+ * @LastEditors: zengzhe
+ * @LastEditTime: 2026-01-01 00:46:14
+ * @Description:
+ */
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
-    '@nuxt/eslint',
-    '@nuxt/image',
-    '@nuxt/ui',
-    '@nuxt/content',
-    'nuxt-og-image',
-    'nuxt-llms'
+    "@nuxt/eslint",
+    "@nuxt/image",
+    "@nuxt/ui",
+    "@nuxt/content",
+    "nuxt-og-image",
+    "nuxt-llms",
   ],
 
   devtools: {
-    enabled: true
+    enabled: true,
   },
 
-  css: ['~/assets/css/main.css'],
+  css: ["~/assets/css/main.css"],
 
   content: {
     build: {
       markdown: {
         toc: {
-          searchDepth: 1
-        }
-      }
-    }
+          searchDepth: 1,
+        },
+      },
+    },
   },
 
-  components: {
-    highlight: {
-      componentHighlight: true
-    }
-  },
-
-  compatibilityDate: '2024-07-11',
+  compatibilityDate: "2024-07-11",
 
   nitro: {
     prerender: {
-      routes: [
-        '/'
-      ],
+      routes: ["/"],
       crawlLinks: true,
-      autoSubfolderIndex: false
-    }
+      autoSubfolderIndex: false,
+    },
   },
 
   eslint: {
     config: {
       stylistic: {
-        commaDangle: 'never',
-        braceStyle: '1tbs'
-      }
-    }
+        commaDangle: "never",
+        braceStyle: "1tbs",
+      },
+    },
   },
 
   icon: {
-    provider: 'iconify'
+    provider: "iconify",
   },
 
   llms: {
-    domain: 'https://docs-template.nuxt.dev/',
-    title: 'Nuxt Docs Template',
-    description: 'A template for building documentation with Nuxt UI and Nuxt Content.',
+    domain: "https://docs-template.nuxt.dev/",
+    title: "Nuxt Docs Template",
+    description:
+      "A template for building documentation with Nuxt UI and Nuxt Content.",
     full: {
-      title: 'Nuxt Docs Template - Full Documentation',
-      description: 'This is the full documentation for the Nuxt Docs Template.'
+      title: "Nuxt Docs Template - Full Documentation",
+      description: "This is the full documentation for the Nuxt Docs Template.",
     },
     sections: [
       {
-        title: 'Getting Started',
-        contentCollection: 'blog',
+        title: "Getting Started",
+        contentCollection: "blog",
         contentFilters: [
-          { field: 'path', operator: 'LIKE', value: '/getting-started%' }
-        ]
+          { field: "path", operator: "LIKE", value: "/getting-started%" },
+        ],
       },
       {
-        title: 'Essentials',
-        contentCollection: 'blog',
+        title: "Essentials",
+        contentCollection: "blog",
         contentFilters: [
-          { field: 'path', operator: 'LIKE', value: '/essentials%' }
-        ]
-      }
-    ]
-  }
-})
+          { field: "path", operator: "LIKE", value: "/essentials%" },
+        ],
+      },
+    ],
+  },
+});

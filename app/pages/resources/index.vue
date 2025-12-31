@@ -136,34 +136,30 @@ useSeoMeta({
         <div class="flex flex-col gap-6">
           <!-- 顶部一级分类导航 - 固定 -->
           <div class="sticky top-16 z-10 bg-background/95 backdrop-blur pb-4 -mt-4 pt-4">
-            <div class="flex flex-wrap items-center gap-2">
-              <UButton
-                v-for="category in resourceCategories"
-                :key="category.id"
-                :variant="activeCategory === category.id ? 'solid' : 'outline'"
-                :color="activeCategory === category.id ? 'primary' : 'neutral'"
-                size="md"
-                @click="selectCategory(category.id)"
-              >
-                {{ category.name }}
-                <template #trailing>
-                  <span class="text-xs opacity-70">
-                    {{
-                      category.collections.reduce(
-                        (sum: number, c: ResourceCollection) =>
-                          sum + getResourceCount(c.resources),
-                        0,
-                      )
-                    }}
-                  </span>
-                </template>
-              </UButton>
-              <div class="ml-auto flex items-center gap-2">
-                <span class="text-sm text-muted">筛选:</span>
-                <UCheckbox
-                  v-model="showOnlyWithBlog"
-                  label="只显示有文章"
-                />
+            <!-- 一级分类 - 居中 -->
+            <div class="flex justify-center">
+              <div class="flex flex-wrap items-center gap-2">
+                <UButton
+                  v-for="category in resourceCategories"
+                  :key="category.id"
+                  :variant="activeCategory === category.id ? 'solid' : 'outline'"
+                  :color="activeCategory === category.id ? 'primary' : 'neutral'"
+                  size="md"
+                  @click="selectCategory(category.id)"
+                >
+                  {{ category.name }}
+                  <template #trailing>
+                    <span class="text-xs opacity-70">
+                      {{
+                        category.collections.reduce(
+                          (sum: number, c: ResourceCollection) =>
+                            sum + getResourceCount(c.resources),
+                          0,
+                        )
+                      }}
+                    </span>
+                  </template>
+                </UButton>
               </div>
             </div>
           </div>
@@ -175,9 +171,17 @@ useSeoMeta({
               <div class="sticky top-36">
                 <UCard>
                   <template #header>
-                    <h3 class="font-semibold">
-                      {{ currentCategory.name }}
-                    </h3>
+                    <div class="flex items-center justify-between">
+                      <h3 class="font-semibold">
+                        {{ currentCategory.name }}
+                      </h3>
+                      <!-- 筛选移到二级分类下面 -->
+                      <UCheckbox
+                        v-model="showOnlyWithBlog"
+                        label="只显示有文章"
+                        size="sm"
+                      />
+                    </div>
                   </template>
                   <nav class="space-y-1">
                     <button
