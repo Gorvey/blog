@@ -1,16 +1,56 @@
-<!--
- * @Author: zengzhe
- * @Date: 2025-11-06 15:20:51
- * @LastEditors: zengzhe
- * @LastEditTime: 2025-11-25 09:27:35
- * @Description:
--->
 <script setup lang="ts">
 const { seo } = useAppConfig()
 
-const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('docs'))
-const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSections('docs'), {
+/**
+ * 获取博客集合的导航数据
+ */
+const { data: blogNavigation } = await useAsyncData('blog-navigation', () => queryCollectionNavigation('blog'))
+
+/**
+ * 获取资源集合的导航数据
+ */
+const { data: resourcesNavigation } = await useAsyncData('resources-navigation', () => queryCollectionNavigation('resources'))
+
+/**
+ * 合并导航数据
+ */
+const navigation = computed(() => {
+  const nav = []
+  if (blogNavigation.value) {
+    nav.push(...blogNavigation.value)
+  }
+  if (resourcesNavigation.value) {
+    nav.push(...resourcesNavigation.value)
+  }
+  return nav
+})
+
+/**
+ * 获取博客集合的搜索索引数据
+ */
+const { data: blogFiles } = useLazyAsyncData('blog-search', () => queryCollectionSearchSections('blog'), {
   server: false
+})
+
+/**
+ * 获取资源集合的搜索索引数据
+ */
+const { data: resourcesFiles } = useLazyAsyncData('resources-search', () => queryCollectionSearchSections('resources'), {
+  server: false
+})
+
+/**
+ * 合并搜索索引数据
+ */
+const files = computed(() => {
+  const result = []
+  if (blogFiles.value) {
+    result.push(...blogFiles.value)
+  }
+  if (resourcesFiles.value) {
+    result.push(...resourcesFiles.value)
+  }
+  return result
 })
 
 useHead({
@@ -21,7 +61,7 @@ useHead({
     { rel: 'icon', href: '/favicon.ico' }
   ],
   htmlAttrs: {
-    lang: 'en'
+    lang: 'zh-CN'
   }
 })
 

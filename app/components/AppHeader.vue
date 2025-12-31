@@ -1,26 +1,39 @@
-<!--
- * @Author: zengzhe
- * @Date: 2025-11-06 15:20:51
- * @LastEditors: zengzhe
- * @LastEditTime: 2025-11-25 09:35:57
- * @Description:
--->
 <script setup lang="ts">
-import type { ContentNavigationItem } from "@nuxt/content";
+import type { ContentNavigationItem } from "@nuxt/content"
+import type { NavigationMenuItem } from "@nuxt/ui"
 
-const navigation = inject<Ref<ContentNavigationItem[]>>("navigation");
+const navigation = inject<Ref<ContentNavigationItem[]>>("navigation")
+const { header } = useAppConfig()
+const route = useRoute()
 
-const { header } = useAppConfig();
+/**
+ * 获取博客集合中第一篇文章的路径
+ */
+const { data: firstBlogPost } = await useAsyncData('first-blog-post', async () => {
+  const posts = await queryCollection('blog').order('date', 'DESC').all()
+  return posts[0]?._path
+})
+
+/**
+ * 主导航菜单项配置
+ */
+const items = computed<NavigationMenuItem[]>(() => [
+  {
+    label: '博客',
+    to: firstBlogPost.value || '/blog',
+    active: route.path.startsWith('/blog')
+  },
+  {
+    label: '资源',
+    to: '/resources',
+    active: route.path.startsWith('/resources')
+  }
+])
 </script>
 
 <template>
-  <UHeader :ui="{ center: 'flex-1' }" :to="header?.to || '/'">
-    <UContentSearchButton
-      v-if="header?.search"
-      :collapsed="false"
-      class="w-full"
-    />
-
+  <UHeader :to="header?.to || '/'">
+    <!-- Logo/Title -->
     <template
       v-if="header?.logo?.dark || header?.logo?.light || header?.title"
       #title
@@ -44,10 +57,14 @@ const { header } = useAppConfig();
       </NuxtLink>
     </template>
 
+    <!-- 中心区域: 导航菜单 -->
+    <UNavigationMenu :items="items" />
+
+    <!-- 右侧工具栏 -->
     <template #right>
       <ThemePicker />
-      <UContentSearchButton v-if="header?.search" class="lg:hidden" />
-
+      <!-- 搜索按钮(所有屏幕尺寸) -->
+      <UContentSearchButton v-if="header?.search" />
       <UColorModeButton v-if="header?.colorMode" />
 
       <template v-if="header?.links">
@@ -57,10 +74,6 @@ const { header } = useAppConfig();
           v-bind="{ color: 'neutral', variant: 'ghost', ...link }"
         />
       </template>
-    </template>
-
-    <template #body>
-      <UContentNavigation highlight :navigation="navigation" />
     </template>
   </UHeader>
 </template>

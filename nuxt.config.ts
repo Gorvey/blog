@@ -25,6 +25,12 @@ export default defineNuxtConfig({
     }
   },
 
+  components: {
+    highlight: {
+      componentHighlight: true
+    }
+  },
+
   compatibilityDate: '2024-07-11',
 
   nitro: {
@@ -61,14 +67,14 @@ export default defineNuxtConfig({
     sections: [
       {
         title: 'Getting Started',
-        contentCollection: 'docs',
+        contentCollection: 'blog',
         contentFilters: [
           { field: 'path', operator: 'LIKE', value: '/getting-started%' }
         ]
       },
       {
         title: 'Essentials',
-        contentCollection: 'docs',
+        contentCollection: 'blog',
         contentFilters: [
           { field: 'path', operator: 'LIKE', value: '/essentials%' }
         ]

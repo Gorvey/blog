@@ -20,7 +20,7 @@ orientation: vertical
 #links
   :::u-button
   ---
-  to: /docs
+  to: /css-layout
   size: xl
   trailing-icon: i-lucide-arrow-right
   ---

@@ -6,11 +6,11 @@ export default defineContentConfig({
       type: 'page',
       source: 'index.md'
     }),
-    docs: defineCollection({
+    blog: defineCollection({
       type: 'page',
       source: {
-        include: '**',
-        exclude: ['index.md']
+        include: 'blog/**',
+        exclude: ['blog/index.md']
       },
       schema: z.object({
         links: z.array(z.object({
@@ -19,6 +19,15 @@ export default defineContentConfig({
           to: z.string(),
           target: z.string().optional()
         })).optional()
+      })
+    }),
+    resources: defineCollection({
+      type: 'page',
+      source: {
+        include: 'resources/**'
+      },
+      schema: z.object({
+        link: z.string().optional()
       })
     })
   }
