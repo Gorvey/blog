@@ -1,77 +1,85 @@
 <script setup lang="ts">
-const { seo } = useAppConfig()
+const { seo } = useAppConfig();
 
 /**
  * 获取博客集合的导航数据
  */
-const { data: blogNavigation } = await useAsyncData('blog-navigation', () => queryCollectionNavigation('blog'))
+const { data: blogNavigation } = await useAsyncData('blog-navigation', () =>
+  queryCollectionNavigation('blog')
+);
 
 /**
  * 获取资源集合的导航数据
  */
-const { data: resourcesNavigation } = await useAsyncData('resources-navigation', () => queryCollectionNavigation('resources'))
+const { data: resourcesNavigation } = await useAsyncData('resources-navigation', () =>
+  queryCollectionNavigation('resources')
+);
 
 /**
  * 合并导航数据
  */
 const navigation = computed(() => {
-  const nav = []
+  const nav = [];
   if (blogNavigation.value) {
-    nav.push(...blogNavigation.value)
+    nav.push(...blogNavigation.value);
   }
   if (resourcesNavigation.value) {
-    nav.push(...resourcesNavigation.value)
+    nav.push(...resourcesNavigation.value);
   }
-  return nav
-})
+  return nav;
+});
 
 /**
  * 获取博客集合的搜索索引数据
  */
-const { data: blogFiles } = useLazyAsyncData('blog-search', () => queryCollectionSearchSections('blog'), {
-  server: false
-})
+const { data: blogFiles } = useLazyAsyncData(
+  'blog-search',
+  () => queryCollectionSearchSections('blog'),
+  {
+    server: false
+  }
+);
 
 /**
  * 获取资源集合的搜索索引数据
  */
-const { data: resourcesFiles } = useLazyAsyncData('resources-search', () => queryCollectionSearchSections('resources'), {
-  server: false
-})
+const { data: resourcesFiles } = useLazyAsyncData(
+  'resources-search',
+  () => queryCollectionSearchSections('resources'),
+  {
+    server: false
+  }
+);
 
 /**
  * 合并搜索索引数据
  */
 const files = computed(() => {
-  const result = []
+  const result = [];
   if (blogFiles.value) {
-    result.push(...blogFiles.value)
+    result.push(...blogFiles.value);
   }
   if (resourcesFiles.value) {
-    result.push(...resourcesFiles.value)
+    result.push(...resourcesFiles.value);
   }
-  return result
-})
+  return result;
+});
 
 useHead({
-  meta: [
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' }
-  ],
-  link: [
-    { rel: 'icon', href: '/favicon.ico' }
-  ],
+  meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
+  link: [{ rel: 'icon', href: '/favicon.ico' }],
   htmlAttrs: {
     lang: 'zh-CN'
   }
-})
+});
 
 useSeoMeta({
   titleTemplate: `%s - ${seo?.siteName}`,
   ogSiteName: seo?.siteName,
   twitterCard: 'summary_large_image'
-})
+});
 
-provide('navigation', navigation)
+provide('navigation', navigation);
 </script>
 
 <template>
@@ -89,10 +97,7 @@ provide('navigation', navigation)
     <!-- <AppFooter /> -->
 
     <ClientOnly>
-      <LazyUContentSearch
-        :files="files"
-        :navigation="navigation"
-      />
+      <LazyUContentSearch :files="files" :navigation="navigation" />
     </ClientOnly>
   </UApp>
 </template>

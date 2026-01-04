@@ -1,4 +1,4 @@
-import type { ResourceCategory } from './index'
+import type { ResourceCategory } from './index';
 
 /**
  * 学习资源分类
@@ -182,4 +182,4 @@ export const learningCategory: ResourceCategory = {
       ]
     }
   ]
-}
+};

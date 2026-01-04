@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useClipboard } from "@vueuse/core";
+import { useClipboard } from '@vueuse/core';
 
 const route = useRoute();
 const toast = useToast();
@@ -12,22 +12,22 @@ const mdPath = computed(() => `${site.url}/raw${route.path}.md`);
 
 const items = [
   {
-    label: "Copy Markdown link",
-    icon: "i-lucide-link",
+    label: 'Copy Markdown link',
+    icon: 'i-lucide-link',
     onSelect() {
       copy(mdPath.value);
       toast.add({
-        title: "Copied to clipboard",
-        icon: "i-lucide-check-circle",
+        title: 'Copied to clipboard',
+        icon: 'i-lucide-check-circle'
       });
-    },
+    }
   },
   {
-    label: "View as Markdown",
-    icon: "i-simple-icons:markdown",
-    target: "_blank",
-    to: `/raw${route.path}.md`,
-  },
+    label: 'View as Markdown',
+    icon: 'i-simple-icons:markdown',
+    target: '_blank',
+    to: `/raw${route.path}.md`
+  }
 ];
 
 async function copyPage() {
@@ -46,7 +46,7 @@ async function copyPage() {
       variant="outline"
       :loading="isCopying"
       :ui="{
-        leadingIcon: [copied ? 'text-primary' : 'text-neutral', 'size-3.5'],
+        leadingIcon: [copied ? 'text-primary' : 'text-neutral', 'size-3.5']
       }"
       @click="copyPage"
     />
@@ -55,18 +55,13 @@ async function copyPage() {
       :content="{
         align: 'end',
         side: 'bottom',
-        sideOffset: 8,
+        sideOffset: 8
       }"
       :ui="{
-        content: 'w-48',
+        content: 'w-48'
       }"
     >
-      <UButton
-        icon="i-lucide-chevron-down"
-        size="sm"
-        color="neutral"
-        variant="outline"
-      />
+      <UButton icon="i-lucide-chevron-down" size="sm" color="neutral" variant="outline" />
     </UDropdownMenu>
   </UButtonGroup>
 </template>

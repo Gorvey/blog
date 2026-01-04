@@ -1,4 +1,4 @@
-import type { ResourceCategory } from './index'
+import type { ResourceCategory } from './index';
 
 /**
  * 开发者社区分类
@@ -73,4 +73,4 @@ export const communityCategory: ResourceCategory = {
       ]
     }
   ]
-}
+};

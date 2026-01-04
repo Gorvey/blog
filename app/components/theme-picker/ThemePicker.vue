@@ -1,62 +1,62 @@
 <script setup lang="ts">
-import colors from 'tailwindcss/colors'
-import { omit } from '#ui/utils'
+import colors from 'tailwindcss/colors';
+import { omit } from '#ui/utils';
 
-const appConfig = useAppConfig()
-const colorMode = useColorMode()
+const appConfig = useAppConfig();
+const colorMode = useColorMode();
 
-const neutralColors = ['slate', 'gray', 'zinc', 'neutral', 'stone']
+const neutralColors = ['slate', 'gray', 'zinc', 'neutral', 'stone'];
 const neutral = computed({
   get() {
-    return appConfig.ui.colors.neutral
+    return appConfig.ui.colors.neutral;
   },
   set(option) {
-    appConfig.ui.colors.neutral = option
-    window.localStorage.setItem('nuxt-ui-neutral', appConfig.ui.colors.neutral)
+    appConfig.ui.colors.neutral = option;
+    window.localStorage.setItem('nuxt-ui-neutral', appConfig.ui.colors.neutral);
   }
-})
+});
 
-const colorsToOmit = ['inherit', 'current', 'transparent', 'black', 'white', ...neutralColors]
-const primaryColors = Object.keys(omit(colors, colorsToOmit as any))
+const colorsToOmit = ['inherit', 'current', 'transparent', 'black', 'white', ...neutralColors];
+const primaryColors = Object.keys(omit(colors, colorsToOmit as any));
 const primary = computed({
   get() {
-    return appConfig.ui.colors.primary
+    return appConfig.ui.colors.primary;
   },
   set(option) {
-    appConfig.ui.colors.primary = option
-    window.localStorage.setItem('nuxt-ui-primary', appConfig.ui.colors.primary)
-    setBlackAsPrimary(false)
+    appConfig.ui.colors.primary = option;
+    window.localStorage.setItem('nuxt-ui-primary', appConfig.ui.colors.primary);
+    setBlackAsPrimary(false);
   }
-})
+});
 
-const radiuses = [0, 0.125, 0.25, 0.375, 0.5]
+const radiuses = [0, 0.125, 0.25, 0.375, 0.5];
 const radius = computed({
   get() {
-    return appConfig.theme.radius
+    return appConfig.theme.radius;
   },
   set(option) {
-    appConfig.theme.radius = option
-    window.localStorage.setItem('nuxt-ui-radius', String(appConfig.theme.radius))
+    appConfig.theme.radius = option;
+    window.localStorage.setItem('nuxt-ui-radius', String(appConfig.theme.radius));
   }
-})
+});
 
 const modes = [
   { label: 'light', icon: appConfig.ui.icons.light },
   { label: 'dark', icon: appConfig.ui.icons.dark },
   { label: 'system', icon: appConfig.ui.icons.system }
-]
+];
 const mode = computed({
   get() {
-    return colorMode.value
+    return colorMode.value;
   },
   set(option) {
-    colorMode.preference = option
+    colorMode.preference = option;
   }
-})
+});
 
 function setBlackAsPrimary(value: boolean) {
-  appConfig.theme.blackAsPrimary = value
-  window.localStorage.setItem('nuxt-ui-black-as-primary', String(value))
+  appConfig.theme.blackAsPrimary = value;
+  window.localStorage.setItem('nuxt-ui-black-as-primary', String(value));
 }
 </script>
 
@@ -75,9 +75,7 @@ function setBlackAsPrimary(value: boolean) {
 
     <template #content>
       <fieldset>
-        <legend class="text-[11px] leading-none font-semibold mb-2">
-          Primary
-        </legend>
+        <legend class="text-[11px] leading-none font-semibold mb-2">Primary</legend>
 
         <div class="grid grid-cols-3 gap-1 -mx-2">
           <ThemePickerButton
@@ -102,9 +100,7 @@ function setBlackAsPrimary(value: boolean) {
       </fieldset>
 
       <fieldset>
-        <legend class="text-[11px] leading-none font-semibold mb-2">
-          Neutral
-        </legend>
+        <legend class="text-[11px] leading-none font-semibold mb-2">Neutral</legend>
 
         <div class="grid grid-cols-3 gap-1 -mx-2">
           <ThemePickerButton
@@ -119,9 +115,7 @@ function setBlackAsPrimary(value: boolean) {
       </fieldset>
 
       <fieldset>
-        <legend class="text-[11px] leading-none font-semibold mb-2">
-          Radius
-        </legend>
+        <legend class="text-[11px] leading-none font-semibold mb-2">Radius</legend>
 
         <div class="grid grid-cols-5 gap-1 -mx-2">
           <ThemePickerButton
@@ -136,9 +130,7 @@ function setBlackAsPrimary(value: boolean) {
       </fieldset>
 
       <fieldset>
-        <legend class="text-[11px] leading-none font-semibold mb-2">
-          Theme
-        </legend>
+        <legend class="text-[11px] leading-none font-semibold mb-2">Theme</legend>
 
         <div class="grid grid-cols-3 gap-1 -mx-2">
           <ThemePickerButton

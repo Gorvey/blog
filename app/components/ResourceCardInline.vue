@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { Resource } from '~/config/resources/index'
+import type { Resource } from '~/config/resources/index';
 
 interface Props {
-  resource: Resource
+  resource: Resource;
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 
 /**
  * 获取网站 favicon
@@ -13,42 +13,43 @@ const props = defineProps<Props>()
  */
 const faviconUrl = computed(() => {
   try {
-    const hostname = new URL(props.resource.url).hostname
-    return `https://icons.duckduckgo.com/ip3/${hostname}.ico`
+    const hostname = new URL(props.resource.url).hostname;
+    return `https://icons.duckduckgo.com/ip3/${hostname}.ico`;
   } catch {
-    return null
+    return null;
   }
-})
+});
 
 /**
  * 点击处理 - 直接打开资源链接
  */
 const handleClick = () => {
-  window.open(props.resource.url, '_blank')
-}
+  window.open(props.resource.url, '_blank');
+};
 </script>
 
 <template>
-  <UCard
-    class="cursor-pointer"
-    @click="handleClick"
-  >
+  <UCard class="cursor-pointer" @click="handleClick">
     <div class="flex items-center justify-between gap-4">
       <!-- 左侧: 图标 + 标题 -->
       <div class="flex items-center gap-3 flex-1 min-w-0">
-        <div class="w-10 h-10 shrink-0 rounded-lg flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+        <div
+          class="w-10 h-10 shrink-0 rounded-lg flex items-center justify-center bg-gray-100 dark:bg-gray-800"
+        >
           <img
             v-if="faviconUrl"
             :src="faviconUrl"
             :alt="resource.name"
             class="w-6 h-6"
             loading="lazy"
-            @error="(e) => { (e.target as HTMLImageElement).style.display = 'none'; (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden') }"
+            @error="
+              (e) => {
+                (e.target as HTMLImageElement).style.display = 'none';
+                (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
+              }
+            "
           />
-          <UIcon
-            name="i-lucide-globe"
-            class="w-6 h-6 hidden text-muted"
-          />
+          <UIcon name="i-lucide-globe" class="w-6 h-6 hidden text-muted" />
         </div>
         <div class="flex flex-col min-w-0">
           <h3 class="font-semibold text-sm">{{ resource.name }}</h3>

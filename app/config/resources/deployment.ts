@@ -1,4 +1,4 @@
-import type { ResourceCategory } from './index'
+import type { ResourceCategory } from './index';
 
 /**
  * 部署运维分类
@@ -78,4 +78,4 @@ export const deploymentCategory: ResourceCategory = {
       ]
     }
   ]
-}
+};

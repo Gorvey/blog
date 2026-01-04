@@ -1,80 +1,80 @@
 /*
  * @Author: zengzhe
  * @Date: 2025-11-06 15:26:42
- * @LastEditors: zengzhe
- * @LastEditTime: 2025-11-25 10:22:14
+ * @LastEditors: Gorvey 2324850628@qq.com
+ * @LastEditTime: 2026-01-04 09:49:40
  * @Description:
  */
 export default defineAppConfig({
   ui: {
     colors: {
-      primary: "green",
-      neutral: "slate",
+      primary: 'green',
+      neutral: 'slate'
     },
     icons: {
-      light: "i-lucide-sun",
-      dark: "i-lucide-moon",
-      system: "i-lucide-monitor",
+      light: 'i-lucide-sun',
+      dark: 'i-lucide-moon',
+      system: 'i-lucide-monitor'
     },
     footer: {
       slots: {
-        root: "border-t border-default",
-        left: "text-sm text-muted",
-      },
-    },
+        root: 'border-t border-default',
+        left: 'text-sm text-muted'
+      }
+    }
   },
   theme: {
     radius: 0.5,
-    blackAsPrimary: false,
+    blackAsPrimary: false
   },
   seo: {
-    siteName: "Gorvey的技术笔记",
+    siteName: 'Gorvey的技术笔记'
   },
   header: {
-    title: "",
-    to: "/",
+    title: '',
+    to: '/',
     logo: {
-      alt: "",
-      light: "",
-      dark: "",
+      alt: '',
+      light: '',
+      dark: ''
     },
     search: true,
     colorMode: true,
     links: [
       {
-        icon: "i-simple-icons-github",
-        to: "https://github.com/Gorvey",
-        target: "_blank",
-        "aria-label": "GitHub",
-      },
-    ],
+        icon: 'i-simple-icons-github',
+        to: 'https://github.com/Gorvey',
+        target: '_blank',
+        'aria-label': 'GitHub'
+      }
+    ]
   },
   footer: {
     credits: `Built with Nuxt UI • © ${new Date().getFullYear()}`,
     colorMode: false,
     links: [
       {
-        icon: "i-simple-icons-discord",
-        to: "https://go.nuxt.com/discord",
-        target: "_blank",
-        "aria-label": "Nuxt on Discord",
+        icon: 'i-simple-icons-discord',
+        to: 'https://go.nuxt.com/discord',
+        target: '_blank',
+        'aria-label': 'Nuxt on Discord'
       },
       {
-        icon: "i-simple-icons-x",
-        to: "https://go.nuxt.com/x",
-        target: "_blank",
-        "aria-label": "Nuxt on X",
+        icon: 'i-simple-icons-x',
+        to: 'https://go.nuxt.com/x',
+        target: '_blank',
+        'aria-label': 'Nuxt on X'
       },
       {
-        icon: "i-simple-icons-github",
-        to: "https://github.com/nuxt/ui",
-        target: "_blank",
-        "aria-label": "Nuxt UI on GitHub",
-      },
-    ],
+        icon: 'i-simple-icons-github',
+        to: 'https://github.com/nuxt/ui',
+        target: '_blank',
+        'aria-label': 'Nuxt UI on GitHub'
+      }
+    ]
   },
   toc: {
-    title: "Table of Contents",
+    title: 'Table of Contents'
     // bottom: {
     //   title: 'Community',
     //   edit: 'https://github.com/nuxt-ui-templates/docs/edit/main/content',
@@ -90,5 +90,5 @@ export default defineAppConfig({
     //     target: '_blank'
     //   }]
     // }
-  },
+  }
 });

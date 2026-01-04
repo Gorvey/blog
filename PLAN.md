@@ -35,12 +35,16 @@ export default defineContentConfig({
         exclude: 'blog/index.md'
       },
       schema: z.object({
-        links: z.array(z.object({
-          label: z.string(),
-          icon: z.string(),
-          to: z.string(),
-          target: z.string().optional()
-        })).optional()
+        links: z
+          .array(
+            z.object({
+              label: z.string(),
+              icon: z.string(),
+              to: z.string(),
+              target: z.string().optional()
+            })
+          )
+          .optional()
       })
     }),
 
@@ -52,34 +56,35 @@ export default defineContentConfig({
       }
     })
   }
-})
+});
 ```
 
 #### 1.2 创建新的路由文件
 
 **创建 `app/pages/blog/[...slug].vue`**:
+
 ```vue
 <script setup lang="ts">
 definePageMeta({
   layout: 'docs'
-})
+});
 
-const route = useRoute()
+const route = useRoute();
 const { data: page } = await useAsyncData(route.path, () =>
   queryCollection('blog').path(route.path).first()
-)
+);
 
 if (!page.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
 
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
-  return queryCollectionItemSurroundings('blog', route.path)
-})
+  return queryCollectionItemSurroundings('blog', route.path);
+});
 
 // SEO 配置
-const title = page.value.seo?.title || page.value.title
-const description = page.value.seo?.description || page.value.description
+const title = page.value.seo?.title || page.value.title;
+const description = page.value.seo?.description || page.value.description;
 </script>
 
 <template>
@@ -104,26 +109,27 @@ const description = page.value.seo?.description || page.value.description
 ```
 
 **创建 `app/pages/resources/index.vue`**:
+
 ```vue
 <script setup lang="ts">
-import { resourceCollections } from '~/config/resources'
+import { resourceCollections } from '~/config/resources';
 
 definePageMeta({
   layout: 'default'
-})
+});
 
-const route = useRoute()
-const activeCollection = ref((route.query.category as string) || resourceCollections[0].id)
+const route = useRoute();
+const activeCollection = ref((route.query.category as string) || resourceCollections[0].id);
 
-const collections = resourceCollections.map(collection => ({
+const collections = resourceCollections.map((collection) => ({
   label: collection.name,
   value: collection.id,
   slot: collection.id
-}))
+}));
 
 watch(activeCollection, (newValue) => {
-  navigateTo({ query: { category: newValue } })
-})
+  navigateTo({ query: { category: newValue } });
+});
 </script>
 
 <template>
@@ -152,12 +158,14 @@ watch(activeCollection, (newValue) => {
 #### 1.3 迁移内容文件
 
 **操作步骤**:
+
 1. 创建 `content/blog/` 文件夹
 2. 将 `content/ai/` 移动到 `content/blog/ai/`
 3. 将 `content/docs/` 移动到 `content/blog/docs/`(如果存在)
 4. 创建 `content/resources/` 文件夹(预留,可能不需要 Markdown 文件)
 
 **迁移后的路径映射**:
+
 - 原路径: `/ai/mcp/context7`
 - 新路径: `/blog/ai/mcp/context7`
 
@@ -166,6 +174,7 @@ watch(activeCollection, (newValue) => {
 #### 2.1 修改 AppHeader.vue
 
 **关键改动**:
+
 1. 将中心区域的全宽搜索框改为 UTabs 导航
 2. 将搜索功能移到右侧,显示为按钮
 3. 根据当前路由激活对应的 Tab
@@ -174,11 +183,11 @@ watch(activeCollection, (newValue) => {
 
 ```vue
 <script setup lang="ts">
-import type { ContentNavigationItem } from '@nuxt/content'
+import type { ContentNavigationItem } from '@nuxt/content';
 
-const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
-const { header } = useAppConfig()
-const route = useRoute()
+const navigation = inject<Ref<ContentNavigationItem[]>>('navigation');
+const { header } = useAppConfig();
+const route = useRoute();
 
 /**
  * 主导航标签页配置
@@ -186,27 +195,27 @@ const route = useRoute()
 const mainTabs = [
   { label: '博客', value: 'blog', to: '/blog' },
   { label: '资源', value: 'resources', to: '/resources' }
-]
+];
 
 /**
  * 根据当前路由确定激活的标签
  */
 const activeTab = computed(() => {
-  const path = route.path
-  if (path.startsWith('/resources')) return 'resources'
-  if (path.startsWith('/blog')) return 'blog'
-  return 'blog' // 默认
-})
+  const path = route.path;
+  if (path.startsWith('/resources')) return 'resources';
+  if (path.startsWith('/blog')) return 'blog';
+  return 'blog'; // 默认
+});
 
 /**
  * 处理标签切换
  */
 const handleTabChange = (value: string) => {
-  const tab = mainTabs.find(t => t.value === value)
+  const tab = mainTabs.find((t) => t.value === value);
   if (tab) {
-    navigateTo(tab.to)
+    navigateTo(tab.to);
   }
-}
+};
 </script>
 
 <template>
@@ -242,11 +251,7 @@ const handleTabChange = (value: string) => {
       <UContentSearchButton v-if="header?.search" />
       <UColorModeButton v-if="header?.colorMode" />
       <template v-if="header?.links">
-        <UButton
-          v-for="(link, index) of header.links"
-          :key="index"
-          v-bind="link"
-        />
+        <UButton v-for="(link, index) of header.links" :key="index" v-bind="link" />
       </template>
     </template>
 
@@ -259,6 +264,7 @@ const handleTabChange = (value: string) => {
 ```
 
 **关键修改点**:
+
 - `#center` 插槽: 添加 `UTabs` 组件,设置 `:content="false"` 只显示标签不显示内容
 - `activeTab` 计算属性: 根据 `route.path` 判断当前激活标签
 - `handleTabChange`: 点击标签时导航到对应路由
@@ -273,15 +279,14 @@ const handleTabChange = (value: string) => {
 // 改为查询 blog 集合的导航
 const { data: navigation } = await useAsyncData('navigation', () =>
   queryCollectionNavigation('blog')
-)
+);
 
 // 搜索索引也改为 blog 集合
-const { data: files } = useLazyAsyncData('search', () =>
-  queryCollectionSearchSections('blog'),
-  { server: false }
-)
+const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSections('blog'), {
+  server: false
+});
 
-provide('navigation', navigation)
+provide('navigation', navigation);
 </script>
 ```
 
@@ -297,15 +302,15 @@ provide('navigation', navigation)
  */
 export interface Resource {
   /** 资源名称 */
-  name: string
+  name: string;
   /** 资源 URL */
-  url: string
+  url: string;
   /** 关联的博客文章路径(可选) */
-  post?: string
+  post?: string;
   /** 资源描述(可选) */
-  description?: string
+  description?: string;
   /** 资源图标(可选) */
-  icon?: string
+  icon?: string;
 }
 
 /**
@@ -313,15 +318,15 @@ export interface Resource {
  */
 export interface ResourceCollection {
   /** 集合唯一标识 */
-  id: string
+  id: string;
   /** 集合名称 */
-  name: string
+  name: string;
   /** 集合描述 */
-  description?: string
+  description?: string;
   /** 集合图标 */
-  icon?: string
+  icon?: string;
   /** 资源列表 */
-  resources: Resource[]
+  resources: Resource[];
 }
 
 /**
@@ -363,7 +368,7 @@ export const resourceCollections: ResourceCollection[] = [
       }
     ]
   }
-]
+];
 ```
 
 #### 3.2 创建资源卡片组件
@@ -372,18 +377,18 @@ export const resourceCollections: ResourceCollection[] = [
 
 ```vue
 <script setup lang="ts">
-import type { Resource } from '~/config/resources'
+import type { Resource } from '~/config/resources';
 
 interface Props {
-  resource: Resource
+  resource: Resource;
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 
 /**
  * 判断资源是否有关联博客文章
  */
-const hasBlogPost = computed(() => !!props.resource.post)
+const hasBlogPost = computed(() => !!props.resource.post);
 
 /**
  * 点击卡片的处理逻辑
@@ -391,32 +396,23 @@ const hasBlogPost = computed(() => !!props.resource.post)
 const handleClick = () => {
   if (props.resource.post) {
     // 如果有关联文章,跳转到博客文章
-    navigateTo(props.resource.post)
+    navigateTo(props.resource.post);
   } else {
     // 否则在新窗口打开外部链接
-    window.open(props.resource.url, '_blank')
+    window.open(props.resource.url, '_blank');
   }
-}
+};
 </script>
 
 <template>
-  <UCard
-    class="cursor-pointer hover:shadow-lg transition-shadow"
-    @click="handleClick"
-  >
+  <UCard class="cursor-pointer hover:shadow-lg transition-shadow" @click="handleClick">
     <template #header>
       <div class="flex items-center gap-3">
-        <UIcon
-          v-if="resource.icon"
-          :name="resource.icon"
-          class="text-2xl text-primary"
-        />
+        <UIcon v-if="resource.icon" :name="resource.icon" class="text-2xl text-primary" />
         <div class="flex-1 min-w-0">
           <h3 class="font-semibold truncate">{{ resource.name }}</h3>
         </div>
-        <UBadge v-if="hasBlogPost" color="primary" variant="soft" size="xs">
-          有文章
-        </UBadge>
+        <UBadge v-if="hasBlogPost" color="primary" variant="soft" size="xs"> 有文章 </UBadge>
       </div>
     </template>
 
@@ -453,21 +449,21 @@ export default defineAppConfig({
     siteName: 'Gorvey的技术笔记'
   },
   header: {
-    title: "",
-    to: "/",
+    title: '',
+    to: '/',
     logo: {
-      alt: "",
-      light: "",
-      dark: ""
+      alt: '',
+      light: '',
+      dark: ''
     },
     search: true,
     colorMode: true,
     links: [
       {
-        icon: "i-simple-icons-github",
-        to: "https://github.com/Gorvey",
-        target: "_blank",
-        "aria-label": "GitHub"
+        icon: 'i-simple-icons-github',
+        to: 'https://github.com/Gorvey',
+        target: '_blank',
+        'aria-label': 'GitHub'
       }
     ]
   },
@@ -480,7 +476,7 @@ export default defineAppConfig({
       ]
     }
   }
-})
+});
 ```
 
 #### 4.2 更新预渲染配置
@@ -491,15 +487,11 @@ export default defineAppConfig({
 export default defineNuxtConfig({
   nitro: {
     prerender: {
-      routes: [
-        '/',
-        '/blog',
-        '/resources'
-      ],
+      routes: ['/', '/blog', '/resources'],
       crawlLinks: true
     }
   }
-})
+});
 ```
 
 ### 第五阶段: 测试和验证
@@ -520,12 +512,15 @@ export default defineNuxtConfig({
 #### 5.2 可能的问题和解决方案
 
 **问题 1**: 迁移后链接失效
+
 - **解决**: 在 `nuxt.config.ts` 中添加重定向规则
 
 **问题 2**: 搜索无法找到迁移的内容
+
 - **解决**: 确认 `app.vue` 中搜索索引已改为查询 `blog` 集合
 
 **问题 3**: 导航高亮不准确
+
 - **解决**: 调整 `activeTab` 计算逻辑,使用更精确的路径匹配
 
 ## 关键文件清单

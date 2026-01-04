@@ -41,7 +41,5 @@
   </svg>
   -->
 
-  <span class="text-xl font-bold text-primary-600 dark:text-primary-400">
-    Gorvey的技术笔记
-  </span>
+  <span class="text-xl font-bold text-primary-600 dark:text-primary-400"> Gorvey的技术笔记 </span>
 </template>

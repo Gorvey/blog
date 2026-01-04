@@ -1,4 +1,4 @@
-import type { ResourceCategory } from './index'
+import type { ResourceCategory } from './index';
 
 /**
  * 设计资源分类
@@ -87,4 +87,4 @@ export const designCategory: ResourceCategory = {
       ]
     }
   ]
-}
+};

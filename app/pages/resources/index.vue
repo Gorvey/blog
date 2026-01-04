@@ -3,11 +3,11 @@ import {
   resourceCategories,
   type ResourceCategory,
   type ResourceCollection,
-  type Resource,
-} from "~/config/resources/index";
+  type Resource
+} from '~/config/resources/index';
 
 definePageMeta({
-  layout: "default",
+  layout: 'default'
 });
 
 const route = useRoute();
@@ -20,14 +20,12 @@ const showOnlyWithBlog = ref(false);
 /**
  * 当前激活的一级分类
  */
-const activeCategory = ref(
-  (route.query.category as string) || resourceCategories[0]?.id,
-);
+const activeCategory = ref((route.query.category as string) || resourceCategories[0]?.id);
 
 /**
  * 当前激活的二级集合
  */
-const activeCollection = ref((route.query.collection as string) || "");
+const activeCollection = ref((route.query.collection as string) || '');
 
 /**
  * 过滤资源列表
@@ -43,9 +41,7 @@ const filterResources = (resources: Resource[]): Resource[] => {
  * 获取当前激活的分类
  */
 const currentCategory = computed((): ResourceCategory | undefined => {
-  return resourceCategories.find(
-    (c: ResourceCategory) => c.id === activeCategory.value,
-  );
+  return resourceCategories.find((c: ResourceCategory) => c.id === activeCategory.value);
 });
 
 /**
@@ -53,14 +49,14 @@ const currentCategory = computed((): ResourceCategory | undefined => {
  */
 const currentCollection = computed((): ResourceCollection | undefined => {
   const collection = currentCategory.value?.collections.find(
-    (c: ResourceCollection) => c.id === activeCollection.value,
+    (c: ResourceCollection) => c.id === activeCollection.value
   );
   if (!collection) {
     return undefined;
   }
   return {
     ...collection,
-    resources: filterResources(collection.resources),
+    resources: filterResources(collection.resources)
   };
 });
 
@@ -84,23 +80,21 @@ onMounted(() => {
  * 监听分类变化并更新 URL
  */
 watch(activeCategory, () => {
-  const category = resourceCategories.find(
-    (c: ResourceCategory) => c.id === activeCategory.value,
-  );
+  const category = resourceCategories.find((c: ResourceCategory) => c.id === activeCategory.value);
   if (category?.collections?.[0]?.id) {
     activeCollection.value = category.collections[0].id;
   }
   navigateTo({
     query: {
       category: activeCategory.value,
-      collection: activeCollection.value,
-    },
+      collection: activeCollection.value
+    }
   });
 });
 
 watch(activeCollection, (newValue) => {
   navigateTo({
-    query: { category: activeCategory.value, collection: newValue },
+    query: { category: activeCategory.value, collection: newValue }
   });
 });
 
@@ -122,10 +116,10 @@ const selectCollection = (id: string) => {
  * SEO 配置
  */
 useSeoMeta({
-  title: "资源合集",
-  description: "精选前端开发资源和工具",
-  ogTitle: "资源合集",
-  ogDescription: "精选前端开发资源和工具",
+  title: '资源合集',
+  description: '精选前端开发资源和工具',
+  ogTitle: '资源合集',
+  ogDescription: '精选前端开发资源和工具'
 });
 </script>
 
@@ -154,7 +148,7 @@ useSeoMeta({
                         category.collections.reduce(
                           (sum: number, c: ResourceCollection) =>
                             sum + getResourceCount(c.resources),
-                          0,
+                          0
                         )
                       }}
                     </span>
@@ -176,11 +170,7 @@ useSeoMeta({
                         {{ currentCategory.name }}
                       </h3>
                       <!-- 筛选移到二级分类下面 -->
-                      <UCheckbox
-                        v-model="showOnlyWithBlog"
-                        label="只显示有文章"
-                        size="sm"
-                      />
+                      <UCheckbox v-model="showOnlyWithBlog" label="只显示有文章" size="sm" />
                     </div>
                   </template>
                   <nav class="space-y-1">
@@ -191,7 +181,7 @@ useSeoMeta({
                         'w-full flex items-center justify-between px-3 py-2 rounded-md text-left text-sm transition-colors',
                         activeCollection === collection.id
                           ? 'bg-primary/10 text-primary font-medium'
-                          : 'hover:bg-muted',
+                          : 'hover:bg-muted'
                       ]"
                       @click="selectCollection(collection.id)"
                     >
@@ -212,9 +202,7 @@ useSeoMeta({
                   {{ currentCollection.description }}
                 </div>
 
-                <div
-                  class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
-                >
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                   <ResourceCard
                     v-for="resource in currentCollection.resources"
                     :key="resource.url"

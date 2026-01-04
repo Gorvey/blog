@@ -1,4 +1,4 @@
-import type { ResourceCategory } from './index'
+import type { ResourceCategory } from './index';
 
 /**
  * 后端开发分类
@@ -113,4 +113,4 @@ export const backendCategory: ResourceCategory = {
       ]
     }
   ]
-}
+};

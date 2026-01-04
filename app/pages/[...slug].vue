@@ -1,88 +1,73 @@
 <script setup lang="ts">
-import type { ContentNavigationItem } from '@nuxt/content'
-import { findPageHeadline } from '@nuxt/content/utils'
+import type { ContentNavigationItem } from '@nuxt/content';
+import { findPageHeadline } from '@nuxt/content/utils';
 
 definePageMeta({
   layout: 'docs'
-})
+});
 
-const route = useRoute()
-const { toc } = useAppConfig()
-const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
+const route = useRoute();
+const { toc } = useAppConfig();
+const navigation = inject<Ref<ContentNavigationItem[]>>('navigation');
 
-const { data: page } = await useAsyncData(route.path, () => queryCollection('blog').path(route.path).first())
+const { data: page } = await useAsyncData(route.path, () =>
+  queryCollection('blog').path(route.path).first()
+);
 if (!page.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
 
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
   return queryCollectionItemSurroundings('blog', route.path, {
     fields: ['description']
-  })
-})
+  });
+});
 
-const title = page.value.seo?.title || page.value.title
-const description = page.value.seo?.description || page.value.description
+const title = page.value.seo?.title || page.value.title;
+const description = page.value.seo?.description || page.value.description;
 
 useSeoMeta({
   title,
   ogTitle: title,
   description,
   ogDescription: description
-})
+});
 
-const headline = computed(() => findPageHeadline(navigation?.value, page.value?.path))
+const headline = computed(() => findPageHeadline(navigation?.value, page.value?.path));
 
 defineOgImageComponent('Docs', {
   headline: headline.value
-})
+});
 
 /**
  * 获取页面的 links 字段
  */
 const pageLinks = computed(() => {
-  if (!page.value) return []
-  return (page.value as any).links || []
-})
+  if (!page.value) return [];
+  return (page.value as any).links || [];
+});
 </script>
 
 <template>
   <UPage v-if="page">
-    <UPageHeader
-      :title="page.title"
-      :description="page.description"
-      :headline="headline"
-    >
+    <UPageHeader :title="page.title" :description="page.description" :headline="headline">
       <template #links>
-        <UButton
-          v-for="(link, index) in pageLinks"
-          :key="index"
-          v-bind="link"
-        />
+        <UButton v-for="(link, index) in pageLinks" :key="index" v-bind="link" />
 
         <PageHeaderLinks />
       </template>
     </UPageHeader>
 
     <UPageBody>
-      <ContentRenderer
-        v-if="page"
-        :value="page"
-      />
+      <ContentRenderer v-if="page" :value="page" />
 
       <USeparator v-if="surround?.length" />
 
       <UContentSurround :surround="surround" />
     </UPageBody>
 
-    <template
-      v-if="page?.body?.toc?.links?.length"
-      #right
-    >
-      <UContentToc
-        :title="toc?.title"
-        :links="page.body?.toc?.links"
-      />
+    <template v-if="page?.body?.toc?.links?.length" #right>
+      <UContentToc :title="toc?.title" :links="page.body?.toc?.links" />
     </template>
   </UPage>
 </template>

@@ -37,15 +37,12 @@ npx tailwindcss init -p
 ```javascript
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
-}
+  plugins: []
+};
 ```
 
 ## 常用工具类
@@ -102,12 +99,10 @@ module.exports = {
 
 ```html
 <div class="max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow-md">
-  <img class="mb-4 h-48 w-full rounded-t-lg object-cover" src="/image.jpg" alt="图片">
+  <img class="mb-4 h-48 w-full rounded-t-lg object-cover" src="/image.jpg" alt="图片" />
   <h3 class="mb-2 text-xl font-bold text-gray-900">卡片标题</h3>
   <p class="mb-4 text-gray-600">卡片描述内容</p>
-  <a href="#" class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
-    查看详情
-  </a>
+  <a href="#" class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"> 查看详情 </a>
 </div>
 ```
 
@@ -121,9 +116,7 @@ module.exports = {
     <a href="#" class="text-gray-600 hover:text-blue-500">关于</a>
     <a href="#" class="text-gray-600 hover:text-blue-500">联系</a>
   </div>
-  <button class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
-    登录
-  </button>
+  <button class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">登录</button>
 </nav>
 ```
 
@@ -146,13 +139,13 @@ const props = defineProps({
     type: String,
     default: 'primary'
   }
-})
+});
 
 const variants = {
   primary: 'bg-blue-500 text-white hover:bg-blue-600',
   secondary: 'bg-gray-200 text-gray-800 hover:bg-gray-300',
   danger: 'bg-red-500 text-white hover:bg-red-600'
-}
+};
 </script>
 ```
 
@@ -174,14 +167,14 @@ module.exports = {
     extend: {
       colors: {
         primary: '#3b82f6',
-        secondary: '#6b7280',
+        secondary: '#6b7280'
       },
       spacing: {
-        '128': '32rem',
+        128: '32rem'
       }
     }
   }
-}
+};
 ```
 
 ## 性能优化
@@ -192,11 +185,8 @@ Tailwind CSS 通过扫描文件自动生成包含实际使用样式的 CSS 文�
 
 ```javascript
 module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-  ],
-}
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}']
+};
 ```
 
 ### 生产环境构建

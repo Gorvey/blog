@@ -1,4 +1,4 @@
-import type { ResourceCategory } from './index'
+import type { ResourceCategory } from './index';
 
 /**
  * 开发工具分类
@@ -152,4 +152,4 @@ export const toolsCategory: ResourceCategory = {
       ]
     }
   ]
-}
+};

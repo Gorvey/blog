@@ -1,18 +1,26 @@
+<!--
+ * @Author: Gorvey 2324850628@qq.com
+ * @Date: 2026-01-04 09:27:29
+ * @LastEditors: Gorvey 2324850628@qq.com
+ * @LastEditTime: 2026-01-04 09:38:16
+ * @FilePath: \blog\app\components\AppHeader.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <script setup lang="ts">
-import type { ContentNavigationItem } from "@nuxt/content"
-import type { NavigationMenuItem } from "@nuxt/ui"
+import type { ContentNavigationItem } from '@nuxt/content';
+import type { NavigationMenuItem } from '@nuxt/ui';
 
-const navigation = inject<Ref<ContentNavigationItem[]>>("navigation")
-const { header } = useAppConfig()
-const route = useRoute()
+const navigation = inject<Ref<ContentNavigationItem[]>>('navigation');
+const { header } = useAppConfig();
+const route = useRoute();
 
 /**
  * 获取博客集合中第一篇文章的路径
  */
 const { data: firstBlogPost } = await useAsyncData('first-blog-post', async () => {
-  const posts = await queryCollection('blog').order('date', 'DESC').all()
-  return posts[0]?._path
-})
+  const posts = await queryCollection('blog').order('date', 'DESC').all();
+  return posts[0]?.path;
+});
 
 /**
  * 主导航菜单项配置
@@ -20,7 +28,7 @@ const { data: firstBlogPost } = await useAsyncData('first-blog-post', async () =
 const items = computed<NavigationMenuItem[]>(() => [
   {
     label: '博客',
-    to: firstBlogPost.value || '/blog',
+    to: '/blog',
     active: route.path.startsWith('/blog')
   },
   {
@@ -28,16 +36,13 @@ const items = computed<NavigationMenuItem[]>(() => [
     to: '/resources',
     active: route.path.startsWith('/resources')
   }
-])
+]);
 </script>
 
 <template>
   <UHeader :to="header?.to || '/'">
     <!-- Logo/Title -->
-    <template
-      v-if="header?.logo?.dark || header?.logo?.light || header?.title"
-      #title
-    >
+    <template v-if="header?.logo?.dark || header?.logo?.light || header?.title" #title>
       <UColorModeImage
         v-if="header?.logo?.dark || header?.logo?.light"
         :light="header?.logo?.light!"
