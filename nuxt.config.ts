@@ -2,7 +2,7 @@
  * @Author: zengzhe
  * @Date: 2026-01-01 00:45:43
  * @LastEditors: Gorvey 2324850628@qq.com
- * @LastEditTime: 2026-01-04 09:31:29
+ * @LastEditTime: 2026-01-04 11:09:38
  * @Description:
  */
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -32,9 +32,10 @@ export default defineNuxtConfig({
     }
   },
 
-  compatibilityDate: '2024-07-11',
+  compatibilityDate: '2024-09-19',
 
   nitro: {
+    preset: 'cloudflare_pages',
     prerender: {
       routes: ['/'],
       crawlLinks: true,
