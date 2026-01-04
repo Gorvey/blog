@@ -1,6 +1,5 @@
 {
   "name": "blog",
   "compatibility_date": "2026-01-04",
-  "main": "./.output/server/index.mjs",
-  "bucket": ".output/public"
+  "main": "./.output/server/index.mjs"
 }
