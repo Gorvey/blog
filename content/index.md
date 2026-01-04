@@ -20,7 +20,7 @@ orientation: vertical
 #links
   :::u-button
   ---
-  to: /css-layout
+  to: /blog
   size: xl
   trailing-icon: i-lucide-arrow-right
   ---
