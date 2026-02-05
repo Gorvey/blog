@@ -11,7 +11,7 @@ export default eventHandler(async (event) => {
 
   const path = withLeadingSlash(slug.replace('.md', ''));
 
-  const page = await queryCollection(event, 'docs' as keyof Collections)
+  const page = await queryCollection(event, 'blog' as keyof Collections)
     .path(path)
     .first();
   if (!page) {

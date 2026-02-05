@@ -33,6 +33,57 @@ const resourceCategories = computed(() => {
 const showOnlyWithBlog = ref(false);
 
 /**
+ * 搜索关键词
+ */
+const searchQuery = ref('');
+
+/**
+ * 搜索结果类型
+ */
+interface SearchResult {
+  category: ResourceCategory;
+  collection: ResourceCollection;
+  resource: Resource;
+}
+
+/**
+ * 搜索所有资源（搜索模式下不过滤"只显示有文章"）
+ */
+const searchResults = computed((): SearchResult[] => {
+  if (!searchQuery.value.trim()) {
+    return [];
+  }
+
+  const query = searchQuery.value.toLowerCase().trim();
+  const results: SearchResult[] = [];
+
+  for (const category of resourceCategories.value) {
+    for (const collection of category.collections) {
+      for (const resource of collection.resources) {
+        // 搜索资源名称和描述
+        const nameMatch = resource.name.toLowerCase().includes(query);
+        const descMatch = resource.description?.toLowerCase().includes(query);
+
+        if (nameMatch || descMatch) {
+          results.push({
+            category,
+            collection,
+            resource
+          });
+        }
+      }
+    }
+  }
+
+  return results;
+});
+
+/**
+ * 是否处于搜索模式
+ */
+const isSearching = computed(() => searchQuery.value.trim().length > 0);
+
+/**
  * 当前激活的一级分类
  */
 const activeCategory = ref((route.query.category as string) || resourceCategories.value[0]?.id);
@@ -147,8 +198,13 @@ useSeoMeta({
         <div class="flex flex-col gap-6">
           <!-- 顶部一级分类导航 - 固定 -->
           <div class="sticky top-16 z-10 bg-background/95 backdrop-blur pb-4 -mt-4 pt-4">
-            <!-- 一级分类 - 居中 -->
-            <div class="flex justify-center">
+            <!-- 一级分类 - 搜索时隐藏但保持高度 -->
+            <div
+              :class="[
+                'flex justify-center transition-opacity duration-200',
+                isSearching ? 'invisible opacity-0' : 'visible opacity-100'
+              ]"
+            >
               <div class="flex flex-wrap items-center gap-2">
                 <UButton
                   v-for="category in resourceCategories"
@@ -177,16 +233,35 @@ useSeoMeta({
 
           <!-- 下方区域: 左侧二级集合 + 右侧资源列表 -->
           <div class="flex flex-col lg:flex-row gap-6">
-            <!-- 左侧二级集合导航 -->
-            <div v-if="currentCategory" class="lg:w-56 shrink-0">
-              <div class="sticky top-36">
-                <UCard>
+            <!-- 左侧栏 -->
+            <div class="lg:w-56 shrink-0">
+              <div class="sticky top-36 space-y-4">
+                <!-- 搜索框 - 始终显示 -->
+                <UInput
+                  v-model="searchQuery"
+                  icon="i-lucide-search"
+                  placeholder="搜索资源..."
+                  size="md"
+                >
+                  <template #trailing>
+                    <UButton
+                      v-if="searchQuery"
+                      icon="i-lucide-x"
+                      color="neutral"
+                      variant="ghost"
+                      size="xs"
+                      @click="searchQuery = ''"
+                    />
+                  </template>
+                </UInput>
+
+                <!-- 二级集合导航 - 仅在非搜索模式显示 -->
+                <UCard v-if="!isSearching && currentCategory">
                   <template #header>
                     <div class="flex items-center justify-between">
                       <h3 class="font-semibold">
                         {{ currentCategory.name }}
                       </h3>
-                      <!-- 筛选移到二级分类下面 -->
                       <UCheckbox v-model="showOnlyWithBlog" label="只显示有文章" size="sm" />
                     </div>
                   </template>
@@ -212,9 +287,40 @@ useSeoMeta({
               </div>
             </div>
 
-            <!-- 右侧资源列表 -->
+            <!-- 右侧内容区 -->
             <div class="flex-1 min-w-0">
-              <div v-if="currentCollection" class="space-y-6">
+              <!-- 搜索结果 -->
+              <div v-if="isSearching" class="space-y-6">
+                <div v-if="searchResults.length > 0">
+                  <div class="text-muted">
+                    找到
+                    <span class="font-semibold text-foreground">{{ searchResults.length }}</span>
+                    个资源
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                    <div
+                      v-for="result in searchResults"
+                      :key="result.resource.url"
+                      class="space-y-2"
+                    >
+                      <div class="text-xs text-muted flex items-center gap-2">
+                        <span>{{ result.category.name }}</span>
+                        <span class="text-muted/50">/</span>
+                        <span>{{ result.collection.name }}</span>
+                      </div>
+                      <ResourceCard :resource="result.resource" />
+                    </div>
+                  </div>
+                </div>
+
+                <div v-else class="text-center py-12">
+                  <p class="text-muted">没有找到匹配的资源</p>
+                </div>
+              </div>
+
+              <!-- 常规模式：资源列表 -->
+              <div v-else-if="currentCollection" class="space-y-6">
                 <div v-if="currentCollection.description" class="text-muted">
                   {{ currentCollection.description }}
                 </div>

@@ -1,5 +1,4 @@
 import { defineContentConfig, defineCollection, z } from '@nuxt/content';
-import type { Resource } from '~/types/resources';
 
 export default defineContentConfig({
   collections: {

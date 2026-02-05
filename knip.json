@@ -1,0 +1,37 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "app/app.vue",
+    "nuxt.config.ts"
+  ],
+  "project": [
+    "app/**/*.vue",
+    "app/**/*.ts",
+    "server/**/*.ts"
+  ],
+  "ignore": [
+    "node_modules/**",
+    ".nuxt/**",
+    ".output/**",
+    "dist/**",
+    "build/**",
+    "coverage/**",
+    "**/*.d.ts"
+  ],
+  "ignoreDependencies": [
+    "@nuxt/*",
+    "nuxt",
+    "vue",
+    "vue-router",
+    "vue-router-middleware-module",
+    "h3",
+    "defu",
+    "nitropack",
+    "radix-vue",
+    "@tailwindcss/forms",
+    "@tailwindcss/typography",
+    "tailwindcss",
+    "@vueuse/*",
+    "@iconify-json/*"
+  ]
+}

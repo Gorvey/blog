@@ -7,15 +7,7 @@
  */
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: [
-    '@nuxt/eslint',
-    '@nuxt/image',
-    '@nuxt/ui',
-    '@nuxt/content',
-    'nuxt-og-image',
-    'nuxt-llms',
-    'nuxt-studio'
-  ],
+  modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/content', 'nuxt-og-image'],
 
   devtools: {
     enabled: true
@@ -53,39 +45,5 @@ export default defineNuxtConfig({
 
   icon: {
     provider: 'iconify'
-  },
-
-  llms: {
-    domain: 'https://docs-template.nuxt.dev/',
-    title: 'Nuxt Docs Template',
-    description: 'A template for building documentation with Nuxt UI and Nuxt Content.',
-    full: {
-      title: 'Nuxt Docs Template - Full Documentation',
-      description: 'This is the full documentation for the Nuxt Docs Template.'
-    },
-    sections: [
-      {
-        title: 'Getting Started',
-        contentCollection: 'blog',
-        contentFilters: [{ field: 'path', operator: 'LIKE', value: '/getting-started%' }]
-      },
-      {
-        title: 'Essentials',
-        contentCollection: 'blog',
-        contentFilters: [{ field: 'path', operator: 'LIKE', value: '/essentials%' }]
-      }
-    ]
-  },
-
-  studio: {
-    repository: {
-      provider: 'github',
-      owner: 'Gorvey',
-      repo: 'blog',
-      branch: 'main'
-    },
-    i18n: {
-      defaultLocale: 'zh'
-    }
   }
 });

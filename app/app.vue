@@ -9,13 +9,6 @@ const { data: blogNavigation } = await useAsyncData('blog-navigation', () =>
 );
 
 /**
- * 获取资源集合的导航数据
- */
-const { data: resourcesNavigation } = await useAsyncData('resources-navigation', () =>
-  queryCollectionNavigation('resources')
-);
-
-/**
  * 合并导航数据
  */
 const navigation = computed(() => {
@@ -23,9 +16,7 @@ const navigation = computed(() => {
   if (blogNavigation.value) {
     nav.push(...blogNavigation.value);
   }
-  if (resourcesNavigation.value) {
-    nav.push(...resourcesNavigation.value);
-  }
+
   return nav;
 });
 
@@ -41,17 +32,6 @@ const { data: blogFiles } = useLazyAsyncData(
 );
 
 /**
- * 获取资源集合的搜索索引数据
- */
-const { data: resourcesFiles } = useLazyAsyncData(
-  'resources-search',
-  () => queryCollectionSearchSections('resources'),
-  {
-    server: false
-  }
-);
-
-/**
  * 合并搜索索引数据
  */
 const files = computed(() => {
@@ -59,9 +39,7 @@ const files = computed(() => {
   if (blogFiles.value) {
     result.push(...blogFiles.value);
   }
-  if (resourcesFiles.value) {
-    result.push(...resourcesFiles.value);
-  }
+
   return result;
 });
 

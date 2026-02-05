@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import type { Resource } from '~/config/resources/index';
-
+interface Resource {
+  name: string;
+  url: string;
+  description?: string;
+  post?: string;
+}
 interface Props {
   resource: Resource;
 }
