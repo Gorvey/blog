@@ -308,7 +308,10 @@ useSeoMeta({
                     个资源
                   </p>
 
-                  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                  <div
+                    class="grid gap-4"
+                    style="grid-template-columns: repeat(auto-fill, minmax(350px, 1fr))"
+                  >
                     <div
                       v-for="result in searchResults"
                       :key="result.resource.url"
@@ -352,7 +355,8 @@ useSeoMeta({
                 <!-- 资源卡片网格 -->
                 <div
                   v-if="currentCollection.resources.length > 0"
-                  class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
+                  class="grid gap-4"
+                  style="grid-template-columns: repeat(auto-fill, minmax(350px, 1fr))"
                 >
                   <ResourceCard
                     v-for="resource in currentCollection.resources"
