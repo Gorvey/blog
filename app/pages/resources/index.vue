@@ -1,16 +1,31 @@
 <script setup lang="ts">
 import {
-  resourceCategories,
+  transformToCategories,
   type ResourceCategory,
   type ResourceCollection,
   type Resource
-} from '~/config/resources/index';
+} from '~/types/resources';
 
 definePageMeta({
   layout: 'default'
 });
 
 const route = useRoute();
+
+/**
+ * 从 Nuxt Content 获取资源集合数据
+ */
+const { data: resourceCollections } = await useAsyncData('resource-collections', () =>
+  queryCollection('resourceCollections').all()
+);
+
+/**
+ * 将 Content 数据转换为页面需要的结构
+ */
+const resourceCategories = computed(() => {
+  if (!resourceCollections.value) return [];
+  return transformToCategories(resourceCollections.value);
+});
 
 /**
  * 是否只显示有博客文章的资源
@@ -20,7 +35,7 @@ const showOnlyWithBlog = ref(false);
 /**
  * 当前激活的一级分类
  */
-const activeCategory = ref((route.query.category as string) || resourceCategories[0]?.id);
+const activeCategory = ref((route.query.category as string) || resourceCategories.value[0]?.id);
 
 /**
  * 当前激活的二级集合
@@ -41,7 +56,7 @@ const filterResources = (resources: Resource[]): Resource[] => {
  * 获取当前激活的分类
  */
 const currentCategory = computed((): ResourceCategory | undefined => {
-  return resourceCategories.find((c: ResourceCategory) => c.id === activeCategory.value);
+  return resourceCategories.value.find((c: ResourceCategory) => c.id === activeCategory.value);
 });
 
 /**
@@ -80,7 +95,9 @@ onMounted(() => {
  * 监听分类变化并更新 URL
  */
 watch(activeCategory, () => {
-  const category = resourceCategories.find((c: ResourceCategory) => c.id === activeCategory.value);
+  const category = resourceCategories.value.find(
+    (c: ResourceCategory) => c.id === activeCategory.value
+  );
   if (category?.collections?.[0]?.id) {
     activeCollection.value = category.collections[0].id;
   }

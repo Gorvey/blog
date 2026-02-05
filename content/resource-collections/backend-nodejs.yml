@@ -1,0 +1,22 @@
+category: 后端开发
+collection: Node.js
+description: Node.js 运行时和框架资源
+resources:
+  - name: Node.js 官方文档
+    url: https://nodejs.org
+    description: Node.js 运行时
+  - name: NestJS
+    url: https://nestjs.com
+    description: 渐进式 Node.js 框架
+  - name: Express
+    url: https://expressjs.com
+    description: 快速、极简的 Web 框架
+  - name: Koa
+    url: https://koajs.com
+    description: 轻量级 Node.js 框架
+  - name: Fastify
+    url: https://fastify.dev
+    description: 高性能 Node.js 框架
+  - name: Hapi
+    url: https://hapi.dev
+    description: 配置驱动的框架

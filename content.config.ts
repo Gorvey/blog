@@ -1,4 +1,5 @@
 import { defineContentConfig, defineCollection, z } from '@nuxt/content';
+import type { Resource } from '~/types/resources';
 
 export default defineContentConfig({
   collections: {
@@ -35,6 +36,24 @@ export default defineContentConfig({
       },
       schema: z.object({
         link: z.string().optional()
+      })
+    }),
+    resourceCollections: defineCollection({
+      type: 'data',
+      source: 'resource-collections/**/*.yml',
+      schema: z.object({
+        title: z.string().optional(),
+        category: z.string(),
+        collection: z.string(),
+        description: z.string().optional(),
+        resources: z.array(
+          z.object({
+            name: z.string(),
+            url: z.string().url(),
+            post: z.string().optional(),
+            description: z.string().optional()
+          })
+        )
       })
     })
   }
