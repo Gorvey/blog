@@ -1,13 +1,6 @@
-/*
- * @Author: zengzhe
- * @Date: 2026-01-01 00:45:43
- * @LastEditors: Gorvey 2324850628@qq.com
- * @LastEditTime: 2026-01-05 10:04:54
- * @Description:
- */
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/content', 'nuxt-og-image'],
+  modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/content', 'nuxt-og-image', 'nuxt-studio'],
 
   devtools: {
     enabled: true
@@ -42,8 +35,19 @@ export default defineNuxtConfig({
       }
     }
   },
-
   icon: {
     provider: 'iconify'
+  },
+
+  studio: {
+    repository: {
+      provider: 'github',
+      owner: 'Gorvey',
+      repo: 'blog',
+      branch: 'main'
+    },
+    i18n: {
+      defaultLocale: 'zh'
+    }
   }
 });
