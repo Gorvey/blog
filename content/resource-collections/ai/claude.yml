@@ -1,8 +1,8 @@
+title: ai
+category: AI编程
+collection: Claude Code
 resources:
   - name: Claude Code 官方文档
     url: https://code.claude.com/docs/zh-CN/overview
     post: ""
     description: Anthropic 出的CLI代理编码工具
-title: ai
-category: AI编程
-collection: Claude Code
