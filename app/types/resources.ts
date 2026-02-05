@@ -42,7 +42,8 @@ export interface ResourceCategory {
 
 /**
  * Nuxt Content 文档类型（从 YAML 解析）
- * 用于 content/resource-collections/*.md 文件
+ * 用于 content/resource-collections/*.yml 文件
+ * 这个类型需要与 content.config.ts 中 resourceCollections 的 schema 匹配
  */
 export interface ResourceCollectionDoc {
   /** 文档标题（从文件名或 frontmatter 获取） */
@@ -55,28 +56,40 @@ export interface ResourceCollectionDoc {
   description?: string;
   /** 资源列表 */
   resources: Resource[];
-  /** 文档路径（由 Nuxt Content 添加） */
-  _path?: string;
-  /** 文件名（用于生成 id） */
-  _file?: string;
 }
 
 /**
  * 将 Content 文档数组转换为 ResourceCategory 数组
+ * 接受任意类型的文档数组，使用类型守卫确保类型安全
  */
-export function transformToCategories(docs: ResourceCollectionDoc[]): ResourceCategory[] {
+export function transformToCategories(docs: unknown[]): ResourceCategory[] {
   // 按 category 分组
   const categoryMap = new Map<string, ResourceCategory>();
 
   for (const doc of docs) {
-    const categoryId = doc.category.toLowerCase().replace(/\s+/g, '-');
-    const collectionId = doc.collection.toLowerCase().replace(/\s+/g, '-');
+    // 类型守卫：确保 doc 符合 ResourceCollectionDoc 的基本结构
+    if (
+      !doc ||
+      typeof doc !== 'object' ||
+      !('category' in doc) ||
+      !('collection' in doc) ||
+      !('resources' in doc) ||
+      typeof doc.category !== 'string' ||
+      typeof doc.collection !== 'string' ||
+      !Array.isArray(doc.resources)
+    ) {
+      continue;
+    }
+
+    const validDoc = doc as ResourceCollectionDoc;
+    const categoryId = validDoc.category.toLowerCase().replace(/\s+/g, '-');
+    const collectionId = validDoc.collection.toLowerCase().replace(/\s+/g, '-');
 
     let category = categoryMap.get(categoryId);
     if (!category) {
       category = {
         id: categoryId,
-        name: doc.category,
+        name: validDoc.category,
         collections: []
       };
       categoryMap.set(categoryId, category);
@@ -84,9 +97,9 @@ export function transformToCategories(docs: ResourceCollectionDoc[]): ResourceCa
 
     category.collections.push({
       id: collectionId,
-      name: doc.collection,
-      description: doc.description,
-      resources: doc.resources
+      name: validDoc.collection,
+      description: validDoc.description,
+      resources: validDoc.resources
     });
   }
 

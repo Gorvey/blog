@@ -1,11 +1,3 @@
-<!--
- * @Author: Gorvey gorvey76@outlook.com
- * @Date: 2026-02-05 15:58:22
- * @LastEditors: Gorvey gorvey76@outlook.com
- * @LastEditTime: 2026-02-05 16:00:59
- * @FilePath: \blog\app\components\ResourceCard.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 <script setup lang="ts">
 interface Resource {
   name: string;
@@ -44,13 +36,30 @@ const colorMode = useColorMode();
 const isDark = computed(() => colorMode.value === 'dark');
 
 /**
- * 点击卡片的处理逻辑
+ * 获取当前网站 host
+ */
+const config = useRuntimeConfig();
+const siteUrl = computed(() =>
+  config.app.baseURL ? `${config.app.baseURL.replace(/\/$/, '')}` : ''
+);
+
+/**
+ * 点击卡片的处理逻辑 - 始终前往外部 url
  */
 const handleClick = () => {
+  window.open(props.resource.url, '_blank');
+};
+
+/**
+ * 点击 Badge 的处理逻辑 - 前往关联文章
+ */
+const handleBadgeClick = (event: MouseEvent) => {
+  event.stopPropagation();
   if (props.resource.post) {
-    navigateTo(props.resource.post);
-  } else {
-    window.open(props.resource.url, '_blank');
+    const fullUrl = props.resource.post.startsWith('http')
+      ? props.resource.post
+      : `${siteUrl.value}${props.resource.post.startsWith('/') ? '' : '/'}${props.resource.post}`;
+    window.open(fullUrl, '_blank');
   }
 };
 </script>
@@ -80,8 +89,15 @@ const handleClick = () => {
         </div>
         <div class="flex items-center justify-between gap-2 flex-1 min-w-0">
           <h3 class="font-semibold truncate">{{ resource.name }}</h3>
-          <UBadge v-if="hasBlogPost" color="primary" variant="soft" size="xs" class="shrink-0">
-            有文章
+          <UBadge
+            v-if="hasBlogPost"
+            color="primary"
+            variant="soft"
+            size="lg"
+            class="shrink-0 cursor-pointer hover:bg-primary-100 dark:hover:bg-primary-900"
+            @click="handleBadgeClick"
+          >
+            关联文章
           </UBadge>
         </div>
       </div>

@@ -28,15 +28,7 @@ export default defineContentConfig({
           .optional()
       })
     }),
-    resources: defineCollection({
-      type: 'page',
-      source: {
-        include: 'resources/**'
-      },
-      schema: z.object({
-        link: z.string().optional()
-      })
-    }),
+
     resourceCollections: defineCollection({
       type: 'data',
       source: 'resource-collections/**/*.yml',
