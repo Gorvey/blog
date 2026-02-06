@@ -1,8 +1,14 @@
 title: ai
 category: AI编程
-collection: Claude Code
+collection: CLI 编程工具
 resources:
-  - name: Claude Code 官方文档
+  - name: Claude Code
     url: https://code.claude.com/docs/zh-CN/overview
     post: ""
-    description: Anthropic 出的CLI代理编码工具
+    description: Anthropic 出的 CLI 代理编码工具
+  - url: https://platform.iflow.cn/cli/quickstart
+    name: iFlow CLI
+    description: 阿里心流团队出的终端AI助手,永久免费使用glm,kimi,minmax,千问的模型
+  - url: https://opencode.ai/
+    name: OpenCode
+    description: 最流行的开源 CLI 工具,拥有桌面端

@@ -1,0 +1,19 @@
+title: Code PLan
+category: AI编程
+collection: Code PLan
+resources:
+  - url: https://bigmodel.cn/glm-coding
+    name: GLM Code Plan
+    description: 订阅制 AI 编码套餐，面向高频编码场景，深度适配主流开发工具，独家附赠专属 MCP，让编码效率全面进阶
+  - url: https://www.volcengine.com/activity/codingplan
+    name: 方舟 Coding Plan
+    description: 方舟 Coding Plan 是为开发者量身打造的 AI Coding 场景订阅服务，现已全面升级，支持主流 Code 模型（Doubao-Seed-Code、GLM、Kimi、DeepSeek 等最新版本）的使用和自由切换。
+  - url: https://www.kimi.com/code
+    name: Kimi Code Plan
+    description: Kimi 会员计划中面向代码开发的权益，轻松兼容各类开发流程，更快更稳响应请求，高效地完成编程任务
+  - url: https://platform.minimaxi.com/subscribe/coding-plan
+    name: MiniMax Code Plan
+    description: MiniMax 最新上线的 Coding Plan 是专为 AI 编码场景提供的订阅计划。
+  - url: https://www.alibabacloud.com/help/zh/model-studio/coding-plan
+    name: 阿里云百炼 Code Plan
+    description: 阿里云百炼推出的 AI 编码套餐，采用固定月费，提供月度请求额度，支持在 Qwen Code、Claude Code、Cline、Moltbot（Clawdbot） 等 AI 工具中使用
