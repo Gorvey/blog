@@ -17,3 +17,9 @@ resources:
   - url: https://www.alibabacloud.com/help/zh/model-studio/coding-plan
     name: 阿里云百炼 Code Plan
     description: 阿里云百炼推出的 AI 编码套餐，采用固定月费，提供月度请求额度，支持在 Qwen Code、Claude Code、Cline、Moltbot（Clawdbot） 等 AI 工具中使用
+  - url: https://code.mthreads.com/
+    name: 摩尔线程 AI Coding Plan
+    description: 国产算力+国产模型,首月免费
+  - url: https://www.streamlake.com/marketing/coding-plan
+    name: KwaiKAT Coding Plan
+    description: 只能用	KAT-Coder-Pro V1模型,拥有按量付费
