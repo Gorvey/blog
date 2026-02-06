@@ -2,9 +2,12 @@ title: Skills
 category: ai编程
 collection: Skills
 resources:
-  - url: https://skills.sh/
-    name: skills.sh
-    description: vercel 维护的高质量 skills,已有超过4万个技能
   - name: vue-skills
     url: https://github.com/vuejs-ai/skills
     description: 用于 Vue 3 开发的 Agent skills 集合
+  - url: https://skills.sh/
+    name: skills.sh
+    description: vercel 维护的高质量 skills,已有超过4万个技能
+  - url: https://skillsmp.com/zh
+    name: skills.marketplace
+    description: Agent Skills Marketplace
