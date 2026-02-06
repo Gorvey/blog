@@ -31,7 +31,7 @@ export default defineContentConfig({
 
     resourceCollections: defineCollection({
       type: 'data',
-      source: 'resource-collections/**/*.yml',
+      source: 'resource-collections/**/*.{md,yml}',
       schema: z.object({
         title: z.string().optional(),
         category: z.string(),
