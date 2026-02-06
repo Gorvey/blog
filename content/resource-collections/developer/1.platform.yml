@@ -1,0 +1,19 @@
+title: Platform
+category: 开发者工具
+collection: 客户端软件
+resources:
+  - url: https://autohotkey.top/
+    name: autohotkey
+    description: Windows平台下的热键脚本语言程序,能够通过自定义脚本实现很多快捷、自动化操作
+  - url: https://zh.snipaste.com/
+    name: snipaste
+    description: 能提高工作效率的截图工具
+  - url: https://www.u-tools.cn/index.html
+    name: uTools
+    description: 一个启动器, Alfred 的win替代品
+  - url: https://learn.microsoft.com/zh-cn/windows/powertoys/
+    name: Microsoft PowerToys
+    description: Windows 实用工具集合
+  - url: https://wproxy.org/
+    name: Whistle
+    description: 由 node 驱动的网络调试代理抓包工具
