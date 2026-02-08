@@ -1,6 +1,6 @@
 title: ai
 category: AI编程
-collection: CLI 编程工具
+collection: AI编程工具
 resources:
   - name: Claude Code
     url: https://code.claude.com/docs/zh-CN/overview
@@ -12,3 +12,9 @@ resources:
   - url: https://opencode.ai/
     name: OpenCode
     description: 最流行的开源 CLI 工具,拥有桌面端
+  - url: https://developers.openai.com/codex/cli
+    name: Codex CLI
+    description: OpenAI 推出的命令行编程工具
+  - url: https://roocode.com/
+    name: Roo Code
+    description: 轻量级编程助手
