@@ -16,8 +16,8 @@ useSeoMeta({
   description: 'We are sorry but this page could not be found.'
 });
 
-const { data: blogNavigation } = await useAsyncData('error-blog-navigation', () =>
-  queryCollectionNavigation('blog')
+const { data: docsNavigation } = await useAsyncData('error-docs-navigation', () =>
+  queryCollectionNavigation('docs')
 );
 const { data: resourcesNavigation } = await useAsyncData('error-resources-navigation', () =>
   queryCollectionNavigation('resources')
@@ -25,8 +25,8 @@ const { data: resourcesNavigation } = await useAsyncData('error-resources-naviga
 
 const navigation = computed(() => {
   const nav = [];
-  if (blogNavigation.value) {
-    nav.push(...blogNavigation.value);
+  if (docsNavigation.value) {
+    nav.push(...docsNavigation.value);
   }
   if (resourcesNavigation.value) {
     nav.push(...resourcesNavigation.value);
@@ -34,9 +34,9 @@ const navigation = computed(() => {
   return nav;
 });
 
-const { data: blogFiles } = useLazyAsyncData(
-  'error-blog-search',
-  () => queryCollectionSearchSections('blog'),
+const { data: docsFiles } = useLazyAsyncData(
+  'error-docs-search',
+  () => queryCollectionSearchSections('docs'),
   {
     server: false
   }
@@ -52,8 +52,8 @@ const { data: resourcesFiles } = useLazyAsyncData(
 
 const files = computed(() => {
   const result = [];
-  if (blogFiles.value) {
-    result.push(...blogFiles.value);
+  if (docsFiles.value) {
+    result.push(...docsFiles.value);
   }
   if (resourcesFiles.value) {
     result.push(...resourcesFiles.value);

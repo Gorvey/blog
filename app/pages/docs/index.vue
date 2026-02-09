@@ -20,10 +20,10 @@ const selectedCategory = ref<string>('');
 const selectedTag = ref<string>('');
 
 /**
- * 获取所有博客文章
+ * 获取所有文档文章
  */
-const { data: allPosts } = await useAsyncData('blog-posts', () =>
-  queryCollection('blog').where('id', 'LIKE', '%.md').order('date', 'DESC').all()
+const { data: allPosts } = await useAsyncData('docs-posts', () =>
+  queryCollection('docs').where('id', 'LIKE', '%.md').order('date', 'DESC').all()
 );
 
 /**
@@ -87,7 +87,7 @@ const posts = computed(() => {
 /**
  * 转换为 BlogPost 组件需要的格式
  */
-const blogPosts = computed<BlogPostProps[]>(() => {
+const docsPosts = computed<BlogPostProps[]>(() => {
   return posts.value.map((post) => ({
     title: post.title,
     description: post.description,
@@ -152,8 +152,8 @@ useSeoMeta({
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <!-- 左侧：文章列表 -->
           <div class="lg:col-span-3">
-            <UBlogPosts v-if="blogPosts.length > 0" orientation="vertical">
-              <UBlogPost v-for="(post, index) in blogPosts" :key="index" v-bind="post" />
+            <UBlogPosts v-if="docsPosts.length > 0" orientation="vertical">
+              <UBlogPost v-for="(post, index) in docsPosts" :key="index" v-bind="post" />
             </UBlogPosts>
 
             <UEmpty

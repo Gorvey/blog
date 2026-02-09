@@ -25,16 +25,16 @@ useSeoMeta({
 });
 
 /**
- * 获取最新博客文章（前3篇）
+ * 获取最新文档文章（前3篇）
  */
 const { data: latestPosts } = await useAsyncData('latest-posts', () =>
-  queryCollection('blog').where('id', 'LIKE', '%.md').order('date', 'DESC').limit(3).all()
+  queryCollection('docs').where('id', 'LIKE', '%.md').order('date', 'DESC').limit(3).all()
 );
 
 /**
  * 转换为 BlogPost 组件格式
  */
-const blogPosts = computed<BlogPostProps[]>(() => {
+const docsPosts = computed<BlogPostProps[]>(() => {
   if (!latestPosts.value) return [];
   return latestPosts.value.map((post) => ({
     title: post.title,
@@ -51,7 +51,7 @@ const blogPosts = computed<BlogPostProps[]>(() => {
     <!-- Hero 区域：渲染 content/index.md -->
     <ContentRenderer v-if="page" :value="page" :prose="false" />
 
-    <!-- 最新博客文章 -->
+    <!-- 最新文档文章 -->
     <UContainer class="py-12">
       <div class="flex items-center justify-between mb-6">
         <h2 class="text-2xl font-bold">最新文章</h2>
@@ -60,8 +60,8 @@ const blogPosts = computed<BlogPostProps[]>(() => {
         </UButton>
       </div>
 
-      <UBlogPosts v-if="blogPosts.length > 0" orientation="vertical">
-        <UBlogPost v-for="(post, index) in blogPosts" :key="index" v-bind="post" />
+      <UBlogPosts v-if="docsPosts.length > 0" orientation="vertical">
+        <UBlogPost v-for="(post, index) in docsPosts" :key="index" v-bind="post" />
       </UBlogPosts>
 
       <UEmpty v-else icon="i-lucide-file-text" title="暂无文章" description="还没有发布任何文章" />

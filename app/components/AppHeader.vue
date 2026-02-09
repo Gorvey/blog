@@ -10,8 +10,8 @@ const route = useRoute();
 const items = computed<NavigationMenuItem[]>(() => [
   {
     label: '博客',
-    to: '/blog',
-    active: route.path.startsWith('/blog')
+    to: '/docs',
+    active: route.path.startsWith('/docs')
   },
   {
     label: '资源',
@@ -61,6 +61,11 @@ const items = computed<NavigationMenuItem[]>(() => [
           v-bind="{ color: 'neutral', variant: 'ghost', ...link }"
         />
       </template>
+    </template>
+
+    <!-- 底部一级目录导航 (仅 docs 路由) -->
+    <template v-if="route.path.startsWith('/docs/')" #bottom>
+      <AppHeaderBottom />
     </template>
   </UHeader>
 </template>

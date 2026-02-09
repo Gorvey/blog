@@ -11,14 +11,14 @@ const { toc } = useAppConfig();
 const navigation = inject<Ref<ContentNavigationItem[]>>('navigation');
 
 const { data: page } = await useAsyncData(route.path, () =>
-  queryCollection('blog').path(route.path).first()
+  queryCollection('docs').path(route.path).first()
 );
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
 
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
-  return queryCollectionItemSurroundings('blog', route.path, {
+  return queryCollectionItemSurroundings('docs', route.path, {
     fields: ['description']
   });
 });
@@ -38,22 +38,12 @@ const headline = computed(() => findPageHeadline(navigation?.value, page.value?.
 defineOgImageComponent('Docs', {
   headline: headline.value
 });
-
-/**
- * 获取页面的 links 字段
- */
-const pageLinks = computed(() => {
-  if (!page.value) return [];
-  return (page.value as any).links || [];
-});
 </script>
 
 <template>
   <UPage v-if="page">
     <UPageHeader :title="page.title" :description="page.description" :headline="headline">
       <template #links>
-        <UButton v-for="(link, index) in pageLinks" :key="index" v-bind="link" />
-
         <PageHeaderLinks />
       </template>
     </UPageHeader>

@@ -2,30 +2,26 @@
 const { seo } = useAppConfig();
 
 /**
- * 获取博客集合的导航数据
+ * 获取文档集合的导航数据
  */
-const { data: blogNavigation } = await useAsyncData('blog-navigation', () =>
-  queryCollectionNavigation('blog')
+const { data: docsNavigation } = await useAsyncData('docs-navigation', () =>
+  queryCollectionNavigation('docs')
 );
 
 /**
  * 合并导航数据
  */
 const navigation = computed(() => {
-  const nav = [];
-  if (blogNavigation.value) {
-    nav.push(...blogNavigation.value);
-  }
-
-  return nav;
+  const docsNav = docsNavigation.value?.find((item) => item.path === '/docs');
+  return docsNav?.children || [];
 });
 
 /**
- * 获取博客集合的搜索索引数据
+ * 获取文档集合的搜索索引数据
  */
-const { data: blogFiles } = useLazyAsyncData(
-  'blog-search',
-  () => queryCollectionSearchSections('blog'),
+const { data: docsFiles } = useLazyAsyncData(
+  'docs-search',
+  () => queryCollectionSearchSections('docs'),
   {
     server: false
   }
@@ -36,8 +32,8 @@ const { data: blogFiles } = useLazyAsyncData(
  */
 const files = computed(() => {
   const result = [];
-  if (blogFiles.value) {
-    result.push(...blogFiles.value);
+  if (docsFiles.value) {
+    result.push(...docsFiles.value);
   }
 
   return result;

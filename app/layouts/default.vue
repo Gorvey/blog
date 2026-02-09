@@ -1,5 +1,5 @@
 <template>
-  <UContainer class="!p-0">
+  <UContainer class="p-0!">
     <UPage>
       <slot />
     </UPage>

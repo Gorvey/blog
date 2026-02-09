@@ -6,26 +6,16 @@ export default defineContentConfig({
       type: 'page',
       source: 'index.md'
     }),
-    blog: defineCollection({
+    docs: defineCollection({
       type: 'page',
       source: {
-        include: 'blog/**',
-        exclude: ['blog/index.md']
+        include: 'docs/**',
+        exclude: ['docs/index.md']
       },
       schema: z.object({
         date: z.string().optional(),
         category: z.string().optional(),
-        tags: z.array(z.string()).optional(),
-        links: z
-          .array(
-            z.object({
-              label: z.string(),
-              icon: z.string(),
-              to: z.string(),
-              target: z.string().optional()
-            })
-          )
-          .optional()
+        tags: z.array(z.string()).optional()
       })
     }),
 
