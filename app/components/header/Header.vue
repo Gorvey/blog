@@ -16,7 +16,7 @@ const { data: firstDoc } = useAsyncData('first-doc', () =>
  */
 const items = computed<NavigationMenuItem[]>(() => [
   {
-    label: '博客',
+    label: '笔记',
     to: firstDoc.value?.path || '/docs',
     icon: 'i-lucide-book-open',
     active: route.path.startsWith('/docs')
