@@ -5,6 +5,7 @@
  * @LastEditTime: 2026-02-05 15:45:49
  * @Description:
  */
+
 export default defineAppConfig({
   ui: {
     colors: {
@@ -20,6 +21,17 @@ export default defineAppConfig({
       slots: {
         root: 'border-t border-default',
         left: 'text-sm text-muted'
+      }
+    },
+    card: {
+      slots: {
+        root: 'flex flex-col',
+        body: 'flex-1'
+      }
+    },
+    header: {
+      slots: {
+        container: 'h-[64px]'
       }
     }
   },

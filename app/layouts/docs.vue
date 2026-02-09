@@ -1,19 +1,10 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content';
 
-const route = useRoute();
-const navigation = inject<Ref<ContentNavigationItem[]>>('navigation');
-
-const nav = computed(() => {
-  if (!navigation?.value) {
-    return [];
-  }
-
-  // 查找当前路由匹配的一级目录
-  const currentTopLevel = navigation.value.find((item) => route.path.startsWith(item.path));
-
-  return currentTopLevel?.children || [];
-});
+/**
+ * 获取注入的侧边栏导航数据
+ */
+const sideNav = inject<ComputedRef<ContentNavigationItem[]>>('sideNav');
 </script>
 
 <template>
@@ -21,7 +12,7 @@ const nav = computed(() => {
     <UPage>
       <template #left>
         <UPageAside>
-          <UContentNavigation highlight :navigation="nav" />
+          <UContentNavigation highlight :navigation="sideNav" />
         </UPageAside>
       </template>
 

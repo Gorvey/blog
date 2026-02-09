@@ -22,7 +22,6 @@
     "@iconify-json/vscode-icons": "^1.2.40",
     "@nuxt/content": "3.11.2",
     "@nuxt/ui": "4.4.0",
-    "better-sqlite3": "12.6.2",
     "nuxt": "4.3.0",
     "nuxt-og-image": "5.1.13",
     "nuxt-studio": "1.2.0"

@@ -1,6 +1,8 @@
 <script setup lang="ts">
-const { seo } = useAppConfig();
+import type { ContentNavigationItem } from '@nuxt/content';
 
+const { seo } = useAppConfig();
+const route = useRoute();
 /**
  * 获取文档集合的导航数据
  */
@@ -26,6 +28,21 @@ const { data: docsFiles } = useLazyAsyncData(
     server: false
   }
 );
+const isDocsRoute = computed(() => route.path.startsWith('/docs'));
+
+/**
+ * 侧边栏导航数据
+ * 查找当前路由匹配的一级目录
+ */
+const sideNav = computed(() => {
+  if (!navigation.value) {
+    return [];
+  }
+
+  const currentTopLevel = navigation.value.find((item) => route.path.startsWith(item.path));
+
+  return currentTopLevel?.children || [];
+});
 
 /**
  * 合并搜索索引数据
@@ -53,14 +70,39 @@ useSeoMeta({
   twitterCard: 'summary_large_image'
 });
 
+/**
+ * 文档页面时增加 header 高度
+ */
+const docsPageStyle = computed(() =>
+  isDocsRoute.value
+    ? [
+        {
+          innerHTML: `
+@media (min-width: 1024px) {
+  :root {
+    --ui-header-height: 112px;
+  }
+}
+        `
+        }
+      ]
+    : []
+);
+
+useHead({
+  style: docsPageStyle
+});
+
 provide('navigation', navigation);
+provide<ComputedRef<boolean>>('isDocsRoute', isDocsRoute);
+provide<ComputedRef<ContentNavigationItem[]>>('sideNav', sideNav);
 </script>
 
 <template>
   <UApp>
     <NuxtLoadingIndicator />
 
-    <AppHeader />
+    <Header />
 
     <UMain>
       <NuxtLayout>

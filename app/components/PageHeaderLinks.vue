@@ -32,19 +32,18 @@ const items = [
 
 async function copyPage() {
   isCopying.value = true;
-  copy(await $fetch<string>(`/raw${route.path}.md`));
-  isCopying.value = false;
+  const result = await $fetch<string>(`/raw${route.path}.md`);
+  copy(result);
 }
 </script>
 
 <template>
-  <UButtonGroup>
+  <UFieldGroup>
     <UButton
-      label="Copy page"
+      :label="copied ? 'Copied' : 'Copy page'"
       :icon="copied ? 'i-lucide-copy-check' : 'i-lucide-copy'"
       color="neutral"
       variant="outline"
-      :loading="isCopying"
       :ui="{
         leadingIcon: [copied ? 'text-primary' : 'text-neutral', 'size-3.5']
       }"
@@ -63,5 +62,5 @@ async function copyPage() {
     >
       <UButton icon="i-lucide-chevron-down" size="sm" color="neutral" variant="outline" />
     </UDropdownMenu>
-  </UButtonGroup>
+  </UFieldGroup>
 </template>
