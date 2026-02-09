@@ -1,0 +1,25 @@
+title: Rstack 工具链
+collection: Rstack
+category: 工程化
+resources:
+  - url: https://rspack.rs/
+    name: Rspack
+    description: 基于 Rust 的高性能 JavaScript 模块打包工具，Rstack 工具链核心
+  - url: https://rsbuild.rs/
+    name: Rsbuild
+    description: 由 Rspack 驱动的高性能构建工具，提供开箱即用的开发体验，支持 TypeScript、JSX、Sass、CSS Modules、模块联邦等
+  - url: https://rslib.rs/
+    name: Rslib
+    description: 专门用于打包和发布 JavaScript/TypeScript 库的工具
+  - url: https://rsdoctor.rs/
+    name: Rsdoctor
+    description: 构建分析和优化工具，帮助诊断和改进构建产物
+  - url: https://github.com/web-infra-dev/rstest
+    name: Rstest
+    description: 基于 Rust 的高性能测试框架
+  - url: https://github.com/web-infra-dev/rslint
+    name: Rslint
+    description: 基于 Rust 的 JavaScript/TypeScript 代码检查工具
+  - url: https://rspress.rs/
+    name: Rspress
+    description: 静态站点生成器，专注于文档网站建设
