@@ -1,7 +1,9 @@
 import { withLeadingSlash } from 'ufo';
 import { stringify } from 'minimark/stringify';
-import { queryCollection } from '@nuxt/content/nitro';
-import type { Collections } from '@nuxt/content';
+import { queryCollection } from '@nuxt/content/server';
+import type { Collections, PageCollectionItemBase } from '@nuxt/content';
+import { getRouterParams, eventHandler, createError, setHeader } from 'h3';
+import collections from '#content/manifest';
 
 export default eventHandler(async (event) => {
   const slug = getRouterParams(event)['slug.md'];
@@ -9,11 +11,25 @@ export default eventHandler(async (event) => {
     throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
   }
 
-  const path = withLeadingSlash(slug.replace('.md', ''));
+  let path = withLeadingSlash(slug.replace('.md', ''));
+  if (path.endsWith('/index')) {
+    path = path.substring(0, path.length - 6);
+  }
 
-  const page = await queryCollection(event, 'docs' as keyof Collections)
-    .path(path)
-    .first();
+  const _collections = Object.entries(collections as unknown as Record<string, { type: string }>)
+    .filter(([_key, value]) => value.type === 'page')
+    .map(([key]) => key) as string[];
+
+  let page: PageCollectionItemBase | null = null;
+  for (const collection of _collections) {
+    page = (await queryCollection(event, collection as keyof Collections)
+      .path(path)
+      .first()) as PageCollectionItemBase | null;
+    if (page) {
+      break;
+    }
+  }
+
   if (!page) {
     throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
   }
