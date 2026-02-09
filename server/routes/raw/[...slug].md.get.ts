@@ -15,7 +15,9 @@ export default eventHandler(async (event) => {
   if (path.endsWith('/index')) {
     path = path.substring(0, path.length - 6);
   }
-
+  console.log(path, 'path');
+  const result = await queryCollection(event, 'docs').path(path).first();
+  console.log(result);
   const _collections = Object.entries(collections as unknown as Record<string, { type: string }>)
     .filter(([_key, value]) => value.type === 'page')
     .map(([key]) => key) as string[];
