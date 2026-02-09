@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.14.0",
+    "@shikijs/engine-javascript": "^3.22.0",
     "depcheck": "^1.4.7",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
