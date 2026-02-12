@@ -12,12 +12,14 @@ resources:
   - url: https://developers.openai.com/codex/cli
     name: Codex CLI
     description: OpenAI 推出的命令行编程工具
-  - url: https://roocode.com/
-    name: Roo Code
-    description: 轻量级编程助手
-  - url: https://www.cherry-ai.com/
-    name: Cherry Studio
-    description: 支持多平台的 AI 客户端
   - url: https://platform.iflow.cn/cli/quickstart
     name: iFlow CLI
     description: 阿里心流团队出的终端AI助手,永久免费使用glm,kimi,minmax,千问的模型
+  - url: https://qwenlm.github.io/qwen-code-docs/zh/users/overview/
+    name: Qwen Code
+    description: Qwen 的 AI 编码助手，运行在你的终端中，帮助你比以往更快地将想法转化为代码
+    "[ { url: https://roocode":
+      com/ } ]: null
+  - url: https://www.cherry-ai.com/
+    name: Cherry Studio
+    description: 支持多平台的 AI 客户端
