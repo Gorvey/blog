@@ -23,3 +23,9 @@ resources:
   - url: https://www.streamlake.com/marketing/coding-plan
     name: KwaiKAT Coding Plan
     description: 只能用	KAT-Coder-Pro V1模型,拥有按量付费
+  - url: https://cloud.baidu.com/product/codingplan.html
+    name: 百度千帆Coding Plan
+    description: "百度千帆推出AI编码专属订阅套餐Coding Plan！助力开发者开启AI编程新体验 "
+  - url: https://code.x-aio.com/
+    name: Code Plan by X-AIO
+    description: 一站聚合所有主流模型
