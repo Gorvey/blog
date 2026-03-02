@@ -1,0 +1,16 @@
+title: Vue 官方资源
+category: 前端框架
+collection: Vue
+resources:
+  - name: Vue.js
+    url: https://cn.vuejs.org/
+    description: Vue 3 官方文档（中文）
+  - name: Vue Router
+    url: https://router.vuejs.org/zh/
+    description: Vue 官方路由管理器
+  - name: Pinia
+    url: https://pinia.vuejs.org/zh/
+    description: Vue 官方推荐的状态管理库
+  - name: VueUse
+    url: https://vueuse.org/
+    description: 面向 Vue 的实用组合式 API 工具集
