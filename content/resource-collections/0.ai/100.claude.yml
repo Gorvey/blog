@@ -1,0 +1,52 @@
+title: ai
+category: AI编程
+collection: AI编程工具
+sort: 100
+resources:
+  - name: Claude Code
+    url: https://code.claude.com/docs/zh-CN/overview
+    post: ""
+    description: Anthropic 出的 CLI 代理编码工具
+  - url: https://developers.openai.com/codex/cli
+    name: Codex CLI
+    description: OpenAI 推出的命令行编程工具
+  - url: https://platform.iflow.cn/cli/quickstart
+    name: iFlow CLI
+    description: 阿里心流团队出的终端AI助手,永久免费使用glm,kimi,minmax,千问的模型
+  - url: https://qwenlm.github.io/qwen-code-docs/zh/users/overview/
+    name: Qwen Code
+    description: Qwen 的 AI 编码助手，运行在你的终端中，帮助你比以往更快地将想法转化为代码
+  - url: https://opencode.ai/
+    name: OpenCode
+    description: 最流行的开源 CLI 工具,拥有桌面端
+  - url: https://block.github.io/goose/
+    name: Goose
+    description: Block 开源的 AI Agent，可自动执行工程任务。
+  - url: https://cline.bot/
+    name: Cline
+    description: 流行的开源 AI 编码代理，可在 IDE 中执行多步开发任务。
+  - url: https://kilo.ai/
+    name: Kilo
+    description: AI 编码代理工具，强调快速迭代和工程化交付。
+  - url: https://ampcode.com/
+    name: Amp
+    name: Roo Code
+    description: 在编辑器内提供多角色 AI 开发协作能力的编码助手。
+  - url: https://roocode.org.cn/
+    name: Roo Code
+    description: 轻量级编程助手
+  - url: https://www.cherry-ai.com/
+    name: Cherry Studio
+    description: 支持多平台的 AI 客户端
+  - url: https://v0.dev/
+    name: v0 by Vercel
+    description: Vercel 的 AI 生成式前端工具，可快速产出界面与代码。
+  - url: https://bolt.new/
+    name: bolt.new
+    description: 基于浏览器的 AI 编码工具，支持从提示直接构建应用。
+  - url: https://openclaw.ai/
+    name: OpenClaw
+    description: 面向开发场景的 AI 编码助手与代理工作流平台。
+  - url: https://factory.ai/
+    name: Factory.ai
+    description: 提供 AI coding agents，帮助团队自动化开发流程。

@@ -1,6 +1,7 @@
 title: Skills
 category: ai编程
 collection: Skills
+sort: 1
 resources:
   - name: vue-skills
     url: https://github.com/vuejs-ai/skills

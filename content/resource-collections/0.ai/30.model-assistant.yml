@@ -1,0 +1,38 @@
+title: 大模型与助手
+category: AI编程
+collection: 大模型与助手
+sort: 30
+resources:
+  - url: https://openai.com/
+    name: OpenAI
+    description: OpenAI 的官方网站，提供 ChatGPT、API 与模型产品信息。
+  - url: https://claude.ai/
+    name: Claude
+    description: Anthropic 的 AI 助手，擅长长文本理解、写作与代码任务。
+  - url: https://gemini.google.com/
+    name: Gemini
+    description: Google Gemini 官方站点，提供对话、创作和多模态能力。
+  - url: https://grok.com/
+    name: Grok
+    description: xAI 推出的通用 AI 助手，支持对话、检索与内容生成。
+  - url: https://www.deepseek.com
+    name: DeepSeek
+    description: DeepSeek 官方站点，聚焦通用大模型与推理能力。
+  - url: https://kimi.moonshot.cn/
+    name: Kimi AI
+    description: Moonshot AI 旗下产品，支持长文本处理与智能问答。
+  - url: https://tongyi.aliyun.com/
+    name: 通义
+    description: 阿里云通义大模型门户，提供模型能力与应用入口。
+  - url: https://bigmodel.cn/
+    name: 智谱AI开放平台
+    description: 智谱官方模型平台，提供 GLM 系列模型与开发服务。
+  - url: https://www.minimaxi.com/
+    name: MiniMax
+    description: MiniMax 官方网站，提供多模态模型与 AI 应用产品。
+  - url: https://yiyan.baidu.com/
+    name: 文心一言
+    description: 百度文心一言官方入口，支持问答、写作与多场景助手能力。
+  - url: https://www.perplexity.ai/
+    name: Perplexity
+    description: 以搜索增强问答为核心的 AI 助手，强调可溯源答案。

@@ -20,6 +20,8 @@ export interface ResourceCollection {
   id: string;
   /** 集合名称 */
   name: string;
+  /** 集合排序值（越小越靠前） */
+  sort?: number;
   /** 集合描述 */
   description?: string;
   /** 资源列表 */
@@ -52,6 +54,8 @@ export interface ResourceCollectionDoc {
   category: string;
   /** 二级集合名称 */
   collection: string;
+  /** 集合排序值（越小越靠前） */
+  sort?: number;
   /** 集合描述 */
   description?: string;
   /** 资源列表 */
@@ -76,6 +80,7 @@ export function transformToCategories(docs: unknown[]): ResourceCategory[] {
       !('resources' in doc) ||
       typeof doc.category !== 'string' ||
       typeof doc.collection !== 'string' ||
+      ('sort' in doc && doc.sort !== undefined && typeof doc.sort !== 'number') ||
       !Array.isArray(doc.resources)
     ) {
       continue;
@@ -98,10 +103,21 @@ export function transformToCategories(docs: unknown[]): ResourceCategory[] {
     category.collections.push({
       id: collectionId,
       name: validDoc.collection,
+      sort: validDoc.sort,
       description: validDoc.description,
       resources: validDoc.resources
     });
   }
 
-  return Array.from(categoryMap.values());
+  const categories = Array.from(categoryMap.values());
+
+  for (const category of categories) {
+    category.collections.sort((a, b) => {
+      const aSort = a.sort ?? Number.POSITIVE_INFINITY;
+      const bSort = b.sort ?? Number.POSITIVE_INFINITY;
+      return aSort - bSort;
+    });
+  }
+
+  return categories;
 }

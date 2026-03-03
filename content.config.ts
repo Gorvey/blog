@@ -26,6 +26,7 @@ export default defineContentConfig({
         title: z.string().optional(),
         category: z.string(),
         collection: z.string(),
+        sort: z.number().optional(),
         description: z.string().optional(),
         resources: z.array(
           z.object({

@@ -1,6 +1,7 @@
 title: Code PLan
 category: AI编程
 collection: Code PLan
+sort: 10
 resources:
   - url: https://bigmodel.cn/glm-coding
     name: GLM Code Plan

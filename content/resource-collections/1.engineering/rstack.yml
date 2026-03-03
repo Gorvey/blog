@@ -1,6 +1,7 @@
 title: Rstack 工具链
 collection: Rstack
 category: 工程化
+sort: 2
 resources:
   - url: https://rspack.rs/
     name: Rspack
