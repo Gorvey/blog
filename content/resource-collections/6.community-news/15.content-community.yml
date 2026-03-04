@@ -1,0 +1,29 @@
+title: 内容社区
+category: 社区资讯
+collection: 内容社区
+sort: 24
+resources:
+  - url: https://dev.to/
+    name: DEV Community
+    description: A space to discuss and keep up software devel...
+  - url: https://medium.com/
+    name: Medium
+    description: On Medium, anyone can share insightful perspe...
+  - url: https://css-tricks.com/
+    name: CSS-Tricks
+    description: CSS-Tricks
+  - url: https://www.smashingmagazine.com/
+    name: Smashing Magazine
+    description: Magazine on CSS, JavaScript, front-end, acces...
+  - url: https://www.producthunt.com/
+    name: Product Hunt
+    description: Just a moment...
+  - url: https://www.zhihu.com/
+    name: 知乎
+    description: 知乎，中文互联网高质量的问答社区和创作者聚集的原创内容平台，于 2011 年 1 月正式上...
+  - url: https://juejin.im/
+    name: 掘金
+    description: 掘金是面向全球中文开发者的技术内容分享与交流平台。我们通过技术文章、沸点、课程、直播等产品...
+  - url: https://segmentfault.com/
+    name: SegmentFault
+    description: SegmentFault 思否是中国专业的开发者技术社区。我们以技术问答、技术博客、技术课...

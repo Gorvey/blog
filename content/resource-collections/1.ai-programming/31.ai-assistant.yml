@@ -1,0 +1,20 @@
+title: AI 助手
+category: AI编程
+collection: AI助手
+sort: 31
+resources:
+  - url: https://claude.ai/
+    name: Claude
+    description: Anthropic 的 AI 助手，擅长长文本理解、写作与代码任务。
+  - url: https://gemini.google.com/
+    name: Gemini
+    description: Google Gemini 官方站点，提供对话、创作和多模态能力。
+  - url: https://grok.com/
+    name: Grok
+    description: xAI 推出的通用 AI 助手，支持对话、检索与内容生成。
+  - url: https://kimi.moonshot.cn/
+    name: Kimi AI
+    description: Moonshot AI 旗下产品，支持长文本处理与智能问答。
+  - url: https://www.perplexity.ai/
+    name: Perplexity
+    description: 以搜索增强问答为核心的 AI 助手，强调可溯源答案。

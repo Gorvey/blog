@@ -1,0 +1,29 @@
+title: 数据库基础
+category: 学习进阶
+collection: 数据库基础
+sort: 4
+resources:
+  - url: https://redis.io/
+    name: Redis
+    description: Developers love Redis. Unlock the full potent...
+  - url: https://www.mysql.com/
+    name: MySQL
+    description: fw_error_www
+  - url: https://www.postgresql.org/
+    name: PostgreSQL
+    description: The official site for PostgreSQL, the world
+  - url: https://pglite.dev/
+    name: PGlite
+    description: Lightweight WASM Postgres
+  - url: https://sqlite.org/
+    name: SQLite
+    description: SQLite Home Page
+  - url: https://www.mongodb.com/
+    name: MongoDB
+    description: Get your ideas to market faster with a flexib...
+  - url: https://www.edgedb.com/
+    name: EdgeDB
+    description: Gel is an open-source database designed to ad...
+  - url: https://pingcap.com/
+    name: PingCAP
+    description: TiDB is an open-source, MySQL compatible, dis...

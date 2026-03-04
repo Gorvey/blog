@@ -1,0 +1,20 @@
+title: 后端基础
+category: 学习进阶
+collection: 后端基础
+sort: 3
+resources:
+  - url: https://www.docker.com/
+    name: Docker
+    description: Docker is a platform designed to help develop...
+  - url: http://nginx.org/
+    name: Nginx
+    description: nginx
+  - url: https://www.djangoproject.com/
+    name: Django
+    description: The web framework for perfectionists with dea...
+  - url: https://spring.io/
+    name: Spring
+    description: Level up your Java code and explore what Spri...
+  - url: https://hadoop.apache.org/
+    name: Hadoop
+    description: Apache Hadoop

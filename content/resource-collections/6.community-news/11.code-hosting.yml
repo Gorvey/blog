@@ -1,0 +1,17 @@
+title: 代码托管
+category: 社区资讯
+collection: 代码托管
+sort: 16
+resources:
+  - url: https://github.com/
+    name: GitHub
+    description: Join the world's most widely adopted, AI-powe...
+  - url: https://gitlab.com/
+    name: GitLab
+    description: Your intelligent orchestration platform for D...
+  - url: https://gitee.com/
+    name: Gitee
+    description: 面向企业提供一站式研发管理解决方案，包括代码管理、项目管理、文档协作、测试管理、CICD、...
+  - url: https://git-scm.com/
+    name: Git
+    description: Git

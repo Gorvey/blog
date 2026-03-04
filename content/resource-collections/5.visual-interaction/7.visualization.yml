@@ -1,0 +1,23 @@
+title: 可视化
+category: 可视交互
+collection: 可视化
+sort: 8
+resources:
+  - url: https://echarts.apache.org/
+    name: ECharts
+    description: Apache ECharts，一款基于JavaScript的数据可视化图表库，提供直观，生...
+  - url: https://visx.airbnb.tech/
+    name: visx.airbnb.tech
+    description: visx.airbnb.tech
+  - url: https://www.tremor.so/
+    name: Tremor
+    description: Open-source, accessible React UI components s...
+  - url: https://antv.antgroup.com/
+    name: antv.antgroup.com
+    description: Ant Visualization solution
+  - url: https://d3js.org/
+    name: D3.js
+    description: The JavaScript library for bespoke data visua...
+  - url: http://logicflow.cn/
+    name: logicflow.cn
+    description: logicflow.cn

@@ -1,0 +1,11 @@
+title: 动画库
+category: 可视交互
+collection: 动画库
+sort: 20
+resources:
+  - url: https://gsap.com/
+    name: GSAP
+    description: Supported by Webflow. Animate Anything
+  - url: https://www.remotion.dev/
+    name: Remotion
+    description: Remotion

@@ -1,0 +1,35 @@
+title: 包生态
+category: 社区资讯
+collection: 包生态
+sort: 17
+resources:
+  - url: https://www.npmjs.com/
+    name: npm
+    description: Just a moment...
+  - url: https://yarnpkg.com/
+    name: Yarn
+    description: Yarn, the modern JavaScript package manager
+  - url: https://pnpm.io/
+    name: pnpm
+    description: Fast, disk space efficient package manager
+  - url: https://bower.io/
+    name: Bower
+    description: Bower
+  - url: https://www.jsdelivr.com/
+    name: jsDelivr
+    description: Optimized for JS and ESM delivery from npm an...
+  - url: https://cdnjs.com/
+    name: cdnjs
+    description: Simple. Fast. Reliable. Content delivery at i...
+  - url: https://unpkg.com/
+    name: unpkg
+    description: The CDN for everything on npm
+  - url: https://esm.sh/
+    name: esm.sh
+    description: A fast, smart & global CDN for modern(es2015+...
+  - url: https://www.skypack.dev/
+    name: Skypack
+    description: Search millions of open source JavaScript pac...
+  - url: https://www.bootcdn.cn/
+    name: BootCDN
+    description: Bootstrap 中文网开源项目免费 CDN 加速服务

@@ -1,0 +1,20 @@
+title: 资讯平台
+category: 社区资讯
+collection: 资讯平台
+sort: 15
+resources:
+  - url: https://x.com/
+    name: X
+    description: X (formerly Twitter)
+  - url: https://bsky.app
+    name: Bluesky
+    description: bsky.app
+  - url: https://www.xiaohongshu.com/
+    name: 小红书
+    description: 小红书
+  - url: https://www.youtube.com/
+    name: YouTube
+    description: 在 YouTube 上畅享你喜爱的视频和音乐，上传原创内容并与亲朋好友和全世界观众分享你的视频。
+  - url: https://www.bilibili.com/
+    name: Bilibili
+    description: 哔哩哔哩（bilibili.com)是国内知名的视频弹幕网站，这里有及时的动漫新番，活跃的...

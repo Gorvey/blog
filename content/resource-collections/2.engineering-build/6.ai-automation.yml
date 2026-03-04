@@ -1,0 +1,8 @@
+title: 自动化
+category: 工程构建
+collection: 脚本自动化
+sort: 6
+resources:
+  - url: https://n8n.io/
+    name: n8n
+    description: 开源工作流自动化平台，可连接 AI 与业务系统。

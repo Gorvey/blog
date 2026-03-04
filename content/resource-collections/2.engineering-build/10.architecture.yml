@@ -1,0 +1,23 @@
+title: 工程架构
+category: 工程构建
+collection: 工程架构
+sort: 10
+resources:
+  - url: https://github.com/thx/gogocode?tab=readme-ov-file
+    name: gogocode?tab=readme-ov-file
+    description: GoGoCode is a transformer for JavaScript/Type...
+  - url: https://yeoman.io/
+    name: Yeoman
+    description: The web's scaffolding tool for modern webapps
+  - url: https://create-react-app.dev/
+    name: Create React App
+    description: Create React App is deprecated. Please see re...
+  - url: https://lerna.js.org/
+    name: Lerna
+    description: Lerna is a fast, modern build system for mana...
+  - url: https://turborepo.com/
+    name: Turborepo
+    description: Turborepo is a build system optimized for Jav...
+  - url: https://nx.dev/
+    name: Nx
+    description: The Monorepo Platform that amplifies both dev...

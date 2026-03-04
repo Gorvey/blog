@@ -1,0 +1,26 @@
+title: 编译转译
+category: 工程构建
+collection: 编译转译
+sort: 10
+resources:
+  - url: http://babeljs.io/
+    name: Babel
+    description: Babel
+  - url: https://terser.org/
+    name: Terser
+    description: Terser
+  - url: https://www.typescriptlang.org/
+    name: TypeScript
+    description: TypeScript extends JavaScript by adding types...
+  - url: https://flow.org/
+    name: Flow
+    description: "Flow: A Static Type Checker for JavaScript"
+  - url: https://www.assemblyscript.org/
+    name: AssemblyScript
+    description: A TypeScript-like language for WebAssembly
+  - url: https://webassembly.org/
+    name: WebAssembly
+    description: WebAssembly (abbreviated Wasm) is a binary in...
+  - url: https://coffeescript.org/
+    name: CoffeeScript
+    description: CoffeeScript

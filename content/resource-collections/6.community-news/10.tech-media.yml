@@ -1,0 +1,17 @@
+title: 科技媒体
+category: 社区资讯
+collection: 科技媒体
+sort: 14
+resources:
+  - url: https://www.google.com/
+    name: Google
+    description: Google
+  - url: https://www.microsoft.com/
+    name: Microsoft
+    description: Your request has been blocked. This could be ...
+  - url: https://www.apple.com/
+    name: Apple
+    description: Discover the innovative world of Apple and sh...
+  - url: https://about.facebook.com/meta
+    name: Error
+    description: Error

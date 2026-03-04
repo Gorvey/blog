@@ -1,0 +1,23 @@
+title: 数据处理
+category: 工程构建
+collection: 数据处理
+sort: 22
+resources:
+  - url: https://www.prisma.io/
+    name: Prisma
+    description: Build, fortify, and grow your application eas...
+  - url: https://typeorm.io/
+    name: TypeORM
+    description: TypeORM is an ORM that can run in NodeJS, Bro...
+  - url: https://sequelize.org/
+    name: Sequelize
+    description: Sequelize is a modern TypeScript and Node.js ...
+  - url: https://orm.drizzle.team/
+    name: Drizzle ORM
+    description: Drizzle ORM is a lightweight and performant T...
+  - url: https://knexjs.org/
+    name: Knex.js
+    description: Beta knex.js documentation.
+  - url: https://vincit.github.io/objection.js/
+    name: Objection.js
+    description: An SQL friendly ORM for node.js

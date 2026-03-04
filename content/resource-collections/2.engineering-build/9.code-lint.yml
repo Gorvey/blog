@@ -1,0 +1,20 @@
+title: 代码规范
+category: 工程构建
+collection: 代码规范
+sort: 9
+resources:
+  - url: https://eslint.org/
+    name: ESLint
+    description: A pluggable and configurable linter tool for ...
+  - url: https://oxc.rs/
+    name: Oxc
+    description: A collection of high-performance JavaScript t...
+  - url: https://rslint.rs/
+    name: Rslint
+    description: The high-performance TypeScript linter
+  - url: https://jshint.com/
+    name: JSHint
+    description: JSHint, a JavaScript Code Quality Tool
+  - url: https://prettier.io/
+    name: Prettier
+    description: Prettier · Opinionated Code Formatter · Prettier

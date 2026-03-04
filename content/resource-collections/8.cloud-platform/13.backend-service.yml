@@ -1,0 +1,32 @@
+title: 后端服务
+category: 云服务平台
+collection: 后端服务
+sort: 21
+resources:
+  - url: https://firebase.google.com/
+    name: Firebase
+    description: 探索 Firebase，它是 Google 的移动和 Web 应用开发平台，可帮助开发者构...
+  - url: https://supabase.com/
+    name: Supabase
+    description: Build production-grade applications with a Po...
+  - url: https://neon.tech/
+    name: Neon
+    description: The database you love, on a serverless platfo...
+  - url: https://xata.io/
+    name: Xata
+    description: Instant branches of your Postgres with anonym...
+  - url: https://tembo.io/
+    name: Tembo
+    description: Ship code, review PRs, and fix bugs with auto...
+  - url: https://turso.tech/drizzle
+    name: Turso
+    description: "Turso is SQLite for production: great develop..."
+  - url: https://sqlitecloud.io/
+    name: SQLite Cloud
+    description: SQLite AI transforms SQLite into a distribute...
+  - url: https://www.singlestore.com/
+    name: SingleStore
+    description: SingleStore delivers the performance you need...
+  - url: https://planetscale.com/
+    name: PlanetScale
+    description: PlanetScale offers the world’s fastest and mo...

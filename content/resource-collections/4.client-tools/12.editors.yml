@@ -1,0 +1,32 @@
+title: 编辑器
+category: 客户端工具
+collection: 编辑器
+sort: 19
+resources:
+  - url: https://code.visualstudio.com/
+    name: Visual Studio Code
+    description: Visual Studio Code redefines AI-powered codin...
+  - url: https://www.cursor.com/
+    name: Cursor
+    description: Built to make you extraordinarily productive,...
+  - url: https://windsurf.com/
+    name: Windsurf
+    description: Windsurf is the world's most advanced AI codi...
+  - url: https://www.trae.cn/
+    name: Trae
+    description: TRAE AI IDE
+  - url: https://kiro.dev/
+    name: Kiro
+    description: Kiro helps you do your best work by bringing ...
+  - url: https://antigravity.google/
+    name: Google Gravity
+    description: Google Antigravity
+  - url: https://www.jetbrains.com/webstorm/
+    name: WebStorm
+    description: Make development more productive and enjoyabl...
+  - url: https://zed.dev/
+    name: Zed
+    description: Zed is a high-performance, multiplayer code e...
+  - url: http://www.sublimetext.com/
+    name: Sublime Text
+    description: Sublime Text is a sophisticated text editor f...

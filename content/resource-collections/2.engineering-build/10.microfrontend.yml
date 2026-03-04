@@ -1,0 +1,14 @@
+title: 微前端
+category: 工程构建
+collection: 微前端
+sort: 11
+resources:
+  - url: https://single-spa.js.org/
+    name: single-spa
+    description: A javascript router for front-end microservices
+  - url: https://qiankun.umijs.org
+    name: qiankun
+    description: qiankun
+  - url: https://wujie-micro.github.io/doc/
+    name: 无界
+    description: 极致的微前端框架

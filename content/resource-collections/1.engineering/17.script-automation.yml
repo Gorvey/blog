@@ -1,8 +1,0 @@
-title: '脚本自动化'
-category: '工程化'
-collection: '脚本自动化'
-sort: 17
-resources:
-  - url: 'https://google.github.io/zx/'
-    name: 'zx'
-    description: 'A tool for writing better scripts'

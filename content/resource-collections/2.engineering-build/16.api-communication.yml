@@ -1,0 +1,14 @@
+title: 网络通信 API
+category: 工程构建
+collection: 网络通信 API
+sort: 23
+resources:
+  - url: https://graphql.org/
+    name: GraphQL
+    description: GraphQL is a query language for APIs and a ru...
+  - url: https://www.apollographql.com/
+    name: Apollo
+    description: Connect agents and apps to GraphQL and REST A...
+  - url: https://socket.io/
+    name: Socket.IO
+    description: Socket.IO

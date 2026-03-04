@@ -1,0 +1,8 @@
+resources:
+  - url: https://inspector.fe-dev.cn/
+    name: Code Inspector
+    description: 点击页面上的 DOM 元素，它能自动打开 IDE 并将光标定位至 DOM 的源代码位置
+title: '调试'
+collection: '调试'
+category: '工程构建'
+sort: 1

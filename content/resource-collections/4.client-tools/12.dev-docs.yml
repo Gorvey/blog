@@ -1,0 +1,35 @@
+title: 开发文档工具
+category: 客户端工具
+collection: 开发文档工具
+sort: 18
+resources:
+  - url: https://developer.mozilla.org/
+    name: MDN
+    description: The MDN Web Docs site provides information ab...
+  - url: https://developer.chrome.com/
+    name: Chrome for Developers
+    description: 帮助您在网络上构建应用、发展业务和开展创新。
+  - url: https://web.dev/
+    name: web.dev
+    description: 构建可在任何浏览器上运行的现代 Web 体验的指南。
+  - url: https://javascript.info/
+    name: JavaScript.info
+    description: "Modern JavaScript Tutorial: simple, but detai..."
+  - url: https://stackoverflow.com/
+    name: Stack Overflow
+    description: Just a moment...
+  - url: https://caniuse.com/
+    name: Can I Use
+    description: '"Can I use" provides up-to-date browser suppo...'
+  - url: https://regexr.com/
+    name: RegExr
+    description: Regular expression tester with syntax highlig...
+  - url: https://regex101.com/
+    name: Regex101
+    description: Regular expression tester with syntax highlig...
+  - url: https://travis-ci.org/
+    name: Travis CI
+    description: Travis CI is the most simple and flexible ci/...
+  - url: https://www.jenkins.io/
+    name: Jenkins
+    description: Jenkins

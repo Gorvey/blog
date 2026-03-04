@@ -1,8 +1,0 @@
-resources:
-  - url: https://bestofjs.org/
-    name: Best of JS
-    description: 帮助开发者快速、方便地找到最佳的 JavaScript 库和框架
-category: 学习交流
-collection: 发现资源
-sort: 1
-title: 发现资源

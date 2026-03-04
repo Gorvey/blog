@@ -1,0 +1,8 @@
+title: 文档工程
+category: 工程构建
+collection: 文档工程
+sort: 18
+resources:
+  - url: https://sli.dev/
+    name: Slidev
+    description: Presentation slides for developers

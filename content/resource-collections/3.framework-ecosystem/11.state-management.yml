@@ -1,0 +1,23 @@
+title: 状态管理
+category: 框架生态
+collection: 状态管理
+sort: 13
+resources:
+  - url: https://redux.js.org/
+    name: Redux
+    description: A JS library for predictable and maintainable...
+  - url: https://react-redux.js.org/
+    name: React Redux
+    description: Official React bindings for Redux
+  - url: https://zustand-demo.pmnd.rs/
+    name: Zustand
+    description: 🐻 Bear necessities for state management in R...
+  - url: https://mobx.js.org/
+    name: MobX
+    description: MobX
+  - url: https://pinia.vuejs.org/
+    name: Pinia
+    description: Intuitive, type safe, light and flexible Stor...
+  - url: https://immutable-js.github.io/immutable-js/
+    name: Immutable.js
+    description: Immutable.js
