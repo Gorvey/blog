@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from '@nuxt/ui';
 import type { ContentNavigationItem } from '@nuxt/content';
+import type { Ref } from 'vue';
+
+interface FirstDocLike {
+  path: string;
+}
 
 const { header } = useAppConfig();
 const route = useRoute();
-
-/**
- * 获取 docs 集合的第一条内容路径
- */
-const { data: firstDoc } = useAsyncData('first-doc', () =>
-  queryCollection('docs').where('extension', '=', 'md').first()
-);
 /**
  * 主导航菜单项配置
  */
+const firstDoc = inject<Ref<FirstDocLike | null | undefined>>('firstDoc', ref(null));
+
 const items = computed<NavigationMenuItem[]>(() => [
   {
     label: '笔记',
@@ -56,24 +56,9 @@ const subNavItems = computed(() => {
 
 <template>
   <UHeader :to="header?.to || '/'">
-    <!-- Logo/Title -->
-    <template v-if="header?.logo?.dark || header?.logo?.light || header?.title" #title>
-      <UColorModeImage
-        v-if="header?.logo?.dark || header?.logo?.light"
-        :light="header?.logo?.light!"
-        :dark="header?.logo?.dark!"
-        :alt="header?.logo?.alt"
-        class="h-6 w-auto shrink-0"
-      />
-
-      <span v-else-if="header?.title">
-        {{ header.title }}
-      </span>
-    </template>
-
-    <template v-else #left>
-      <NuxtLink :to="header?.to || '/'">
-        <AppLogo class="w-auto h-6 shrink-0" />
+    <template #left>
+      <NuxtLink :to="firstDoc?.path || header?.to || '/docs'">
+        <AppLogo class="w-auto h-10 shrink-0" />
       </NuxtLink>
     </template>
 
@@ -91,9 +76,11 @@ const subNavItems = computed(() => {
         />
       </template>
     </template>
+
     <template #body>
       <HeaderBody :items="items" :sub-nav-items="subNavItems" :is-docs-route="isDocsRoute" />
     </template>
+
     <template v-if="route.path.startsWith('/docs/')" #bottom>
       <HeaderBottom :sub-nav-items="subNavItems" />
     </template>

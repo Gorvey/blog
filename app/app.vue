@@ -1,8 +1,19 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content';
+import type { Ref } from 'vue';
+
+interface FirstDocLike {
+  path: string;
+}
 
 const { seo } = useAppConfig();
 const route = useRoute();
+/**
+ * 获取 docs 集合的第一条内容路径
+ */
+const { data: firstDoc } = await useAsyncData<FirstDocLike | null>('first-doc', () =>
+  queryCollection('docs').where('extension', '=', 'md').first()
+);
 /**
  * 获取文档集合的导航数据
  */
@@ -29,6 +40,33 @@ const { data: docsFiles } = useLazyAsyncData(
   }
 );
 const isDocsRoute = computed(() => route.path.startsWith('/docs'));
+
+/**
+ * 根路径统一重定向到 docs 第一篇文档
+ */
+const redirectRootToFirstDoc = async () => {
+  if (route.path !== '/') {
+    return;
+  }
+
+  const targetPath = firstDoc.value?.path;
+  if (!targetPath || targetPath === '/') {
+    return;
+  }
+
+  await navigateTo(targetPath, {
+    replace: true,
+    redirectCode: 301
+  });
+};
+
+await redirectRootToFirstDoc();
+watch(
+  () => route.path,
+  async () => {
+    await redirectRootToFirstDoc();
+  }
+);
 
 /**
  * 侧边栏导航数据
@@ -94,6 +132,7 @@ useHead({
 });
 
 provide('navigation', navigation);
+provide<Ref<FirstDocLike | null | undefined>>('firstDoc', firstDoc);
 provide<ComputedRef<boolean>>('isDocsRoute', isDocsRoute);
 provide<ComputedRef<ContentNavigationItem[]>>('sideNav', sideNav);
 </script>
