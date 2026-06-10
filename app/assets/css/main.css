@@ -5,10 +5,45 @@
 :root {
   --ui-container: var(--container-8xl);
   --macos-window-radius: 18px;
+  --macos-accent: var(--ui-primary);
+  --macos-accent-text: color-mix(in oklab, var(--ui-primary) 78%, #0f172a);
+  --macos-accent-text-hover: color-mix(in oklab, var(--ui-primary) 88%, #0f172a);
+  --macos-accent-text-soft: color-mix(in oklab, var(--ui-primary) 54%, #24415f);
+  --macos-accent-contrast: #fff;
+  --macos-accent-solid-bg: var(--ui-primary);
+  --macos-accent-solid-bg-hover: color-mix(in oklab, var(--ui-primary) 88%, #0f172a);
+  --macos-accent-soft-bg: color-mix(in oklab, var(--ui-primary) 10%, transparent);
+  --macos-accent-softer-bg: color-mix(in oklab, var(--ui-primary) 6%, transparent);
+  --macos-accent-elevated-bg: color-mix(in oklab, var(--ui-primary) 14%, transparent);
+  --macos-accent-border: color-mix(in oklab, var(--ui-primary) 16%, transparent);
+  --macos-accent-border-strong: color-mix(in oklab, var(--ui-primary) 24%, transparent);
+  --macos-accent-ring: color-mix(in oklab, var(--ui-primary) 42%, transparent);
+  --macos-accent-shadow: color-mix(in oklab, var(--ui-primary) 22%, transparent);
   color-scheme: light;
 }
 
 .dark {
+  --macos-accent-text: color-mix(in oklab, var(--ui-primary) 38%, #ffffff);
+  --macos-accent-text-hover: color-mix(in oklab, var(--ui-primary) 52%, #ffffff);
+  --macos-accent-text-soft: color-mix(in oklab, var(--ui-primary) 28%, #ffffff);
+  --macos-accent-contrast: #071523;
+  --macos-accent-solid-bg: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--ui-primary) 68%, #ffffff),
+    color-mix(in oklab, var(--ui-primary) 94%, #ffffff)
+  );
+  --macos-accent-solid-bg-hover: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--ui-primary) 62%, #ffffff),
+    color-mix(in oklab, var(--ui-primary) 88%, #ffffff)
+  );
+  --macos-accent-soft-bg: color-mix(in oklab, var(--ui-primary) 15%, transparent);
+  --macos-accent-softer-bg: color-mix(in oklab, var(--ui-primary) 9%, transparent);
+  --macos-accent-elevated-bg: color-mix(in oklab, var(--ui-primary) 20%, transparent);
+  --macos-accent-border: color-mix(in oklab, var(--ui-primary) 22%, transparent);
+  --macos-accent-border-strong: color-mix(in oklab, var(--ui-primary) 32%, transparent);
+  --macos-accent-ring: color-mix(in oklab, var(--ui-primary) 50%, transparent);
+  --macos-accent-shadow: color-mix(in oklab, var(--ui-primary) 30%, transparent);
   color-scheme: dark;
 }
 
@@ -22,7 +57,7 @@ html {
 
 html.dark {
   background:
-    linear-gradient(135deg, rgba(122, 162, 255, 0.1), transparent 34%),
+    linear-gradient(135deg, var(--macos-accent-softer-bg), transparent 34%),
     linear-gradient(180deg, #171a20 0%, #202329 48%, #171a20 100%);
 }
 
@@ -195,7 +230,7 @@ body::before {
 }
 
 .macos-main-switcher [data-slot='link'][aria-current='page'] {
-  color: #1662d6;
+  color: var(--macos-accent-text);
 }
 
 .macos-main-switcher [data-slot='link'][aria-current='page']::before {
@@ -233,7 +268,7 @@ body::before {
 }
 
 .dark .macos-main-switcher [data-slot='link'][aria-current='page'] {
-  color: #dbeafe;
+  color: var(--macos-accent-text);
 }
 
 .dark .macos-main-switcher [data-slot='link'][aria-current='page']::before {
@@ -476,18 +511,18 @@ body::before {
 }
 
 .docs-subnav-link-active {
-  background: linear-gradient(180deg, rgba(82, 159, 255, 0.18), rgba(60, 138, 255, 0.11));
-  color: #1662d6;
+  background: linear-gradient(180deg, var(--macos-accent-elevated-bg), var(--macos-accent-soft-bg));
+  color: var(--macos-accent-text);
   box-shadow:
-    0 0 0 1px rgba(60, 138, 255, 0.18) inset,
+    0 0 0 1px var(--macos-accent-border) inset,
     0 1px 0 rgba(255, 255, 255, 0.82) inset;
 }
 
 .dark .docs-subnav-link-active {
-  background: linear-gradient(180deg, rgba(91, 156, 255, 0.22), rgba(63, 129, 255, 0.15));
-  color: #dbe9ff;
+  background: linear-gradient(180deg, var(--macos-accent-elevated-bg), var(--macos-accent-soft-bg));
+  color: var(--macos-accent-text);
   box-shadow:
-    0 0 0 1px rgba(120, 175, 255, 0.18) inset,
+    0 0 0 1px var(--macos-accent-border) inset,
     0 1px 0 rgba(255, 255, 255, 0.08) inset;
 }
 
@@ -651,19 +686,19 @@ body::before {
 }
 
 .docs-sidebar-link-active {
-  background: linear-gradient(180deg, rgba(82, 159, 255, 0.16), rgba(60, 138, 255, 0.08));
-  color: #1662d6;
+  background: linear-gradient(180deg, var(--macos-accent-elevated-bg), var(--macos-accent-soft-bg));
+  color: var(--macos-accent-text);
   font-weight: 600;
   box-shadow:
-    0 0 0 1px rgba(59, 130, 246, 0.12) inset,
+    0 0 0 1px var(--macos-accent-border) inset,
     0 1px 0 rgba(255, 255, 255, 0.72) inset;
 }
 
 .dark .docs-sidebar-link-active {
-  background: linear-gradient(180deg, rgba(91, 156, 255, 0.18), rgba(63, 129, 255, 0.1));
-  color: #dbe9ff;
+  background: linear-gradient(180deg, var(--macos-accent-elevated-bg), var(--macos-accent-soft-bg));
+  color: var(--macos-accent-text);
   box-shadow:
-    0 0 0 1px rgba(120, 175, 255, 0.14) inset,
+    0 0 0 1px var(--macos-accent-border) inset,
     0 1px 0 rgba(255, 255, 255, 0.06) inset;
 }
 
@@ -689,7 +724,8 @@ body::before {
   min-height: 100%;
   padding: 0 !important;
   background:
-    radial-gradient(circle at top right, rgba(86, 152, 255, 0.06), transparent 30%), transparent;
+    radial-gradient(circle at top right, var(--macos-accent-softer-bg), transparent 30%),
+    transparent;
 }
 
 @media (min-width: 1280px) {
@@ -715,7 +751,8 @@ body::before {
 
 .dark .docs-main {
   background:
-    radial-gradient(circle at top right, rgba(92, 146, 255, 0.08), transparent 28%), transparent;
+    radial-gradient(circle at top right, var(--macos-accent-softer-bg), transparent 28%),
+    transparent;
 }
 
 .docs-article-layout {
@@ -796,10 +833,10 @@ body::before {
   min-height: 24px;
   margin-bottom: 0.55rem;
   padding: 0 8px;
-  border: 1px solid rgba(59, 130, 246, 0.14);
+  border: 1px solid var(--macos-accent-border);
   border-radius: 7px;
-  background: rgba(59, 130, 246, 0.08);
-  color: #1765d8;
+  background: var(--macos-accent-soft-bg);
+  color: var(--macos-accent-text);
   font-size: 0.8rem;
   font-weight: 650;
   line-height: 1;
@@ -893,9 +930,9 @@ body::before {
 }
 
 .dark .docs-article-header [data-slot='headline'] {
-  border-color: rgba(96, 165, 250, 0.16);
-  background: rgba(96, 165, 250, 0.09);
-  color: #bfdbfe;
+  border-color: var(--macos-accent-border);
+  background: var(--macos-accent-soft-bg);
+  color: var(--macos-accent-text);
 }
 
 .dark .docs-article-header [data-slot='title'] {
@@ -1015,7 +1052,7 @@ body::before {
 }
 
 .docs-article-surround > [data-slot='root'].grid > a[data-slot='link']:focus-visible {
-  outline: 2px solid rgba(44, 125, 249, 0.72);
+  outline: 2px solid var(--macos-accent-ring);
   outline-offset: 2px;
 }
 
@@ -1204,22 +1241,22 @@ body::before {
 }
 
 .docs-article-body :where(a) {
-  color: #1765d8;
+  color: var(--macos-accent-text);
   font-weight: 560;
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.16em;
 }
 
 .docs-article-body :where(a:hover) {
-  color: #0d55bd;
+  color: var(--macos-accent-text-hover);
 }
 
 .dark .docs-article-body :where(a) {
-  color: #93c5fd;
+  color: var(--macos-accent-text);
 }
 
 .dark .docs-article-body :where(a:hover) {
-  color: #bfdbfe;
+  color: var(--macos-accent-text-hover);
 }
 
 .docs-article-body :where(kbd) {
@@ -1246,7 +1283,7 @@ body::before {
 .docs-article-body :where(blockquote) {
   margin-block: 1.2rem;
   border: 1px solid rgba(0, 0, 0, 0.075);
-  border-left: 3px solid #0a84ff;
+  border-left: 3px solid var(--macos-accent);
   border-radius: 10px;
   background: rgba(248, 250, 252, 0.66);
   padding: 0.85rem 1rem;
@@ -1261,7 +1298,7 @@ body::before {
 
 .dark .docs-article-body :where(blockquote) {
   border-color: rgba(255, 255, 255, 0.09);
-  border-left-color: #60a5fa;
+  border-left-color: var(--macos-accent);
   background: rgba(255, 255, 255, 0.045);
   color: #c8d0dc;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.055) inset;
@@ -1299,7 +1336,7 @@ body::before {
   height: 0.95rem;
   margin: 0 0.45rem 0 -1.25rem;
   border-radius: 5px;
-  accent-color: #0a84ff;
+  accent-color: var(--macos-accent);
   vertical-align: -0.12rem;
 }
 
@@ -1414,12 +1451,12 @@ body::before {
 
 .docs-prose-callout {
   margin-block: 1.2rem !important;
-  border: 1px solid rgba(0, 122, 255, 0.14);
+  border: 1px solid var(--macos-accent-border);
   border-radius: 11px !important;
   background:
-    linear-gradient(180deg, rgba(0, 122, 255, 0.075), rgba(0, 122, 255, 0.04)),
+    linear-gradient(180deg, var(--macos-accent-soft-bg), var(--macos-accent-softer-bg)),
     rgba(255, 255, 255, 0.62) !important;
-  color: #24517c;
+  color: var(--macos-accent-text-soft);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.78) inset,
     0 1px 2px rgba(15, 23, 42, 0.04);
@@ -1427,22 +1464,22 @@ body::before {
 }
 
 .docs-prose-callout > .iconify {
-  color: #0a84ff;
+  color: var(--macos-accent);
 }
 
 .dark .docs-prose-callout {
-  border-color: rgba(96, 165, 250, 0.16);
+  border-color: var(--macos-accent-border);
   background:
-    linear-gradient(180deg, rgba(96, 165, 250, 0.12), rgba(96, 165, 250, 0.065)),
+    linear-gradient(180deg, var(--macos-accent-soft-bg), var(--macos-accent-softer-bg)),
     rgba(255, 255, 255, 0.035) !important;
-  color: #d5e7ff;
+  color: var(--macos-accent-text-soft);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.055) inset,
     0 10px 24px rgba(0, 0, 0, 0.12);
 }
 
 .dark .docs-prose-callout > .iconify {
-  color: #93c5fd;
+  color: var(--macos-accent-text);
 }
 
 .docs-prose-card {
@@ -1463,7 +1500,7 @@ body::before {
 }
 
 .docs-prose-card > .iconify:first-of-type {
-  color: #1662d6;
+  color: var(--macos-accent-text);
 }
 
 .docs-prose-card > p:first-of-type {
@@ -1501,7 +1538,7 @@ body::before {
 }
 
 .dark .docs-prose-card > .iconify:first-of-type {
-  color: #93c5fd;
+  color: var(--macos-accent-text);
 }
 
 .dark .docs-prose-card > p:first-of-type {
@@ -1540,7 +1577,7 @@ body::before {
 
 .docs-prose-tabs [role='tab'][data-state='active'] {
   background: rgba(255, 255, 255, 0.86);
-  color: #1662d6;
+  color: var(--macos-accent-text);
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.055) inset,
     0 1px 0 rgba(255, 255, 255, 0.86) inset,
@@ -1566,7 +1603,7 @@ body::before {
 
 .dark .docs-prose-tabs [role='tab'][data-state='active'] {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.085));
-  color: #dbeafe;
+  color: var(--macos-accent-text);
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.105) inset,
     0 1px 0 rgba(255, 255, 255, 0.12) inset,
@@ -1620,7 +1657,7 @@ body::before {
 .docs-prose-steps h3::before {
   border: 1px solid rgba(0, 0, 0, 0.075);
   background: #fff;
-  color: #1662d6;
+  color: var(--macos-accent-text);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.8) inset,
     0 1px 2px rgba(15, 23, 42, 0.06);
@@ -1633,7 +1670,7 @@ body::before {
 .dark .docs-prose-steps h3::before {
   border-color: rgba(255, 255, 255, 0.11);
   background: rgba(255, 255, 255, 0.075);
-  color: #bfdbfe;
+  color: var(--macos-accent-text);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.07) inset,
     0 1px 2px rgba(0, 0, 0, 0.16);
@@ -1673,22 +1710,22 @@ body::before {
 
 .docs-prose-badge {
   border-radius: 7px !important;
-  background: rgba(0, 122, 255, 0.1) !important;
-  color: #1662d6 !important;
+  background: var(--macos-accent-soft-bg) !important;
+  color: var(--macos-accent-text) !important;
 }
 
 .docs-prose-icon {
-  color: #0a84ff;
+  color: var(--macos-accent);
   vertical-align: -0.12em;
 }
 
 .dark .docs-prose-badge {
-  background: rgba(96, 165, 250, 0.14) !important;
-  color: #dbeafe !important;
+  background: var(--macos-accent-soft-bg) !important;
+  color: var(--macos-accent-text) !important;
 }
 
 .dark .docs-prose-icon {
-  color: #93c5fd;
+  color: var(--macos-accent-text);
 }
 
 .docs-article-body > div {
@@ -1697,12 +1734,12 @@ body::before {
 
 .docs-article-body > div > div[class*='border-primary/25'][class*='bg-primary/10'] {
   margin-block: 1.2rem !important;
-  border-color: rgba(0, 122, 255, 0.14) !important;
+  border-color: var(--macos-accent-border) !important;
   border-radius: 11px !important;
   background:
-    linear-gradient(180deg, rgba(0, 122, 255, 0.075), rgba(0, 122, 255, 0.04)),
+    linear-gradient(180deg, var(--macos-accent-soft-bg), var(--macos-accent-softer-bg)),
     rgba(255, 255, 255, 0.62) !important;
-  color: #24517c !important;
+  color: var(--macos-accent-text-soft) !important;
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.78) inset,
     0 1px 2px rgba(15, 23, 42, 0.04);
@@ -1710,15 +1747,15 @@ body::before {
 }
 
 .docs-article-body > div > div[class*='border-primary/25'][class*='bg-primary/10'] > .iconify {
-  color: #0a84ff;
+  color: var(--macos-accent);
 }
 
 .dark .docs-article-body > div > div[class*='border-primary/25'][class*='bg-primary/10'] {
-  border-color: rgba(96, 165, 250, 0.16) !important;
+  border-color: var(--macos-accent-border) !important;
   background:
-    linear-gradient(180deg, rgba(96, 165, 250, 0.12), rgba(96, 165, 250, 0.065)),
+    linear-gradient(180deg, var(--macos-accent-soft-bg), var(--macos-accent-softer-bg)),
     rgba(255, 255, 255, 0.035) !important;
-  color: #d5e7ff !important;
+  color: var(--macos-accent-text-soft) !important;
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.055) inset,
     0 10px 24px rgba(0, 0, 0, 0.12);
@@ -1729,7 +1766,7 @@ body::before {
   > div
   > div[class*='border-primary/25'][class*='bg-primary/10']
   > .iconify {
-  color: #93c5fd;
+  color: var(--macos-accent-text);
 }
 
 .docs-article-body > div > div[class*='group relative block'][class*='p-4'][class*='border'],
@@ -1765,7 +1802,7 @@ body::before {
   > div[class*='group relative block'][class*='p-4'][class*='border']
   > .iconify:first-of-type,
 .docs-article-body > div > div.grid[class*='sm:grid-cols-2'] > div > .iconify:first-of-type {
-  color: #1662d6;
+  color: var(--macos-accent-text);
 }
 
 .docs-article-body
@@ -1812,7 +1849,7 @@ body::before {
   > div[class*='group relative block'][class*='p-4'][class*='border']
   > .iconify:first-of-type,
 .dark .docs-article-body > div > div.grid[class*='sm:grid-cols-2'] > div > .iconify:first-of-type {
-  color: #93c5fd;
+  color: var(--macos-accent-text);
 }
 
 .dark
@@ -1862,7 +1899,7 @@ body::before {
 
 .docs-article-body [role='tab'][data-state='active'] {
   background: rgba(255, 255, 255, 0.86);
-  color: #1662d6;
+  color: var(--macos-accent-text);
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.055) inset,
     0 1px 0 rgba(255, 255, 255, 0.86) inset,
@@ -1888,7 +1925,7 @@ body::before {
 
 .dark .docs-article-body [role='tab'][data-state='active'] {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.085));
-  color: #dbeafe;
+  color: var(--macos-accent-text);
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.105) inset,
     0 1px 0 rgba(255, 255, 255, 0.12) inset,
@@ -1946,7 +1983,7 @@ body::before {
 .docs-article-body > div > div[class*='counter-reset:step'] h3::before {
   border: 1px solid rgba(0, 0, 0, 0.075);
   background: #fff;
-  color: #1662d6;
+  color: var(--macos-accent-text);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.8) inset,
     0 1px 2px rgba(15, 23, 42, 0.06);
@@ -1959,7 +1996,7 @@ body::before {
 .dark .docs-article-body > div > div[class*='counter-reset:step'] h3::before {
   border-color: rgba(255, 255, 255, 0.11);
   background: rgba(255, 255, 255, 0.075);
-  color: #bfdbfe;
+  color: var(--macos-accent-text);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.07) inset,
     0 1px 2px rgba(0, 0, 0, 0.16);
@@ -1991,22 +2028,22 @@ body::before {
 
 .docs-article-body p > [data-slot='base'] {
   border-radius: 7px !important;
-  background: rgba(0, 122, 255, 0.1) !important;
-  color: #1662d6 !important;
+  background: var(--macos-accent-soft-bg) !important;
+  color: var(--macos-accent-text) !important;
 }
 
 .docs-article-body p > .iconify {
-  color: #0a84ff;
+  color: var(--macos-accent);
   vertical-align: -0.12em;
 }
 
 .dark .docs-article-body p > [data-slot='base'] {
-  background: rgba(96, 165, 250, 0.14) !important;
-  color: #dbeafe !important;
+  background: var(--macos-accent-soft-bg) !important;
+  color: var(--macos-accent-text) !important;
 }
 
 .dark .docs-article-body p > .iconify {
-  color: #93c5fd;
+  color: var(--macos-accent-text);
 }
 
 .docs-article-body > div > div:has(> table) {
@@ -2215,7 +2252,7 @@ body::before {
   > div
   > div[class*='flex'][class*='bg-muted'][class*='px-4'][class*='py-3']
   > .iconify {
-  color: #1662d6;
+  color: var(--macos-accent-text);
 }
 
 .dark
@@ -2234,7 +2271,7 @@ body::before {
   > div
   > div[class*='flex'][class*='bg-muted'][class*='px-4'][class*='py-3']
   > .iconify {
-  color: #93c5fd;
+  color: var(--macos-accent-text);
 }
 
 .docs-toc-column {
@@ -2380,21 +2417,21 @@ body::before {
 }
 
 .docs-toc-panel a[data-slot='link']:focus-visible {
-  outline: 2px solid rgba(10, 132, 255, 0.38);
+  outline: 2px solid var(--macos-accent-ring);
   outline-offset: 1px;
 }
 
 .docs-toc-panel a[data-slot='link'][aria-current],
 .docs-toc-panel a[data-slot='link'][data-active] {
-  background: rgba(0, 122, 255, 0.11) !important;
-  color: #145fcf !important;
+  background: var(--macos-accent-soft-bg) !important;
+  color: var(--macos-accent-text-hover) !important;
   font-weight: 650;
-  box-shadow: 0 0 0 1px rgba(0, 122, 255, 0.12) inset;
+  box-shadow: 0 0 0 1px var(--macos-accent-border) inset;
 }
 
 .docs-toc-panel a[data-slot='link'][aria-current]::before,
 .docs-toc-panel a[data-slot='link'][data-active]::before {
-  background: #0a84ff;
+  background: var(--macos-accent);
   transform: translateY(-50%) scaleY(1);
 }
 
@@ -2417,19 +2454,19 @@ body::before {
 }
 
 .dark .docs-toc-panel a[data-slot='link']:focus-visible {
-  outline-color: rgba(96, 165, 250, 0.45);
+  outline-color: var(--macos-accent-ring);
 }
 
 .dark .docs-toc-panel a[data-slot='link'][aria-current],
 .dark .docs-toc-panel a[data-slot='link'][data-active] {
-  background: rgba(96, 165, 250, 0.14) !important;
-  color: #dbeafe !important;
-  box-shadow: 0 0 0 1px rgba(147, 197, 253, 0.12) inset;
+  background: var(--macos-accent-soft-bg) !important;
+  color: var(--macos-accent-text) !important;
+  box-shadow: 0 0 0 1px var(--macos-accent-border) inset;
 }
 
 .dark .docs-toc-panel a[data-slot='link'][aria-current]::before,
 .dark .docs-toc-panel a[data-slot='link'][data-active]::before {
-  background: #60a5fa;
+  background: var(--macos-accent);
 }
 
 @media (min-width: 1280px) {
@@ -2513,6 +2550,19 @@ body::before {
     box-shadow 140ms ease;
 }
 
+.resource-category-button-active {
+  color: var(--macos-accent-contrast);
+  background: var(--macos-accent-solid-bg);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.34) inset,
+    0 4px 12px var(--macos-accent-shadow);
+}
+
+.resource-category-button-active:hover {
+  color: var(--macos-accent-contrast);
+  background: var(--macos-accent-solid-bg-hover);
+}
+
 .dark .resource-category-button:not(.resource-category-button-active) {
   color: #d5d9e2;
   background: transparent;
@@ -2525,11 +2575,16 @@ body::before {
 }
 
 .dark .resource-category-button-active {
-  color: #071523;
-  background: linear-gradient(180deg, #67b7ff 0%, #3d9dff 100%);
+  color: var(--macos-accent-contrast);
+  background: var(--macos-accent-solid-bg);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.42) inset,
-    0 5px 14px rgba(56, 150, 255, 0.26);
+    0 5px 14px var(--macos-accent-shadow);
+}
+
+.dark .resource-category-button-active:hover {
+  color: var(--macos-accent-contrast);
+  background: var(--macos-accent-solid-bg-hover);
 }
 
 .resources-sidebar {
@@ -2694,23 +2749,23 @@ body::before {
 }
 
 .resource-filter-button:focus-visible {
-  outline: 2px solid rgba(10, 132, 255, 0.38);
+  outline: 2px solid var(--macos-accent-ring);
   outline-offset: 1px;
 }
 
 .resource-filter-button-active {
   border-color: transparent;
-  background: var(--ui-primary);
-  color: #fff;
+  background: var(--macos-accent-solid-bg);
+  color: var(--macos-accent-contrast);
   font-weight: 650;
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.34) inset,
-    0 4px 12px rgba(37, 99, 235, 0.2);
+    0 4px 12px var(--macos-accent-shadow);
 }
 
 .resource-filter-button-active:hover {
-  background: var(--ui-primary);
-  color: #fff;
+  background: var(--macos-accent-solid-bg-hover);
+  color: var(--macos-accent-contrast);
 }
 
 .resource-filter-button-disabled {
@@ -2755,21 +2810,21 @@ body::before {
 }
 
 .dark .resource-filter-button:focus-visible {
-  outline-color: rgba(96, 165, 250, 0.45);
+  outline-color: var(--macos-accent-ring);
 }
 
 .dark .resource-filter-button-active {
   border-color: transparent;
-  background: linear-gradient(180deg, #67b7ff 0%, #3d9dff 100%);
-  color: #071523;
+  background: var(--macos-accent-solid-bg);
+  color: var(--macos-accent-contrast);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.42) inset,
-    0 5px 14px rgba(56, 150, 255, 0.26);
+    0 5px 14px var(--macos-accent-shadow);
 }
 
 .dark .resource-filter-button-active:hover {
-  background: linear-gradient(180deg, #71bdff 0%, #49a5ff 100%);
-  color: #071523;
+  background: var(--macos-accent-solid-bg-hover);
+  color: var(--macos-accent-contrast);
 }
 
 .dark .resource-filter-button-disabled {
@@ -2808,7 +2863,7 @@ body::before {
 }
 
 .resource-card:focus-visible {
-  outline: 2px solid rgba(10, 132, 255, 0.42);
+  outline: 2px solid var(--macos-accent-ring);
   outline-offset: 2px;
 }
 
@@ -2893,11 +2948,11 @@ body::before {
   flex-shrink: 0;
   align-items: center;
   gap: 4px;
-  border: 1px solid rgba(0, 122, 255, 0.12);
+  border: 1px solid var(--macos-accent-border);
   border-radius: 7px;
-  background: rgba(0, 122, 255, 0.08);
+  background: var(--macos-accent-soft-bg);
   padding: 0 7px;
-  color: #1662d6;
+  color: var(--macos-accent-text);
   font-size: 0.72rem;
   font-weight: 650;
   line-height: 1;
@@ -2910,13 +2965,13 @@ body::before {
 
 .resource-card-badge:hover,
 .resource-card-badge:focus-visible {
-  border-color: rgba(0, 122, 255, 0.2);
-  background: rgba(0, 122, 255, 0.13);
-  color: #145fcf;
+  border-color: var(--macos-accent-border-strong);
+  background: var(--macos-accent-elevated-bg);
+  color: var(--macos-accent-text-hover);
 }
 
 .resource-card-badge:focus-visible {
-  outline: 2px solid rgba(10, 132, 255, 0.36);
+  outline: 2px solid var(--macos-accent-ring);
   outline-offset: 1px;
 }
 
@@ -2996,7 +3051,7 @@ body::before {
 }
 
 .dark .resource-card:focus-visible {
-  outline-color: rgba(96, 165, 250, 0.5);
+  outline-color: var(--macos-accent-ring);
 }
 
 .dark .resource-card > [data-slot='header'] {
@@ -3023,20 +3078,20 @@ body::before {
 }
 
 .dark .resource-card-badge {
-  border-color: rgba(96, 165, 250, 0.17);
-  background: rgba(96, 165, 250, 0.12);
-  color: #dbeafe;
+  border-color: var(--macos-accent-border);
+  background: var(--macos-accent-soft-bg);
+  color: var(--macos-accent-text);
 }
 
 .dark .resource-card-badge:hover,
 .dark .resource-card-badge:focus-visible {
-  border-color: rgba(147, 197, 253, 0.22);
-  background: rgba(96, 165, 250, 0.18);
-  color: #eff6ff;
+  border-color: var(--macos-accent-border-strong);
+  background: var(--macos-accent-elevated-bg);
+  color: var(--macos-accent-text-hover);
 }
 
 .dark .resource-card-badge:focus-visible {
-  outline-color: rgba(96, 165, 250, 0.42);
+  outline-color: var(--macos-accent-ring);
 }
 
 .dark .resource-card-description {
