@@ -1,0 +1,10 @@
+title: <可选标题>
+category: '<一级分类展示名>'
+collection: '<二级集合展示名>'
+sort: 10
+description: '<可选集合说明>'
+resources:
+  - name: <资源名>
+    url: https://example.com
+    description: <可选说明>
+    post: /docs/<section>/<slug>

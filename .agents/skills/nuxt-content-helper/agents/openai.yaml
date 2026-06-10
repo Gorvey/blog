@@ -1,0 +1,4 @@
+interface:
+  display_name: "Nuxt Content 助手"
+  short_description: "按本仓库规范维护 Nuxt Content 页面与资源"
+  default_prompt: "使用 $nuxt-content-helper 按当前仓库的 Nuxt Content 规范新增或修改内容。"
