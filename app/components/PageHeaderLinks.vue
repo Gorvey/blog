@@ -38,12 +38,13 @@ async function copyPage() {
 </script>
 
 <template>
-  <UFieldGroup>
+  <UFieldGroup class="docs-page-actions">
     <UButton
       :label="copied ? 'Copied' : 'Copy page'"
       :icon="copied ? 'i-lucide-copy-check' : 'i-lucide-copy'"
       color="neutral"
       variant="outline"
+      class="docs-page-action docs-page-action-primary"
       :ui="{
         leadingIcon: [copied ? 'text-primary' : 'text-neutral', 'size-3.5']
       }"
@@ -60,7 +61,13 @@ async function copyPage() {
         content: 'w-48'
       }"
     >
-      <UButton icon="i-lucide-chevron-down" size="sm" color="neutral" variant="outline" />
+      <UButton
+        icon="i-lucide-chevron-down"
+        size="sm"
+        color="neutral"
+        variant="outline"
+        class="docs-page-action docs-page-action-menu"
+      />
     </UDropdownMenu>
   </UFieldGroup>
 </template>

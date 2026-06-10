@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { VNode } from 'vue';
+
 defineProps<{
   label: string;
   icon?: string;
@@ -7,7 +9,7 @@ defineProps<{
 }>();
 
 const slots = defineSlots<{
-  leading: () => any;
+  leading?: () => VNode[];
 }>();
 </script>
 

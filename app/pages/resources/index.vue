@@ -156,6 +156,32 @@ onMounted(() => {
   }
 });
 
+watch(
+  resourceCategories,
+  (categories) => {
+    if (!categories.length) {
+      return;
+    }
+
+    if (
+      !activeCategory.value ||
+      !categories.some((category) => category.id === activeCategory.value)
+    ) {
+      activeCategory.value = categories[0]?.id || '';
+    }
+
+    const category = categories.find((item) => item.id === activeCategory.value);
+    if (
+      category?.collections?.length &&
+      (!activeCollection.value ||
+        !category.collections.some((collection) => collection.id === activeCollection.value))
+    ) {
+      activeCollection.value = category.collections[0]?.id || '';
+    }
+  },
+  { immediate: true }
+);
+
 /**
  * 监听分类变化并更新 URL
  */
@@ -193,23 +219,27 @@ useSeoMeta({
 </script>
 
 <template>
-  <UContainer>
+  <UContainer class="px-0">
     <UPage>
-      <UPageBody>
-        <div class="flex flex-col gap-8">
+      <UPageBody class="py-0">
+        <div class="flex flex-col gap-6">
           <!-- 顶部导航区域: 一级分类 -->
-          <header class="sticky top-16 z-20 space-y-4">
+          <header class="resource-category-shell sticky top-0 z-30">
             <!-- 一级分类按钮组 - 搜索时隐藏 -->
             <div
-              class="flex flex-wrap justify-center gap-2 pb-2"
+              class="resource-category-track mx-auto flex w-full max-w-4xl flex-wrap justify-center gap-1 p-1"
               :style="{ visibility: isSearching ? 'hidden' : 'visible' }"
             >
               <UButton
                 v-for="category in resourceCategories"
                 :key="category.id"
-                :variant="activeCategory === category.id ? 'solid' : 'outline'"
+                :variant="activeCategory === category.id ? 'solid' : 'ghost'"
                 :color="activeCategory === category.id ? 'primary' : 'neutral'"
-                size="md"
+                size="sm"
+                :class="[
+                  'resource-category-button shadow-none',
+                  activeCategory === category.id && 'resource-category-button-active'
+                ]"
                 @click="selectCategory(category.id)"
               >
                 {{ category.name }}
@@ -228,16 +258,17 @@ useSeoMeta({
           </header>
 
           <!-- 主内容区域: 左侧边栏 + 右侧资源列表 -->
-          <div class="flex flex-col lg:flex-row gap-8">
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-[260px_minmax(0,1fr)]">
             <!-- 左侧边栏 -->
-            <aside class="lg:w-56 shrink-0">
-              <div class="sticky top-40 space-y-4">
+            <aside class="resources-sidebar min-w-0">
+              <div class="resources-sidebar-stack sticky top-20 space-y-4">
                 <!-- 搜索框 -->
                 <UInput
                   v-model="searchQuery"
                   icon="i-lucide-search"
                   placeholder="搜索资源名称或描述..."
                   size="lg"
+                  class="resources-search-field"
                 >
                   <template #trailing>
                     <UButton
@@ -252,66 +283,63 @@ useSeoMeta({
                 </UInput>
 
                 <!-- 二级集合导航 -->
-                <UCard v-if="!isSearching && currentCategory">
-                  <template #header>
-                    <div class="flex items-center justify-between">
-                      <h3 class="font-semibold text-sm">
+                <div
+                  v-if="!isSearching && currentCategory"
+                  class="resource-filter-panel"
+                  role="navigation"
+                  :aria-label="`${currentCategory.name}资源集合`"
+                >
+                  <div class="resource-filter-header">
+                    <div class="min-w-0">
+                      <h3 class="resource-filter-title">
                         {{ currentCategory.name }}
                       </h3>
                     </div>
-                  </template>
-
-                  <!-- 过滤选项 -->
-                  <div class="pb-3">
-                    <UCheckbox v-model="showOnlyWithBlog" label="只显示有文章" size="sm" />
                   </div>
 
-                  <!-- 集合列表 -->
-                  <nav class="pt-3 space-y-1">
-                    <button
-                      v-for="collection in currentCategory.collections"
-                      :key="collection.id"
-                      :class="[
-                        'w-full flex items-center justify-between px-3 py-2 rounded-md text-left text-sm transition-colors cursor-pointer',
-                        activeCollection === collection.id
-                          ? 'bg-primary/10 text-primary font-medium'
-                          : 'hover:bg-muted'
-                      ]"
-                      :disabled="getResourceCount(collection.resources) === 0"
-                      @click="selectCollection(collection.id)"
-                    >
-                      <span class="truncate">{{ collection.name }}</span>
-                      <span
+                  <div class="resource-filter-body">
+                    <!-- 过滤选项 -->
+                    <div class="resource-filter-toggle">
+                      <UCheckbox v-model="showOnlyWithBlog" label="只显示有文章" size="sm" />
+                    </div>
+
+                    <!-- 集合列表 -->
+                    <nav class="resource-filter-list">
+                      <button
+                        v-for="collection in currentCategory.collections"
+                        :key="collection.id"
                         :class="[
-                          'shrink-0 text-xs',
-                          getResourceCount(collection.resources) === 0
-                            ? 'text-muted/50'
-                            : 'text-muted'
+                          'resource-filter-button',
+                          activeCollection === collection.id && 'resource-filter-button-active',
+                          getResourceCount(collection.resources) === 0 &&
+                            'resource-filter-button-disabled'
                         ]"
+                        :disabled="getResourceCount(collection.resources) === 0"
+                        @click="selectCollection(collection.id)"
                       >
-                        {{ getResourceCount(collection.resources) }}
-                      </span>
-                    </button>
-                  </nav>
-                </UCard>
+                        <span class="resource-filter-label truncate">{{ collection.name }}</span>
+                        <span class="resource-filter-count">
+                          {{ getResourceCount(collection.resources) }}
+                        </span>
+                      </button>
+                    </nav>
+                  </div>
+                </div>
               </div>
             </aside>
 
             <!-- 右侧内容区 -->
-            <main class="flex-1 min-w-0">
+            <main class="min-w-0 flex-1">
               <!-- 搜索结果视图 -->
               <section v-if="isSearching" class="space-y-6">
                 <div v-if="searchResults.length > 0">
-                  <p class="text-muted mb-4">
+                  <p class="mb-4 text-sm text-muted">
                     找到
                     <span class="font-semibold text-foreground">{{ searchResults.length }}</span>
                     个资源
                   </p>
 
-                  <div
-                    class="grid gap-4"
-                    style="grid-template-columns: repeat(auto-fill, minmax(350px, 1fr))"
-                  >
+                  <div class="macos-resource-grid grid gap-3">
                     <div
                       v-for="result in searchResults"
                       :key="result.resource.url"
@@ -331,7 +359,7 @@ useSeoMeta({
                 <!-- 空状态 -->
                 <div v-else class="text-center py-16">
                   <div class="flex flex-col items-center gap-4">
-                    <div class="w-16 h-16 rounded-full bg-muted flex items-center justify-center">
+                    <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-muted">
                       <UIcon name="i-lucide-search-x" class="w-8 h-8 text-muted" />
                     </div>
                     <div class="space-y-1">
@@ -345,18 +373,14 @@ useSeoMeta({
               <!-- 常规视图: 资源集合 -->
               <section v-else-if="currentCollection" class="space-y-6">
                 <!-- 集合描述 -->
-                <div
-                  v-if="currentCollection.description"
-                  class="prose prose-sm dark:prose-invert max-w-none"
-                >
+                <div v-if="currentCollection.description" class="macos-panel px-4 py-3 text-sm">
                   <p class="text-muted">{{ currentCollection.description }}</p>
                 </div>
 
                 <!-- 资源卡片网格 -->
                 <div
                   v-if="currentCollection.resources.length > 0"
-                  class="grid gap-4"
-                  style="grid-template-columns: repeat(auto-fill, minmax(350px, 1fr))"
+                  class="macos-resource-grid grid gap-3"
                 >
                   <ResourceCard
                     v-for="resource in currentCollection.resources"
@@ -368,7 +392,7 @@ useSeoMeta({
                 <!-- 空状态 -->
                 <div v-else class="text-center py-16">
                   <div class="flex flex-col items-center gap-4">
-                    <div class="w-16 h-16 rounded-full bg-muted flex items-center justify-center">
+                    <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-muted">
                       <UIcon name="i-lucide-folder-open" class="w-8 h-8 text-muted" />
                     </div>
                     <div class="space-y-1">

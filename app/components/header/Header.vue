@@ -55,26 +55,36 @@ const subNavItems = computed(() => {
 </script>
 
 <template>
-  <UHeader :to="header?.to || '/'">
+  <UHeader :to="header?.to || '/'" class="macos-toolbar">
     <template #left>
-      <NuxtLink :to="firstDoc?.path || header?.to || '/docs'">
-        <AppLogo class="w-auto h-10 shrink-0" />
-      </NuxtLink>
+      <div class="flex items-center gap-4">
+        <div class="macos-traffic-lights hidden sm:inline-flex" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+        <NuxtLink :to="firstDoc?.path || header?.to || '/docs'" class="flex items-center">
+          <AppLogo class="w-auto h-8 shrink-0" />
+        </NuxtLink>
+      </div>
     </template>
 
-    <UNavigationMenu :items="items" />
+    <UNavigationMenu :items="items" variant="pill" class="macos-main-switcher hidden md:flex" />
 
     <template #right>
-      <ThemePicker />
-      <UContentSearchButton v-if="header?.search" />
-      <UColorModeButton v-if="header?.colorMode" />
-      <template v-if="header?.links">
-        <UButton
-          v-for="(link, index) of header.links"
-          :key="index"
-          v-bind="{ color: 'neutral', variant: 'ghost', ...link }"
-        />
-      </template>
+      <div class="macos-toolbar-actions">
+        <ThemePicker class="macos-toolbar-action hidden sm:inline-flex" />
+        <UContentSearchButton v-if="header?.search" class="macos-toolbar-action" />
+        <UColorModeButton v-if="header?.colorMode" class="macos-toolbar-action" />
+        <template v-if="header?.links">
+          <UButton
+            v-for="(link, index) of header.links"
+            :key="index"
+            class="macos-toolbar-action hidden sm:inline-flex"
+            v-bind="{ color: 'neutral', variant: 'ghost', ...link }"
+          />
+        </template>
+      </div>
     </template>
 
     <template #body>

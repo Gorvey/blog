@@ -18,7 +18,7 @@ const sideNav = inject<ComputedRef<ContentNavigationItem[]>>('sideNav');
 </script>
 
 <template>
-  <div class="flex flex-col gap-4 p-4">
+  <div class="flex flex-col gap-4 p-4 bg-default/80 backdrop-blur-xl">
     <!-- 主导航菜单 -->
     <UNavigationMenu :items="items" orientation="vertical" />
 

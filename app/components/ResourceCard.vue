@@ -30,12 +30,6 @@ const faviconUrl = computed(() => {
 });
 
 /**
- * 获取颜色模式
- */
-const colorMode = useColorMode();
-const isDark = computed(() => colorMode.value === 'dark');
-
-/**
  * 获取当前网站 host
  */
 const config = useRuntimeConfig();
@@ -50,33 +44,44 @@ const handleClick = () => {
   window.open(props.resource.url, '_blank');
 };
 
+const openBlogPost = () => {
+  if (!props.resource.post) {
+    return;
+  }
+
+  const fullUrl = props.resource.post.startsWith('http')
+    ? props.resource.post
+    : `${siteUrl.value}${props.resource.post.startsWith('/') ? '' : '/'}${props.resource.post}`;
+  window.open(fullUrl, '_blank');
+};
+
 /**
  * 点击 Badge 的处理逻辑 - 前往关联文章
  */
 const handleBadgeClick = (event: MouseEvent) => {
   event.stopPropagation();
-  if (props.resource.post) {
-    const fullUrl = props.resource.post.startsWith('http')
-      ? props.resource.post
-      : `${siteUrl.value}${props.resource.post.startsWith('/') ? '' : '/'}${props.resource.post}`;
-    window.open(fullUrl, '_blank');
-  }
+  openBlogPost();
 };
 </script>
 
 <template>
-  <UCard class="cursor-pointer" @click="handleClick">
+  <UCard
+    class="resource-card group"
+    role="link"
+    tabindex="0"
+    :aria-label="`打开 ${resource.name}`"
+    @click="handleClick"
+    @keydown.enter.prevent="handleClick"
+    @keydown.space.prevent="handleClick"
+  >
     <template #header>
-      <div class="flex items-center gap-3">
-        <div
-          class="w-6 h-6 shrink-0 rounded flex items-center justify-center"
-          :class="isDark ? 'bg-gray-800' : ''"
-        >
+      <div class="resource-card-header-content">
+        <div class="resource-card-icon">
           <img
             v-if="faviconUrl"
             :src="faviconUrl"
             :alt="resource.name"
-            class="w-5 h-5"
+            class="resource-card-favicon"
             loading="lazy"
             @error="
               (e) => {
@@ -85,35 +90,32 @@ const handleBadgeClick = (event: MouseEvent) => {
               }
             "
           />
-          <UIcon name="i-lucide-globe" class="w-5 h-5 hidden text-muted" />
+          <UIcon name="i-lucide-globe" class="resource-card-fallback-icon hidden" />
         </div>
-        <div class="flex items-center justify-between gap-2 flex-1 min-w-0">
-          <h3 class="font-semibold truncate">{{ resource.name }}</h3>
-          <UBadge
+        <div class="resource-card-title-row">
+          <h3 class="resource-card-title">{{ resource.name }}</h3>
+          <button
             v-if="hasBlogPost"
-            color="primary"
-            variant="soft"
-            size="lg"
-            class="shrink-0 cursor-pointer hover:bg-primary-100 dark:hover:bg-primary-900"
+            type="button"
+            class="resource-card-badge"
             @click="handleBadgeClick"
+            @keydown.stop
           >
-            关联文章
-          </UBadge>
+            <UIcon name="i-lucide-file-text" class="resource-card-badge-icon" />
+            <span>文章</span>
+          </button>
         </div>
       </div>
     </template>
 
-    <div class="text-sm text-muted">
+    <div class="resource-card-description">
       {{ resource.description || '暂无描述' }}
     </div>
 
     <template #footer>
-      <div class="flex items-center justify-between text-xs text-muted">
-        <span class="truncate">{{ resource.url }}</span>
-        <UIcon
-          :name="hasBlogPost ? 'i-lucide-arrow-right' : 'i-lucide-external-link'"
-          class="shrink-0 ml-2"
-        />
+      <div class="resource-card-url-row">
+        <span class="resource-card-url">{{ resource.url }}</span>
+        <UIcon :name="hasBlogPost ? 'i-lucide-arrow-right' : 'i-lucide-external-link'" />
       </div>
     </template>
   </UCard>

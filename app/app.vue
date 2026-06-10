@@ -108,29 +108,6 @@ useSeoMeta({
   twitterCard: 'summary_large_image'
 });
 
-/**
- * 文档页面时增加 header 高度
- */
-const docsPageStyle = computed(() =>
-  isDocsRoute.value
-    ? [
-        {
-          innerHTML: `
-@media (min-width: 1024px) {
-  :root {
-    --ui-header-height: 112px;
-  }
-}
-        `
-        }
-      ]
-    : []
-);
-
-useHead({
-  style: docsPageStyle
-});
-
 provide('navigation', navigation);
 provide<Ref<FirstDocLike | null | undefined>>('firstDoc', firstDoc);
 provide<ComputedRef<boolean>>('isDocsRoute', isDocsRoute);
@@ -139,15 +116,17 @@ provide<ComputedRef<ContentNavigationItem[]>>('sideNav', sideNav);
 
 <template>
   <UApp>
-    <NuxtLoadingIndicator />
+    <div class="macos-window">
+      <NuxtLoadingIndicator />
 
-    <Header />
+      <Header />
 
-    <UMain>
-      <NuxtLayout>
-        <NuxtPage />
-      </NuxtLayout>
-    </UMain>
+      <UMain class="macos-scroll-area" :class="{ 'macos-scroll-area-docs': isDocsRoute }">
+        <NuxtLayout>
+          <NuxtPage />
+        </NuxtLayout>
+      </UMain>
+    </div>
 
     <!-- <AppFooter /> -->
 

@@ -1,3 +1,5 @@
+import { resolve } from 'node:path';
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/content', 'nuxt-og-image', 'nuxt-studio'],
@@ -11,7 +13,7 @@ export default defineNuxtConfig({
   content: {
     database: {
       type: 'sqlite',
-      filename: '/tmp/contents.sqlite'
+      filename: resolve('.data/content/contents.sqlite')
     },
     experimental: {
       sqliteConnector: 'native'

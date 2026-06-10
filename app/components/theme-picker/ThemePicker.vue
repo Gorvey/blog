@@ -17,7 +17,7 @@ const neutral = computed({
 });
 
 const colorsToOmit = ['inherit', 'current', 'transparent', 'black', 'white', ...neutralColors];
-const primaryColors = Object.keys(omit(colors, colorsToOmit as any));
+const primaryColors = Object.keys(omit(colors, colorsToOmit as Array<keyof typeof colors>));
 const primary = computed({
   get() {
     return appConfig.ui.colors.primary;
@@ -69,6 +69,7 @@ function setBlackAsPrimary(value: boolean) {
         :variant="open ? 'soft' : 'ghost'"
         square
         aria-label="Color picker"
+        class="dark:bg-[#343741] dark:text-zinc-100 dark:ring-1 dark:ring-white/10"
         :ui="{ leadingIcon: 'text-primary' }"
       />
     </template>

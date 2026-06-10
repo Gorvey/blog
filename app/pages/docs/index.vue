@@ -144,11 +144,15 @@ useSeoMeta({
 </script>
 
 <template>
-  <UPage>
-    <UPageHeader class="px-4 sm:px-6 lg:px-8" title="博客" description="技术文章与学习笔记" />
+  <UPage class="macos-content-surface overflow-hidden px-5 py-6 sm:px-8">
+    <UPageHeader
+      class="border-b border-default/70 pb-5"
+      title="博客"
+      description="技术文章与学习笔记"
+    />
 
     <UPageBody>
-      <UContainer>
+      <UContainer class="px-0">
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <!-- 左侧：文章列表 -->
           <div class="lg:col-span-3">
@@ -180,9 +184,9 @@ useSeoMeta({
 
           <!-- 右侧：筛选 -->
           <div class="lg:col-span-1">
-            <div class="sticky top-4 space-y-6">
+            <div class="sticky top-4 space-y-4">
               <!-- 分类筛选 -->
-              <UCard>
+              <UCard class="macos-panel">
                 <template #header>
                   <div class="flex items-center justify-between">
                     <h3 class="font-semibold">分类</h3>
@@ -212,7 +216,7 @@ useSeoMeta({
               </UCard>
 
               <!-- 标签筛选 -->
-              <UCard>
+              <UCard class="macos-panel">
                 <template #header>
                   <div class="flex items-center justify-between">
                     <h3 class="font-semibold">标签</h3>

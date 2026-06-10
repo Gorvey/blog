@@ -10,9 +10,20 @@ defineProps<{
 </script>
 
 <template>
-  <USeparator class="hidden lg:flex" />
-
-  <UContainer class="hidden lg:flex items-center justify-between py-2">
-    <UNavigationMenu :items="subNavItems" variant="pill" highlight class="-mx-2.5 -mt-2.5" />
-  </UContainer>
+  <div class="docs-subnav hidden lg:block">
+    <nav class="docs-subnav-inner" aria-label="Docs sections">
+      <div class="docs-subnav-track">
+        <NuxtLink
+          v-for="item in subNavItems"
+          :key="item.to"
+          :to="item.to"
+          class="docs-subnav-link"
+          :class="{ 'docs-subnav-link-active': item.active }"
+        >
+          <UIcon v-if="item.icon" :name="item.icon as string" class="docs-subnav-icon" />
+          <span class="truncate">{{ item.label }}</span>
+        </NuxtLink>
+      </div>
+    </nav>
+  </div>
 </template>

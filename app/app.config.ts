@@ -9,8 +9,8 @@
 export default defineAppConfig({
   ui: {
     colors: {
-      primary: 'green',
-      neutral: 'slate'
+      primary: 'blue',
+      neutral: 'zinc'
     },
     icons: {
       light: 'i-lucide-sun',
@@ -25,18 +25,37 @@ export default defineAppConfig({
     },
     card: {
       slots: {
-        root: 'flex flex-col',
-        body: 'flex-1'
+        root: 'flex flex-col rounded-lg border border-default/70 bg-default/80 shadow-xs backdrop-blur transition-colors dark:border-white/10 dark:bg-[#2a2c31]/95',
+        header: 'px-4 py-3 sm:px-4 border-b border-default/50 dark:border-white/8',
+        body: 'flex-1 px-4 py-3 sm:px-4',
+        footer: 'px-4 py-2.5 sm:px-4 border-t border-default/50 dark:border-white/8'
       }
     },
     header: {
       slots: {
-        container: 'h-[64px]'
+        root: 'sticky top-0 z-50 border-b-0 bg-transparent !h-auto',
+        container: 'h-[68px] max-w-none px-3 sm:px-4 lg:px-5'
+      }
+    },
+    button: {
+      slots: {
+        base: 'cursor-pointer rounded-md font-medium transition-colors'
+      }
+    },
+    input: {
+      slots: {
+        root: 'rounded-md',
+        base: 'rounded-md bg-default/80 backdrop-blur ring-default/80 dark:bg-[#2d2f36]/90 dark:ring-white/10'
+      }
+    },
+    badge: {
+      slots: {
+        base: 'rounded-md font-medium'
       }
     }
   },
   theme: {
-    radius: 0.5,
+    radius: 0.6,
     blackAsPrimary: false
   },
   seo: {
@@ -62,6 +81,6 @@ export default defineAppConfig({
     ]
   },
   toc: {
-    title: 'Table of Contents'
+    title: '目录'
   }
 });

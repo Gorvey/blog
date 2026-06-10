@@ -33,18 +33,21 @@ const handleClick = () => {
 </script>
 
 <template>
-  <UCard class="cursor-pointer" @click="handleClick">
+  <UCard
+    class="group cursor-pointer hover:border-primary/35 hover:bg-default/90"
+    @click="handleClick"
+  >
     <div class="flex items-center justify-between gap-4">
       <!-- 左侧: 图标 + 标题 -->
       <div class="flex items-center gap-3 flex-1 min-w-0">
         <div
-          class="w-10 h-10 shrink-0 rounded-lg flex items-center justify-center bg-gray-100 dark:bg-gray-800"
+          class="w-10 h-10 shrink-0 rounded-lg flex items-center justify-center border border-default/70 bg-muted/60 shadow-xs"
         >
           <img
             v-if="faviconUrl"
             :src="faviconUrl"
             :alt="resource.name"
-            class="w-6 h-6"
+            class="w-6 h-6 rounded-sm"
             loading="lazy"
             @error="
               (e) => {
@@ -69,7 +72,7 @@ const handleClick = () => {
         color="neutral"
         variant="ghost"
         size="sm"
-        class="shrink-0"
+        class="shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
       />
     </div>
   </UCard>
