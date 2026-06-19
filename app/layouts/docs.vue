@@ -5,6 +5,7 @@ import type { ContentNavigationItem } from '@nuxt/content';
  * 获取注入的侧边栏导航数据
  */
 const sideNav = inject<ComputedRef<ContentNavigationItem[]>>('sideNav');
+const navigation = inject<Ref<ContentNavigationItem[]>>('navigation');
 const route = useRoute();
 
 interface SidebarEntry {
@@ -13,6 +14,14 @@ interface SidebarEntry {
   icon?: string;
   depth: number;
   kind: 'group' | 'link';
+}
+
+interface SectionPickerItem {
+  label: string;
+  to: string;
+  icon?: string;
+  active: boolean;
+  onSelect: () => unknown;
 }
 
 const sidebarEntries = computed<SidebarEntry[]>(() => {
@@ -49,13 +58,68 @@ const sidebarEntries = computed<SidebarEntry[]>(() => {
   visit(sideNav?.value || []);
   return entries;
 });
+
+const sectionItems = computed<SectionPickerItem[]>(() => {
+  if (!navigation?.value) {
+    return [];
+  }
+
+  return navigation.value.map((item) => ({
+    label: item.title,
+    to: item?.children?.[0]?.path || item.path,
+    icon: item.icon,
+    active: route.path.startsWith(item.path),
+    onSelect() {
+      return navigateTo(item?.children?.[0]?.path || item.path);
+    }
+  }));
+});
+
+const activeSection = computed(() => {
+  return (
+    sectionItems.value.find((item) => item.active) || {
+      label: '选择分类',
+      icon: 'i-lucide-panel-left-open'
+    }
+  );
+});
 </script>
 
 <template>
-  <UContainer class="docs-shell px-4 pt-5 pb-12 sm:px-6 lg:px-8">
+  <UContainer class="docs-shell px-3 pt-3 pb-1.5 sm:px-4 lg:px-4">
     <div class="docs-frame docs-split-view">
-      <aside class="docs-sidebar px-3 py-4" aria-label="Docs navigation">
+      <aside class="docs-sidebar" aria-label="Docs navigation">
         <div class="docs-sidebar-nav">
+          <div v-if="sectionItems.length" class="docs-sidebar-section-picker">
+            <UDropdownMenu
+              :items="sectionItems"
+              :content="{
+                align: 'start',
+                side: 'bottom',
+                sideOffset: 8
+              }"
+              :ui="{
+                content: 'w-56'
+              }"
+            >
+              <UButton
+                color="neutral"
+                variant="ghost"
+                class="docs-sidebar-section-trigger"
+                trailing-icon="i-lucide-chevron-down"
+              >
+                <template #leading>
+                  <UIcon
+                    v-if="activeSection.icon"
+                    :name="activeSection.icon as string"
+                    class="docs-sidebar-section-trigger-icon"
+                  />
+                </template>
+                <span class="truncate">{{ activeSection.label }}</span>
+              </UButton>
+            </UDropdownMenu>
+          </div>
+
           <nav v-if="sidebarEntries.length" class="docs-sidebar-tree">
             <template
               v-for="entry in sidebarEntries"

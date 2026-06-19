@@ -57,14 +57,9 @@ const subNavItems = computed(() => {
 <template>
   <UHeader :to="header?.to || '/'" class="macos-toolbar">
     <template #left>
-      <div class="flex items-center gap-4">
-        <div class="macos-traffic-lights hidden sm:inline-flex" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </div>
+      <div class="flex items-center gap-3">
         <NuxtLink :to="firstDoc?.path || header?.to || '/docs'" class="flex items-center">
-          <AppLogo class="w-auto h-8 shrink-0" />
+          <AppLogo class="w-auto h-7 shrink-0" />
         </NuxtLink>
       </div>
     </template>
@@ -89,10 +84,6 @@ const subNavItems = computed(() => {
 
     <template #body>
       <HeaderBody :items="items" :sub-nav-items="subNavItems" :is-docs-route="isDocsRoute" />
-    </template>
-
-    <template v-if="route.path.startsWith('/docs/')" #bottom>
-      <HeaderBottom :sub-nav-items="subNavItems" />
     </template>
   </UHeader>
 </template>
