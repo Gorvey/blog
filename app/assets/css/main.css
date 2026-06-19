@@ -86,17 +86,16 @@ body::before {
 
 .macos-window {
   display: flex;
-  height: calc(100dvh - 16px);
+  height: 100dvh;
   min-height: 0;
   flex-direction: column;
-  margin: 8px;
+  margin: 0;
   overflow: clip;
-  border: 1px solid rgba(0, 0, 0, 0.14);
-  border-radius: var(--macos-window-radius);
+  border: 0;
+  border-radius: 0;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(250, 250, 251, 0.88)), #f6f7f9;
   box-shadow:
-    0 30px 80px rgba(15, 23, 42, 0.18),
     0 1px 0 rgba(255, 255, 255, 0.94) inset;
   backdrop-filter: blur(18px) saturate(1.08);
 }
@@ -142,10 +141,8 @@ body::before {
 }
 
 .dark .macos-window {
-  border-color: rgba(255, 255, 255, 0.12);
   background: linear-gradient(180deg, rgba(43, 45, 52, 0.98), rgba(37, 39, 46, 0.96)), #25272d;
   box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.38),
     0 1px 0 rgba(255, 255, 255, 0.12) inset;
 }
 
@@ -188,7 +185,7 @@ body::before {
 }
 
 .macos-toolbar > [data-slot='container'] {
-  min-height: 58px;
+  min-height: 46px;
 }
 
 .dark .macos-toolbar {
@@ -198,7 +195,7 @@ body::before {
 
 .macos-main-switcher {
   align-items: center;
-  min-height: 36px;
+  min-height: 32px;
   padding: 3px !important;
   border: 1px solid rgba(0, 0, 0, 0.085);
   border-radius: 10px !important;
@@ -219,8 +216,8 @@ body::before {
 }
 
 .macos-main-switcher [data-slot='link'] {
-  min-width: 66px;
-  min-height: 30px;
+  min-width: 60px;
+  min-height: 26px;
   justify-content: center;
   gap: 6px;
   padding: 0 10px !important;
@@ -263,8 +260,8 @@ body::before {
 }
 
 .macos-main-switcher [data-slot='linkLeadingIcon'] {
-  width: 1rem;
-  height: 1rem;
+  width: 0.9rem;
+  height: 0.9rem;
   color: currentColor !important;
 }
 
@@ -311,10 +308,10 @@ body::before {
 }
 
 .macos-toolbar-action {
-  width: 32px;
-  min-width: 32px;
-  height: 32px;
-  min-height: 32px;
+  width: 28px;
+  min-width: 28px;
+  height: 28px;
+  min-height: 28px;
   justify-content: center;
   padding: 0 !important;
   border: 1px solid rgba(0, 0, 0, 0.075);
@@ -356,8 +353,8 @@ body::before {
 
 .macos-toolbar-action [data-slot='leadingIcon'],
 .macos-toolbar-action > .iconify {
-  width: 1.05rem;
-  height: 1.05rem;
+  width: 0.95rem;
+  height: 0.95rem;
   color: currentColor !important;
 }
 
@@ -531,7 +528,7 @@ body::before {
   color: #eef2f7;
 }
 
-.docs-subnav-link-active {
+.docs-subnav-link.docs-subnav-link-active {
   background: linear-gradient(180deg, var(--macos-accent-elevated-bg), var(--macos-accent-soft-bg));
   color: var(--macos-accent-text);
   box-shadow:
@@ -539,7 +536,7 @@ body::before {
     0 1px 0 rgba(255, 255, 255, 0.82) inset;
 }
 
-.dark .docs-subnav-link-active {
+.dark .docs-subnav-link.docs-subnav-link-active {
   background: linear-gradient(180deg, var(--macos-accent-elevated-bg), var(--macos-accent-soft-bg));
   color: var(--macos-accent-text);
   box-shadow:
@@ -564,9 +561,10 @@ body::before {
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 16px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(250, 251, 253, 0.76)),
-    rgba(255, 255, 255, 0.76);
-  box-shadow: none;
+    linear-gradient(180deg, #fcfcfd 0%, #f6f7f9 45%, #f1f3f6 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 4px 12px rgba(15, 23, 42, 0.04);
   backdrop-filter: none;
 }
 
@@ -578,10 +576,12 @@ body::before {
 }
 
 .dark .docs-frame {
-  border-color: rgba(255, 255, 255, 0.095);
+  border-color: rgba(255, 255, 255, 0.08);
   background:
-    linear-gradient(180deg, rgba(43, 45, 52, 0.88), rgba(35, 37, 44, 0.82)), rgba(37, 39, 46, 0.86);
-  box-shadow: none;
+    linear-gradient(180deg, #1e2128 0%, #1a1c23 45%, #15171c 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.03) inset,
+    0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
 .docs-split-view {
@@ -783,7 +783,7 @@ body::before {
   color: #f3f6fb;
 }
 
-.docs-sidebar-link-active {
+.docs-sidebar-link.docs-sidebar-link-active {
   background: linear-gradient(180deg, var(--macos-accent-elevated-bg), var(--macos-accent-soft-bg));
   color: var(--macos-accent-text);
   font-weight: 600;
@@ -792,7 +792,7 @@ body::before {
     0 1px 0 rgba(255, 255, 255, 0.72) inset;
 }
 
-.dark .docs-sidebar-link-active {
+.dark .docs-sidebar-link.docs-sidebar-link-active {
   background: linear-gradient(180deg, var(--macos-accent-elevated-bg), var(--macos-accent-soft-bg));
   color: var(--macos-accent-text);
   box-shadow:
@@ -822,7 +822,7 @@ body::before {
   min-height: 100%;
   padding: 0 !important;
   background:
-    radial-gradient(circle at top right, var(--macos-accent-softer-bg), transparent 30%),
+    radial-gradient(ellipse 60% 40% at 15% 0%, rgba(148, 163, 184, 0.06), transparent 55%),
     transparent;
 }
 
@@ -848,7 +848,7 @@ body::before {
 
 .dark .docs-main {
   background:
-    radial-gradient(circle at top right, var(--macos-accent-softer-bg), transparent 28%),
+    radial-gradient(ellipse 60% 40% at 15% 0%, rgba(255, 255, 255, 0.02), transparent 55%),
     transparent;
 }
 
@@ -916,10 +916,10 @@ body::before {
   min-height: 112px;
   padding-top: 1.35rem !important;
   padding-bottom: 1.15rem !important;
-  border-bottom-color: rgba(0, 0, 0, 0.075) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.06) !important;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(248, 250, 252, 0.36)),
-    rgba(248, 250, 252, 0.38);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(248, 250, 252, 0.28)),
+    transparent;
 }
 
 .docs-article-header [data-slot='headline'] {
@@ -1017,10 +1017,10 @@ body::before {
 }
 
 .dark .docs-article-header {
-  border-bottom-color: rgba(255, 255, 255, 0.09) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.06) !important;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
-    rgba(255, 255, 255, 0.018);
+    linear-gradient(180deg, rgba(30, 33, 40, 0.58), rgba(26, 28, 35, 0.28)),
+    transparent;
 }
 
 .dark .docs-article-header [data-slot='headline'] {

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content';
-import type { Ref } from 'vue';
-import type { ComponentPublicInstance } from 'vue';
+import type { Ref, ComponentPublicInstance } from 'vue';
 
 interface FirstDocLike {
   path: string;
@@ -10,7 +9,7 @@ interface FirstDocLike {
 const { seo } = useAppConfig();
 const route = useRoute();
 const docsScrollArea = ref<ComponentPublicInstance | HTMLElement | null>(null);
-let pendingHashScrollTimer: ReturnType<typeof window.setTimeout> | null = null;
+let pendingHashScrollTimer: number | null = null;
 /**
  * 获取 docs 集合的第一条内容路径
  */
@@ -88,14 +87,7 @@ const sideNav = computed(() => {
 /**
  * 合并搜索索引数据
  */
-const files = computed(() => {
-  const result = [];
-  if (docsFiles.value) {
-    result.push(...docsFiles.value);
-  }
-
-  return result;
-});
+const files = computed(() => docsFiles.value ?? []);
 
 const resolveDocsScrollElement = () => {
   const articlePanel = document.querySelector('.docs-article-panel');
@@ -131,7 +123,7 @@ const clearPendingHashScroll = () => {
   }
 };
 
-const syncDocsHashScroll = async (hash: string, attempt = 0) => {
+const syncDocsHashScroll = (hash: string, attempt = 0) => {
   const scrollElement = resolveDocsScrollElement();
   if (!scrollElement) {
     return;
@@ -159,7 +151,8 @@ const syncDocsHashScroll = async (hash: string, attempt = 0) => {
 
   const targetTop = target.getBoundingClientRect().top;
   const containerTop = scrollElement.getBoundingClientRect().top;
-  const scrollMarginTop = Number.parseFloat(window.getComputedStyle(target).scrollMarginTop || '0') || 0;
+  const scrollMarginTop =
+    Number.parseFloat(window.getComputedStyle(target).scrollMarginTop || '0') || 0;
   const top = scrollElement.scrollTop + targetTop - containerTop - scrollMarginTop;
 
   scrollElement.scrollTo({

@@ -1,11 +1,3 @@
-/*
- * @Author: zengzhe
- * @Date: 2025-11-06 15:26:42
- * @LastEditors: Gorvey gorvey76@outlook.com
- * @LastEditTime: 2026-02-05 15:45:49
- * @Description:
- */
-
 export default defineAppConfig({
   ui: {
     colors: {
@@ -34,7 +26,7 @@ export default defineAppConfig({
     header: {
       slots: {
         root: 'sticky top-0 z-50 border-b-0 bg-transparent !h-auto',
-        container: 'h-[68px] max-w-none px-3 sm:px-4 lg:px-5'
+        container: 'h-[54px] max-w-none px-3 sm:px-4 lg:px-5'
       }
     },
     button: {

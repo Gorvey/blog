@@ -59,7 +59,7 @@ const subNavItems = computed(() => {
     <template #left>
       <div class="flex items-center gap-3">
         <NuxtLink :to="firstDoc?.path || header?.to || '/docs'" class="flex items-center">
-          <AppLogo class="w-auto h-7 shrink-0" />
+          <AppLogo class="w-auto h-6 shrink-0" />
         </NuxtLink>
       </div>
     </template>

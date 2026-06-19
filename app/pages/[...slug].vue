@@ -36,6 +36,7 @@ useSeoMeta({
 const headline = computed(() => findPageHeadline(navigation?.value, page.value?.path));
 const hasToc = computed(() => Boolean(page.value?.body?.toc?.links?.length));
 
+// @ts-expect-error - 'Docs' component type not registered by nuxt-og-image
 defineOgImageComponent('Docs', {
   headline: headline.value
 });

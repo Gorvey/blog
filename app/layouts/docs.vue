@@ -37,19 +37,19 @@ const sidebarEntries = computed<SidebarEntry[]>(() => {
           kind: 'link',
           title: item.title,
           path: item.path,
-          icon: item.icon,
+          icon: item.icon as string | undefined,
           depth
         });
       } else {
         entries.push({
           kind: 'group',
           title: item.title,
-          icon: item.icon,
+          icon: item.icon as string | undefined,
           depth
         });
       }
 
-      if (hasChildren) {
+      if (hasChildren && item.children) {
         visit(item.children, depth + 1);
       }
     }
@@ -66,11 +66,11 @@ const sectionItems = computed<SectionPickerItem[]>(() => {
 
   return navigation.value.map((item) => ({
     label: item.title,
-    to: item?.children?.[0]?.path || item.path,
-    icon: item.icon,
+    to: (item.children?.[0]?.path || item.path) as string,
+    icon: item.icon as string | undefined,
     active: route.path.startsWith(item.path),
     onSelect() {
-      return navigateTo(item?.children?.[0]?.path || item.path);
+      return navigateTo((item.children?.[0]?.path || item.path) as string);
     }
   }));
 });

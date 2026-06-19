@@ -7,7 +7,7 @@ defineProps<{
 
 useHead({
   htmlAttrs: {
-    lang: 'en'
+    lang: 'zh-CN'
   }
 });
 
@@ -19,20 +19,8 @@ useSeoMeta({
 const { data: docsNavigation } = await useAsyncData('error-docs-navigation', () =>
   queryCollectionNavigation('docs')
 );
-const { data: resourcesNavigation } = await useAsyncData('error-resources-navigation', () =>
-  queryCollectionNavigation('resources')
-);
 
-const navigation = computed(() => {
-  const nav = [];
-  if (docsNavigation.value) {
-    nav.push(...docsNavigation.value);
-  }
-  if (resourcesNavigation.value) {
-    nav.push(...resourcesNavigation.value);
-  }
-  return nav;
-});
+const navigation = computed(() => docsNavigation.value ?? []);
 
 const { data: docsFiles } = useLazyAsyncData(
   'error-docs-search',
@@ -42,35 +30,28 @@ const { data: docsFiles } = useLazyAsyncData(
   }
 );
 
-const { data: resourcesFiles } = useLazyAsyncData(
-  'error-resources-search',
-  () => queryCollectionSearchSections('resources'),
-  {
-    server: false
-  }
-);
-
-const files = computed(() => {
-  const result = [];
-  if (docsFiles.value) {
-    result.push(...docsFiles.value);
-  }
-  if (resourcesFiles.value) {
-    result.push(...resourcesFiles.value);
-  }
-  return result;
-});
+const files = computed(() => docsFiles.value ?? []);
 
 provide('navigation', navigation);
+provide(
+  'isDocsRoute',
+  computed(() => false)
+);
 </script>
 
 <template>
   <UApp>
-    <AppHeader />
+    <div class="macos-window">
+      <NuxtLoadingIndicator />
 
-    <UError :error="error" />
+      <Header />
 
-    <AppFooter />
+      <UMain class="macos-scroll-area">
+        <div class="flex items-center justify-center min-h-full px-4 py-16">
+          <UError :error="error" />
+        </div>
+      </UMain>
+    </div>
 
     <ClientOnly>
       <LazyUContentSearch :files="files" :navigation="navigation" />

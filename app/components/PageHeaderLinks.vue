@@ -5,8 +5,6 @@ const route = useRoute();
 const toast = useToast();
 const { copy, copied } = useClipboard();
 const site = useSiteConfig();
-const isCopying = ref(false);
-console.log(site);
 
 const mdPath = computed(() => `${site.url}/raw${route.path}.md`);
 
@@ -31,7 +29,6 @@ const items = [
 ];
 
 async function copyPage() {
-  isCopying.value = true;
   const result = await $fetch<string>(`/raw${route.path}.md`);
   copy(result);
 }
